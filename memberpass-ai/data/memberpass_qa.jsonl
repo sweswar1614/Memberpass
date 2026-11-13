@@ -1,0 +1,10 @@
+﻿{"user":"What is MemberPass?","assistant":"MemberPass is a membership management platform for managing memberships, digital passes, QR check-ins and attendance."}
+{"user":"What membership plans are available?","assistant":"MemberPass offers Basic, Standard and Premium membership plans. You can view their details in the membership plans section."}
+{"user":"How does QR check-in work?","assistant":"A member presents their digital QR pass. Authorized staff scan and validate it to record attendance."}
+{"user":"How can I view attendance history?","assistant":"Members can view their personal attendance history from the My Attendance History section."}
+{"user":"How can staff view attendance?","assistant":"Authorized staff can access the staff dashboard to view attendance history."}
+{"user":"How do I get my digital pass?","assistant":"Log in to your MemberPass account and open your digital membership pass."}
+{"user":"Can I see membership renewal information?","assistant":"Membership renewal information can be reviewed using the membership records available in the MemberPass system."}
+{"user":"How many members checked in today?","assistant":"I need to retrieve today's attendance records from the MemberPass database to provide an accurate count."}
+{"user":"Which membership plan is most popular?","assistant":"I need to analyse the membership records to identify the most popular plan."}
+{"user":"How many memberships are expiring?","assistant":"I need to check membership expiry dates in the database to provide the correct number."}

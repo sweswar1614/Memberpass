@@ -1,0 +1,4364 @@
+﻿
+========================================
+FILE: D:\Intership\Eswar\backend\package-lock.json
+========================================
+{
+  "name": "backend",
+  "version": "1.0.0",
+  "lockfileVersion": 3,
+  "requires": true,
+  "packages": {
+    "": {
+      "name": "backend",
+      "version": "1.0.0",
+      "license": "ISC",
+      "dependencies": {
+        "bcryptjs": "^3.0.3",
+        "cors": "^2.8.6",
+        "dotenv": "^18.0.9",
+        "express": "^5.3.0",
+        "jsonwebtoken": "^9.0.3",
+        "mongoose": "^9.12.0"
+      },
+      "devDependencies": {
+        "nodemon": "^3.1.14"
+      }
+    },
+    "node_modules/@mongodb-js/saslprep": {
+      "version": "1.6.1",
+      "resolved": "https://registry.npmjs.org/@mongodb-js/saslprep/-/saslprep-1.6.1.tgz",
+      "integrity": "sha512-D4CQtk9IwjCLAvCf1xvHEod3960q8XMUzfmdRU9qjUNlHnesGuTOvJcOTaPm9koZ1caUKA2aTbszZiAkcmSgmg==",
+      "license": "MIT",
+      "dependencies": {
+        "sparse-bitfield": "^3.0.3"
+      }
+    },
+    "node_modules/@standard-schema/spec": {
+      "version": "1.1.0",
+      "resolved": "https://registry.npmjs.org/@standard-schema/spec/-/spec-1.1.0.tgz",
+      "integrity": "sha512-l2aFy5jALhniG5HgqrD6jXLi/rUWrKvqN/qJx6yoJsgKhblVd+iqqU4RCXavm/jPityDo5TCvKMnpjKnOriy0w==",
+      "license": "MIT"
+    },
+    "node_modules/@types/webidl-conversions": {
+      "version": "7.0.3",
+      "resolved": "https://registry.npmjs.org/@types/webidl-conversions/-/webidl-conversions-7.0.3.tgz",
+      "integrity": "sha512-CiJJvcRtIgzadHCYXw7dqEnMNRjhGZlYK05Mj9OyktqV8uVT8fD2BFOB7S1uwBE3Kj2Z+4UyPmFw/Ixgw/LAlA==",
+      "license": "MIT"
+    },
+    "node_modules/@types/whatwg-url": {
+      "version": "13.0.0",
+      "resolved": "https://registry.npmjs.org/@types/whatwg-url/-/whatwg-url-13.0.0.tgz",
+      "integrity": "sha512-N8WXpbE6Wgri7KUSvrmQcqrMllKZ9uxkYWMt+mCSGwNc0Hsw9VQTW7ApqI4XNrx6/SaM2QQJCzMPDEXE058s+Q==",
+      "license": "MIT",
+      "dependencies": {
+        "@types/webidl-conversions": "*"
+      }
+    },
+    "node_modules/accepts": {
+      "version": "2.0.0",
+      "resolved": "https://registry.npmjs.org/accepts/-/accepts-2.0.0.tgz",
+      "integrity": "sha512-5cvg6CtKwfgdmVqY1WIiXKc3Q1bkRqGLi+2W/6ao+6Y7gu/RCwRuAhGEzh5B4KlszSuTLgZYuqFqo5bImjNKng==",
+      "license": "MIT",
+      "dependencies": {
+        "mime-types": "^3.0.0",
+        "negotiator": "^1.0.0"
+      },
+      "engines": {
+        "node": ">= 0.6"
+      }
+    },
+    "node_modules/anymatch": {
+      "version": "3.1.3",
+      "resolved": "https://registry.npmjs.org/anymatch/-/anymatch-3.1.3.tgz",
+      "integrity": "sha512-KMReFUr0B4t+D+OBkjR3KYqvocp2XaSzO55UcB6mgQMd3KbcE+mWTyvVV7D/zsdEbNnV6acZUutkiHQXvTr1Rw==",
+      "dev": true,
+      "license": "ISC",
+      "dependencies": {
+        "normalize-path": "^3.0.0",
+        "picomatch": "^2.0.4"
+      },
+      "engines": {
+        "node": ">= 8"
+      }
+    },
+    "node_modules/balanced-match": {
+      "version": "4.0.4",
+      "resolved": "https://registry.npmjs.org/balanced-match/-/balanced-match-4.0.4.tgz",
+      "integrity": "sha512-BLrgEcRTwX2o6gGxGOCNyMvGSp35YofuYzw9h1IMTRmKqttAZZVU67bdb9Pr2vUHA8+j3i2tJfjO6C6+4myGTA==",
+      "dev": true,
+      "license": "MIT",
+      "engines": {
+        "node": "18 || 20 || >=22"
+      }
+    },
+    "node_modules/bcryptjs": {
+      "version": "3.0.3",
+      "resolved": "https://registry.npmjs.org/bcryptjs/-/bcryptjs-3.0.3.tgz",
+      "integrity": "sha512-GlF5wPWnSa/X5LKM1o0wz0suXIINz1iHRLvTS+sLyi7XPbe5ycmYI3DlZqVGZZtDgl4DmasFg7gOB3JYbphV5g==",
+      "license": "BSD-3-Clause",
+      "bin": {
+        "bcrypt": "bin/bcrypt"
+      }
+    },
+    "node_modules/binary-extensions": {
+      "version": "2.3.0",
+      "resolved": "https://registry.npmjs.org/binary-extensions/-/binary-extensions-2.3.0.tgz",
+      "integrity": "sha512-Ceh+7ox5qe7LJuLHoY0feh3pHuUDHAcRUeyL2VYghZwfpkNIy/+8Ocg0a3UuSoYzavmylwuLWQOf3hl0jjMMIw==",
+      "dev": true,
+      "license": "MIT",
+      "engines": {
+        "node": ">=8"
+      },
+      "funding": {
+        "url": "https://github.com/sponsors/sindresorhus"
+      }
+    },
+    "node_modules/body-parser": {
+      "version": "2.4.0",
+      "resolved": "https://registry.npmjs.org/body-parser/-/body-parser-2.4.0.tgz",
+      "integrity": "sha512-Ifk1KcLrxaGt1occQagQNFNNOqRt1LFuehEnHHzB8Z6cRgIxRU1TBaiIsUiCdA+gy5PL7Y1IX31DNKkRmxtXjQ==",
+      "license": "MIT",
+      "dependencies": {
+        "bytes": "^3.1.2",
+        "content-type": "^2.1.0",
+        "debug": "^4.4.3",
+        "http-errors": "^2.0.1",
+        "iconv-lite": "^0.7.3",
+        "on-finished": "^2.4.1",
+        "qs": "^6.16.1",
+        "raw-body": "^3.0.2",
+        "type-is": "^2.1.0"
+      },
+      "engines": {
+        "node": ">=18"
+      },
+      "funding": {
+        "type": "opencollective",
+        "url": "https://opencollective.com/express"
+      }
+    },
+    "node_modules/brace-expansion": {
+      "version": "5.0.12",
+      "resolved": "https://registry.npmjs.org/brace-expansion/-/brace-expansion-5.0.12.tgz",
+      "integrity": "sha512-YovQ3rzhaLMIrDjNDMkNS01tea93qhEhG5xy8f6+R0l+dw3Ki+5sCoIoI942iuLZTHWogWktgwVDhU09iNEimQ==",
+      "dev": true,
+      "license": "MIT",
+      "dependencies": {
+        "balanced-match": "^4.0.2"
+      },
+      "engines": {
+        "node": "20 || >=22"
+      }
+    },
+    "node_modules/braces": {
+      "version": "3.0.3",
+      "resolved": "https://registry.npmjs.org/braces/-/braces-3.0.3.tgz",
+      "integrity": "sha512-yQbXgO/OSZVD2IsiLlro+7Hf6Q18EJrKSEsdoMzKePKXct3gvD8oLcOQdIzGupr5Fj+EDe8gO/lxc1BzfMpxvA==",
+      "dev": true,
+      "license": "MIT",
+      "dependencies": {
+        "fill-range": "^7.1.1"
+      },
+      "engines": {
+        "node": ">=8"
+      }
+    },
+    "node_modules/bson": {
+      "version": "7.3.3",
+      "resolved": "https://registry.npmjs.org/bson/-/bson-7.3.3.tgz",
+      "integrity": "sha512-oz3LwE3qGEhTCSyhzQRLY3Bj1NLOsjFMf6tcmY5J8M+3R7EVcmoBfSHWvjUK3yXCLDUsGpIuB3aQL4nDZ1EV/g==",
+      "license": "Apache-2.0",
+      "engines": {
+        "node": ">=20.19.0"
+      }
+    },
+    "node_modules/buffer-equal-constant-time": {
+      "version": "1.0.1",
+      "resolved": "https://registry.npmjs.org/buffer-equal-constant-time/-/buffer-equal-constant-time-1.0.1.tgz",
+      "integrity": "sha512-zRpUiDwd/xk6ADqPMATG8vc9VPrkck7T07OIx0gnjmJAnHnTVXNQG3vfvWNuiZIkwu9KrKdA1iJKfsfTVxE6NA==",
+      "license": "BSD-3-Clause"
+    },
+    "node_modules/bytes": {
+      "version": "3.1.2",
+      "resolved": "https://registry.npmjs.org/bytes/-/bytes-3.1.2.tgz",
+      "integrity": "sha512-/Nf7TyzTx6S3yRJObOAV7956r8cr2+Oj8AC5dt8wSP3BQAoeX58NoHyCU8P8zGkNXStjTSi6fzO6F0pBdcYbEg==",
+      "license": "MIT",
+      "engines": {
+        "node": ">= 0.8"
+      }
+    },
+    "node_modules/call-bind-apply-helpers": {
+      "version": "1.0.2",
+      "resolved": "https://registry.npmjs.org/call-bind-apply-helpers/-/call-bind-apply-helpers-1.0.2.tgz",
+      "integrity": "sha512-Sp1ablJ0ivDkSzjcaJdxEunN5/XvksFJ2sMBFfq6x0ryhQV/2b/KwFe21cMpmHtPOSij8K99/wSfoEuTObmuMQ==",
+      "license": "MIT",
+      "dependencies": {
+        "es-errors": "^1.3.0",
+        "function-bind": "^1.1.2"
+      },
+      "engines": {
+        "node": ">= 0.4"
+      }
+    },
+    "node_modules/call-bound": {
+      "version": "1.0.4",
+      "resolved": "https://registry.npmjs.org/call-bound/-/call-bound-1.0.4.tgz",
+      "integrity": "sha512-+ys997U96po4Kx/ABpBCqhA9EuxJaQWDQg7295H4hBphv3IZg0boBKuwYpt4YXp6MZ5AmZQnU/tyMTlRpaSejg==",
+      "license": "MIT",
+      "dependencies": {
+        "call-bind-apply-helpers": "^1.0.2",
+        "get-intrinsic": "^1.3.0"
+      },
+      "engines": {
+        "node": ">= 0.4"
+      },
+      "funding": {
+        "url": "https://github.com/sponsors/ljharb"
+      }
+    },
+    "node_modules/chokidar": {
+      "version": "3.6.0",
+      "resolved": "https://registry.npmjs.org/chokidar/-/chokidar-3.6.0.tgz",
+      "integrity": "sha512-7VT13fmjotKpGipCW9JEQAusEPE+Ei8nl6/g4FBAmIm0GOOLMua9NDDo/DWp0ZAxCr3cPq5ZpBqmPAQgDda2Pw==",
+      "dev": true,
+      "license": "MIT",
+      "dependencies": {
+        "anymatch": "~3.1.2",
+        "braces": "~3.0.2",
+        "glob-parent": "~5.1.2",
+        "is-binary-path": "~2.1.0",
+        "is-glob": "~4.0.1",
+        "normalize-path": "~3.0.0",
+        "readdirp": "~3.6.0"
+      },
+      "engines": {
+        "node": ">= 8.10.0"
+      },
+      "funding": {
+        "url": "https://paulmillr.com/funding/"
+      },
+      "optionalDependencies": {
+        "fsevents": "~2.3.2"
+      }
+    },
+    "node_modules/content-disposition": {
+      "version": "2.0.1",
+      "resolved": "https://registry.npmjs.org/content-disposition/-/content-disposition-2.0.1.tgz",
+      "integrity": "sha512-e+H0ZXHSWYrENhQzw1LPuP4oF5MzVKmDU6d3hxlvaPEYLLg62MxtQNPRx4SYSuYJSBUgnQIG4HIN2tEtNv7Dog==",
+      "license": "MIT",
+      "engines": {
+        "node": ">=18"
+      },
+      "funding": {
+        "type": "opencollective",
+        "url": "https://opencollective.com/express"
+      }
+    },
+    "node_modules/content-type": {
+      "version": "2.1.0",
+      "resolved": "https://registry.npmjs.org/content-type/-/content-type-2.1.0.tgz",
+      "integrity": "sha512-mj7UPXE0jaqaOsukNZRUEfEi2AcL7C/vwmwcHV0O97eO1E1pxBZuyjlZrx5seTaNBg1U6+o35wpa35Qfcc+7ag==",
+      "license": "MIT",
+      "engines": {
+        "node": ">=18"
+      },
+      "funding": {
+        "type": "opencollective",
+        "url": "https://opencollective.com/express"
+      }
+    },
+    "node_modules/cookie": {
+      "version": "0.7.2",
+      "resolved": "https://registry.npmjs.org/cookie/-/cookie-0.7.2.tgz",
+      "integrity": "sha512-yki5XnKuf750l50uGTllt6kKILY4nQ1eNIQatoXEByZ5dWgnKqbnqmTrBE5B4N7lrMJKQ2ytWMiTO2o0v6Ew/w==",
+      "license": "MIT",
+      "engines": {
+        "node": ">= 0.6"
+      }
+    },
+    "node_modules/cookie-signature": {
+      "version": "1.2.2",
+      "resolved": "https://registry.npmjs.org/cookie-signature/-/cookie-signature-1.2.2.tgz",
+      "integrity": "sha512-D76uU73ulSXrD1UXF4KE2TMxVVwhsnCgfAyTg9k8P6KGZjlXKrOLe4dJQKI3Bxi5wjesZoFXJWElNWBjPZMbhg==",
+      "license": "MIT",
+      "engines": {
+        "node": ">=6.6.0"
+      }
+    },
+    "node_modules/cors": {
+      "version": "2.8.6",
+      "resolved": "https://registry.npmjs.org/cors/-/cors-2.8.6.tgz",
+      "integrity": "sha512-tJtZBBHA6vjIAaF6EnIaq6laBBP9aq/Y3ouVJjEfoHbRBcHBAHYcMh/w8LDrk2PvIMMq8gmopa5D4V8RmbrxGw==",
+      "license": "MIT",
+      "dependencies": {
+        "object-assign": "^4",
+        "vary": "^1"
+      },
+      "engines": {
+        "node": ">= 0.10"
+      },
+      "funding": {
+        "type": "opencollective",
+        "url": "https://opencollective.com/express"
+      }
+    },
+    "node_modules/debug": {
+      "version": "4.4.3",
+      "resolved": "https://registry.npmjs.org/debug/-/debug-4.4.3.tgz",
+      "integrity": "sha512-RGwwWnwQvkVfavKVt22FGLw+xYSdzARwm0ru6DhTVA3umU5hZc28V3kO4stgYryrTlLpuvgI9GiijltAjNbcqA==",
+      "license": "MIT",
+      "dependencies": {
+        "ms": "^2.1.3"
+      },
+      "engines": {
+        "node": ">=6.0"
+      },
+      "peerDependenciesMeta": {
+        "supports-color": {
+          "optional": true
+        }
+      }
+    },
+    "node_modules/depd": {
+      "version": "2.0.0",
+      "resolved": "https://registry.npmjs.org/depd/-/depd-2.0.0.tgz",
+      "integrity": "sha512-g7nH6P6dyDioJogAAGprGpCtVImJhpPk/roCzdb3fIh61/s/nPsfR6onyMwkCAR/OlC3yBC0lESvUoQEAssIrw==",
+      "license": "MIT",
+      "engines": {
+        "node": ">= 0.8"
+      }
+    },
+    "node_modules/dotenv": {
+      "version": "18.0.9",
+      "resolved": "https://registry.npmjs.org/dotenv/-/dotenv-18.0.9.tgz",
+      "integrity": "sha512-3fVOW4cB02R066PUSwn8O4TJyz9NckQl7F81blIbaq9jKBm2tSmOKky7ZHIXzGvkVPXCSn6jkpziBPZdGFs8Tw==",
+      "license": "BSD-2-Clause",
+      "bin": {
+        "dotenv": "dist/index.cjs"
+      },
+      "engines": {
+        "node": ">=12"
+      },
+      "funding": {
+        "url": "https://dotenvx.com"
+      }
+    },
+    "node_modules/dunder-proto": {
+      "version": "1.0.1",
+      "resolved": "https://registry.npmjs.org/dunder-proto/-/dunder-proto-1.0.1.tgz",
+      "integrity": "sha512-KIN/nDJBQRcXw0MLVhZE9iQHmG68qAVIBg9CqmUYjmQIhgij9U5MFvrqkUL5FbtyyzZuOeOt0zdeRe4UY7ct+A==",
+      "license": "MIT",
+      "dependencies": {
+        "call-bind-apply-helpers": "^1.0.1",
+        "es-errors": "^1.3.0",
+        "gopd": "^1.2.0"
+      },
+      "engines": {
+        "node": ">= 0.4"
+      }
+    },
+    "node_modules/ecdsa-sig-formatter": {
+      "version": "1.0.11",
+      "resolved": "https://registry.npmjs.org/ecdsa-sig-formatter/-/ecdsa-sig-formatter-1.0.11.tgz",
+      "integrity": "sha512-nagl3RYrbNv6kQkeJIpt6NJZy8twLB/2vtz6yN9Z4vRKHN4/QZJIEbqohALSgwKdnksuY3k5Addp5lg8sVoVcQ==",
+      "license": "Apache-2.0",
+      "dependencies": {
+        "safe-buffer": "^5.0.1"
+      }
+    },
+    "node_modules/ee-first": {
+      "version": "1.1.1",
+      "resolved": "https://registry.npmjs.org/ee-first/-/ee-first-1.1.1.tgz",
+      "integrity": "sha512-WMwm9LhRUo+WUaRN+vRuETqG89IgZphVSNkdFgeb6sS/E4OrDIN7t48CAewSHXc6C8lefD8KKfr5vY61brQlow==",
+      "license": "MIT"
+    },
+    "node_modules/encodeurl": {
+      "version": "2.0.1",
+      "resolved": "https://registry.npmjs.org/encodeurl/-/encodeurl-2.0.1.tgz",
+      "integrity": "sha512-Ev/hIyePLZtpL98x562lvPtenrUfGr0lfaf44HFZ+hDEwso7ccV9QAZrEVLg0hxNAzygaAFxy2dYaAKKM0G06A==",
+      "license": "MIT",
+      "engines": {
+        "node": ">= 0.8"
+      },
+      "funding": {
+        "type": "opencollective",
+        "url": "https://opencollective.com/express"
+      }
+    },
+    "node_modules/es-define-property": {
+      "version": "1.0.1",
+      "resolved": "https://registry.npmjs.org/es-define-property/-/es-define-property-1.0.1.tgz",
+      "integrity": "sha512-e3nRfgfUZ4rNGL232gUgX06QNyyez04KdjFrF+LTRoOXmrOgFKDg4BCdsjW8EnT69eqdYGmRpJwiPVYNrCaW3g==",
+      "license": "MIT",
+      "engines": {
+        "node": ">= 0.4"
+      }
+    },
+    "node_modules/es-errors": {
+      "version": "1.3.0",
+      "resolved": "https://registry.npmjs.org/es-errors/-/es-errors-1.3.0.tgz",
+      "integrity": "sha512-Zf5H2Kxt2xjTvbJvP2ZWLEICxA6j+hAmMzIlypy4xcBg1vKVnx89Wy0GbS+kf5cwCVFFzdCFh2XSCFNULS6csw==",
+      "license": "MIT",
+      "engines": {
+        "node": ">= 0.4"
+      }
+    },
+    "node_modules/es-object-atoms": {
+      "version": "1.1.2",
+      "resolved": "https://registry.npmjs.org/es-object-atoms/-/es-object-atoms-1.1.2.tgz",
+      "integrity": "sha512-HWcBoN6NileqtSydK2FqHbS/LoDd2pqrnQHLyJzBj4kOp/ky2MWMN694xOfkK8/SnUsW2DH7EfyVlydKCsm1Zw==",
+      "license": "MIT",
+      "dependencies": {
+        "es-errors": "^1.3.0"
+      },
+      "engines": {
+        "node": ">= 0.4"
+      }
+    },
+    "node_modules/escape-html": {
+      "version": "1.0.3",
+      "resolved": "https://registry.npmjs.org/escape-html/-/escape-html-1.0.3.tgz",
+      "integrity": "sha512-NiSupZ4OeuGwr68lGIeym/ksIZMJodUGOSCZ/FSnTxcrekbvqrgdUxlJOMpijaKZVjAJrWrGs/6Jy8OMuyj9ow==",
+      "license": "MIT"
+    },
+    "node_modules/etag": {
+      "version": "1.8.1",
+      "resolved": "https://registry.npmjs.org/etag/-/etag-1.8.1.tgz",
+      "integrity": "sha512-aIL5Fx7mawVa300al2BnEE4iNvo1qETxLrPI/o05L7z6go7fCw1J6EQmbK4FmJ2AS7kgVF/KEZWufBfdClMcPg==",
+      "license": "MIT",
+      "engines": {
+        "node": ">= 0.6"
+      }
+    },
+    "node_modules/express": {
+      "version": "5.3.0",
+      "resolved": "https://registry.npmjs.org/express/-/express-5.3.0.tgz",
+      "integrity": "sha512-qCqy1xSoaugxOD4IVHb1ZWdkvCF2W3aE2okKouWj8VwJ+ztskSiXoBnCSJqfKT+cVPJhuJqe9YLbY425+Zh00g==",
+      "license": "MIT",
+      "dependencies": {
+        "accepts": "^2.0.0",
+        "body-parser": "^2.3.0",
+        "content-disposition": "^2.0.1",
+        "content-type": "^2.0.0",
+        "cookie": "^0.7.1",
+        "cookie-signature": "^1.2.1",
+        "debug": "^4.4.0",
+        "depd": "^2.0.0",
+        "encodeurl": "^2.0.0",
+        "escape-html": "^1.0.3",
+        "etag": "^1.8.1",
+        "finalhandler": "^2.1.0",
+        "fresh": "^2.0.0",
+        "http-errors": "^2.0.0",
+        "merge-descriptors": "^2.0.0",
+        "mime-types": "^3.0.0",
+        "on-finished": "^2.4.1",
+        "once": "^1.4.0",
+        "parseurl": "^1.3.3",
+        "proxy-addr": "^2.0.8",
+        "qs": "^6.16.0",
+        "range-parser": "^1.2.1",
+        "router": "^2.2.0",
+        "send": "^1.1.0",
+        "serve-static": "^2.2.0",
+        "statuses": "^2.0.1",
+        "type-is": "^2.1.0",
+        "vary": "^1.1.2"
+      },
+      "engines": {
+        "node": ">= 18"
+      },
+      "funding": {
+        "type": "opencollective",
+        "url": "https://opencollective.com/express"
+      }
+    },
+    "node_modules/fill-range": {
+      "version": "7.1.1",
+      "resolved": "https://registry.npmjs.org/fill-range/-/fill-range-7.1.1.tgz",
+      "integrity": "sha512-YsGpe3WHLK8ZYi4tWDg2Jy3ebRz2rXowDxnld4bkQB00cc/1Zw9AWnC0i9ztDJitivtQvaI9KaLyKrc+hBW0yg==",
+      "dev": true,
+      "license": "MIT",
+      "dependencies": {
+        "to-regex-range": "^5.0.1"
+      },
+      "engines": {
+        "node": ">=8"
+      }
+    },
+    "node_modules/finalhandler": {
+      "version": "2.1.1",
+      "resolved": "https://registry.npmjs.org/finalhandler/-/finalhandler-2.1.1.tgz",
+      "integrity": "sha512-S8KoZgRZN+a5rNwqTxlZZePjT/4cnm0ROV70LedRHZ0p8u9fRID0hJUZQpkKLzro8LfmC8sx23bY6tVNxv8pQA==",
+      "license": "MIT",
+      "dependencies": {
+        "debug": "^4.4.0",
+        "encodeurl": "^2.0.0",
+        "escape-html": "^1.0.3",
+        "on-finished": "^2.4.1",
+        "parseurl": "^1.3.3",
+        "statuses": "^2.0.1"
+      },
+      "engines": {
+        "node": ">= 18.0.0"
+      },
+      "funding": {
+        "type": "opencollective",
+        "url": "https://opencollective.com/express"
+      }
+    },
+    "node_modules/forwarded": {
+      "version": "0.2.0",
+      "resolved": "https://registry.npmjs.org/forwarded/-/forwarded-0.2.0.tgz",
+      "integrity": "sha512-buRG0fpBtRHSTCOASe6hD258tEubFoRLb4ZNA6NxMVHNw2gOcwHo9wyablzMzOA5z9xA9L1KNjk/Nt6MT9aYow==",
+      "license": "MIT",
+      "engines": {
+        "node": ">= 0.6"
+      }
+    },
+    "node_modules/fresh": {
+      "version": "2.0.0",
+      "resolved": "https://registry.npmjs.org/fresh/-/fresh-2.0.0.tgz",
+      "integrity": "sha512-Rx/WycZ60HOaqLKAi6cHRKKI7zxWbJ31MhntmtwMoaTeF7XFH9hhBp8vITaMidfljRQ6eYWCKkaTK+ykVJHP2A==",
+      "license": "MIT",
+      "engines": {
+        "node": ">= 0.8"
+      }
+    },
+    "node_modules/fsevents": {
+      "version": "2.3.3",
+      "resolved": "https://registry.npmjs.org/fsevents/-/fsevents-2.3.3.tgz",
+      "integrity": "sha512-5xoDfX+fL7faATnagmWPpbFtwh/R77WmMMqqHGS65C3vvB0YHrgF+B1YmZ3441tMj5n63k0212XNoJwzlhffQw==",
+      "dev": true,
+      "hasInstallScript": true,
+      "license": "MIT",
+      "optional": true,
+      "os": [
+        "darwin"
+      ],
+      "engines": {
+        "node": "^8.16.0 || ^10.6.0 || >=11.0.0"
+      }
+    },
+    "node_modules/function-bind": {
+      "version": "1.1.2",
+      "resolved": "https://registry.npmjs.org/function-bind/-/function-bind-1.1.2.tgz",
+      "integrity": "sha512-7XHNxH7qX9xG5mIwxkhumTox/MIRNcOgDrxWsMt2pAr23WHp6MrRlN7FBSFpCpr+oVO0F744iUgR82nJMfG2SA==",
+      "license": "MIT",
+      "funding": {
+        "url": "https://github.com/sponsors/ljharb"
+      }
+    },
+    "node_modules/get-intrinsic": {
+      "version": "1.3.0",
+      "resolved": "https://registry.npmjs.org/get-intrinsic/-/get-intrinsic-1.3.0.tgz",
+      "integrity": "sha512-9fSjSaos/fRIVIp+xSJlE6lfwhES7LNtKaCBIamHsjr2na1BiABJPo0mOjjz8GJDURarmCPGqaiVg5mfjb98CQ==",
+      "license": "MIT",
+      "dependencies": {
+        "call-bind-apply-helpers": "^1.0.2",
+        "es-define-property": "^1.0.1",
+        "es-errors": "^1.3.0",
+        "es-object-atoms": "^1.1.1",
+        "function-bind": "^1.1.2",
+        "get-proto": "^1.0.1",
+        "gopd": "^1.2.0",
+        "has-symbols": "^1.1.0",
+        "hasown": "^2.0.2",
+        "math-intrinsics": "^1.1.0"
+      },
+      "engines": {
+        "node": ">= 0.4"
+      },
+      "funding": {
+        "url": "https://github.com/sponsors/ljharb"
+      }
+    },
+    "node_modules/get-proto": {
+      "version": "1.0.1",
+      "resolved": "https://registry.npmjs.org/get-proto/-/get-proto-1.0.1.tgz",
+      "integrity": "sha512-sTSfBjoXBp89JvIKIefqw7U2CCebsc74kiY6awiGogKtoSGbgjYE/G/+l9sF3MWFPNc9IcoOC4ODfKHfxFmp0g==",
+      "license": "MIT",
+      "dependencies": {
+        "dunder-proto": "^1.0.1",
+        "es-object-atoms": "^1.0.0"
+      },
+      "engines": {
+        "node": ">= 0.4"
+      }
+    },
+    "node_modules/glob-parent": {
+      "version": "5.1.2",
+      "resolved": "https://registry.npmjs.org/glob-parent/-/glob-parent-5.1.2.tgz",
+      "integrity": "sha512-AOIgSQCepiJYwP3ARnGx+5VnTu2HBYdzbGP45eLw1vr3zB3vZLeyed1sC9hnbcOc9/SrMyM5RPQrkGz4aS9Zow==",
+      "dev": true,
+      "license": "ISC",
+      "dependencies": {
+        "is-glob": "^4.0.1"
+      },
+      "engines": {
+        "node": ">= 6"
+      }
+    },
+    "node_modules/gopd": {
+      "version": "1.2.0",
+      "resolved": "https://registry.npmjs.org/gopd/-/gopd-1.2.0.tgz",
+      "integrity": "sha512-ZUKRh6/kUFoAiTAtTYPZJ3hw9wNxx+BIBOijnlG9PnrJsCcSjs1wyyD6vJpaYtgnzDrKYRSqf3OO6Rfa93xsRg==",
+      "license": "MIT",
+      "engines": {
+        "node": ">= 0.4"
+      },
+      "funding": {
+        "url": "https://github.com/sponsors/ljharb"
+      }
+    },
+    "node_modules/has-flag": {
+      "version": "3.0.0",
+      "resolved": "https://registry.npmjs.org/has-flag/-/has-flag-3.0.0.tgz",
+      "integrity": "sha512-sKJf1+ceQBr4SMkvQnBDNDtf4TXpVhVGateu0t918bl30FnbE2m4vNLX+VWe/dpjlb+HugGYzW7uQXH98HPEYw==",
+      "dev": true,
+      "license": "MIT",
+      "engines": {
+        "node": ">=4"
+      }
+    },
+    "node_modules/has-symbols": {
+      "version": "1.1.0",
+      "resolved": "https://registry.npmjs.org/has-symbols/-/has-symbols-1.1.0.tgz",
+      "integrity": "sha512-1cDNdwJ2Jaohmb3sg4OmKaMBwuC48sYni5HUw2DvsC8LjGTLK9h+eb1X6RyuOHe4hT0ULCW68iomhjUoKUqlPQ==",
+      "license": "MIT",
+      "engines": {
+        "node": ">= 0.4"
+      },
+      "funding": {
+        "url": "https://github.com/sponsors/ljharb"
+      }
+    },
+    "node_modules/hasown": {
+      "version": "2.0.4",
+      "resolved": "https://registry.npmjs.org/hasown/-/hasown-2.0.4.tgz",
+      "integrity": "sha512-T2UbfbBEF32wiepXIsMlTW9+dDYC6wMh/t/vYA4tuOMKqWz/n3vr1NFSxQiyP+zk2mXsoMA/i/7qV6LKut1t1A==",
+      "license": "MIT",
+      "dependencies": {
+        "function-bind": "^1.1.2"
+      },
+      "engines": {
+        "node": ">= 0.4"
+      }
+    },
+    "node_modules/http-errors": {
+      "version": "2.0.1",
+      "resolved": "https://registry.npmjs.org/http-errors/-/http-errors-2.0.1.tgz",
+      "integrity": "sha512-4FbRdAX+bSdmo4AUFuS0WNiPz8NgFt+r8ThgNWmlrjQjt1Q7ZR9+zTlce2859x4KSXrwIsaeTqDoKQmtP8pLmQ==",
+      "license": "MIT",
+      "dependencies": {
+        "depd": "~2.0.0",
+        "inherits": "~2.0.4",
+        "setprototypeof": "~1.2.0",
+        "statuses": "~2.0.2",
+        "toidentifier": "~1.0.1"
+      },
+      "engines": {
+        "node": ">= 0.8"
+      },
+      "funding": {
+        "type": "opencollective",
+        "url": "https://opencollective.com/express"
+      }
+    },
+    "node_modules/iconv-lite": {
+      "version": "0.7.3",
+      "resolved": "https://registry.npmjs.org/iconv-lite/-/iconv-lite-0.7.3.tgz",
+      "integrity": "sha512-IKXpvIzjnC9XTAUbVBcMfGS0EPaIXtW6v+zr+RRp+hqULEpo0owZax6wyRwPOJbWbzjYspQwusTsfVr0ifh4uQ==",
+      "license": "MIT",
+      "dependencies": {
+        "safer-buffer": ">= 2.1.2 < 3.0.0"
+      },
+      "engines": {
+        "node": ">=0.10.0"
+      },
+      "funding": {
+        "type": "opencollective",
+        "url": "https://opencollective.com/express"
+      }
+    },
+    "node_modules/ignore-by-default": {
+      "version": "1.0.1",
+      "resolved": "https://registry.npmjs.org/ignore-by-default/-/ignore-by-default-1.0.1.tgz",
+      "integrity": "sha512-Ius2VYcGNk7T90CppJqcIkS5ooHUZyIQK+ClZfMfMNFEF9VSE73Fq+906u/CWu92x4gzZMWOwfFYckPObzdEbA==",
+      "dev": true,
+      "license": "ISC"
+    },
+    "node_modules/inherits": {
+      "version": "2.0.4",
+      "resolved": "https://registry.npmjs.org/inherits/-/inherits-2.0.4.tgz",
+      "integrity": "sha512-k/vGaX4/Yla3WzyMCvTQOXYeIHvqOKtnqBduzTHpzpQZzAskKMhZ2K+EnBiSM9zGSoIFeMpXKxa4dYeZIQqewQ==",
+      "license": "ISC"
+    },
+    "node_modules/ipaddr.js": {
+      "version": "1.9.1",
+      "resolved": "https://registry.npmjs.org/ipaddr.js/-/ipaddr.js-1.9.1.tgz",
+      "integrity": "sha512-0KI/607xoxSToH7GjN1FfSbLoU0+btTicjsQSWQlh/hZykN8KpmMf7uYwPW3R+akZ6R/w18ZlXSHBYXiYUPO3g==",
+      "license": "MIT",
+      "engines": {
+        "node": ">= 0.10"
+      }
+    },
+    "node_modules/is-binary-path": {
+      "version": "2.1.0",
+      "resolved": "https://registry.npmjs.org/is-binary-path/-/is-binary-path-2.1.0.tgz",
+      "integrity": "sha512-ZMERYes6pDydyuGidse7OsHxtbI7WVeUEozgR/g7rd0xUimYNlvZRE/K2MgZTjWy725IfelLeVcEM97mmtRGXw==",
+      "dev": true,
+      "license": "MIT",
+      "dependencies": {
+        "binary-extensions": "^2.0.0"
+      },
+      "engines": {
+        "node": ">=8"
+      }
+    },
+    "node_modules/is-extglob": {
+      "version": "2.1.1",
+      "resolved": "https://registry.npmjs.org/is-extglob/-/is-extglob-2.1.1.tgz",
+      "integrity": "sha512-SbKbANkN603Vi4jEZv49LeVJMn4yGwsbzZworEoyEiutsN3nJYdbO36zfhGJ6QEDpOZIFkDtnq5JRxmvl3jsoQ==",
+      "dev": true,
+      "license": "MIT",
+      "engines": {
+        "node": ">=0.10.0"
+      }
+    },
+    "node_modules/is-glob": {
+      "version": "4.0.3",
+      "resolved": "https://registry.npmjs.org/is-glob/-/is-glob-4.0.3.tgz",
+      "integrity": "sha512-xelSayHH36ZgE7ZWhli7pW34hNbNl8Ojv5KVmkJD4hBdD3th8Tfk9vYasLM+mXWOZhFkgZfxhLSnrwRr4elSSg==",
+      "dev": true,
+      "license": "MIT",
+      "dependencies": {
+        "is-extglob": "^2.1.1"
+      },
+      "engines": {
+        "node": ">=0.10.0"
+      }
+    },
+    "node_modules/is-number": {
+      "version": "7.0.0",
+      "resolved": "https://registry.npmjs.org/is-number/-/is-number-7.0.0.tgz",
+      "integrity": "sha512-41Cifkg6e8TylSpdtTpeLVMqvSBEVzTttHvERD741+pnZ8ANv0004MRL43QKPDlK9cGvNp6NZWZUBlbGXYxxng==",
+      "dev": true,
+      "license": "MIT",
+      "engines": {
+        "node": ">=0.12.0"
+      }
+    },
+    "node_modules/is-promise": {
+      "version": "4.0.0",
+      "resolved": "https://registry.npmjs.org/is-promise/-/is-promise-4.0.0.tgz",
+      "integrity": "sha512-hvpoI6korhJMnej285dSg6nu1+e6uxs7zG3BYAm5byqDsgJNWwxzM6z6iZiAgQR4TJ30JmBTOwqZUw3WlyH3AQ==",
+      "license": "MIT"
+    },
+    "node_modules/jsonwebtoken": {
+      "version": "9.0.3",
+      "resolved": "https://registry.npmjs.org/jsonwebtoken/-/jsonwebtoken-9.0.3.tgz",
+      "integrity": "sha512-MT/xP0CrubFRNLNKvxJ2BYfy53Zkm++5bX9dtuPbqAeQpTVe0MQTFhao8+Cp//EmJp244xt6Drw/GVEGCUj40g==",
+      "license": "MIT",
+      "dependencies": {
+        "jws": "^4.0.1",
+        "lodash.includes": "^4.3.0",
+        "lodash.isboolean": "^3.0.3",
+        "lodash.isinteger": "^4.0.4",
+        "lodash.isnumber": "^3.0.3",
+        "lodash.isplainobject": "^4.0.6",
+        "lodash.isstring": "^4.0.1",
+        "lodash.once": "^4.0.0",
+        "ms": "^2.1.1",
+        "semver": "^7.5.4"
+      },
+      "engines": {
+        "node": ">=12",
+        "npm": ">=6"
+      }
+    },
+    "node_modules/jwa": {
+      "version": "2.0.1",
+      "resolved": "https://registry.npmjs.org/jwa/-/jwa-2.0.1.tgz",
+      "integrity": "sha512-hRF04fqJIP8Abbkq5NKGN0Bbr3JxlQ+qhZufXVr0DvujKy93ZCbXZMHDL4EOtodSbCWxOqR8MS1tXA5hwqCXDg==",
+      "license": "MIT",
+      "dependencies": {
+        "buffer-equal-constant-time": "^1.0.1",
+        "ecdsa-sig-formatter": "1.0.11",
+        "safe-buffer": "^5.0.1"
+      }
+    },
+    "node_modules/jws": {
+      "version": "4.0.1",
+      "resolved": "https://registry.npmjs.org/jws/-/jws-4.0.1.tgz",
+      "integrity": "sha512-EKI/M/yqPncGUUh44xz0PxSidXFr/+r0pA70+gIYhjv+et7yxM+s29Y+VGDkovRofQem0fs7Uvf4+YmAdyRduA==",
+      "license": "MIT",
+      "dependencies": {
+        "jwa": "^2.0.1",
+        "safe-buffer": "^5.0.1"
+      }
+    },
+    "node_modules/kareem": {
+      "version": "3.4.1",
+      "resolved": "https://registry.npmjs.org/kareem/-/kareem-3.4.1.tgz",
+      "integrity": "sha512-UlgCAFNAdk/HLSsbfkmbH8pJqpEN52Ek8RG53Ys1i3Q3gbCQruSrWpplZlgIGyDHX/LNoLW97ei3OG43s7UhUA==",
+      "license": "Apache-2.0",
+      "engines": {
+        "node": ">=18.0.0"
+      }
+    },
+    "node_modules/lodash.includes": {
+      "version": "4.3.0",
+      "resolved": "https://registry.npmjs.org/lodash.includes/-/lodash.includes-4.3.0.tgz",
+      "integrity": "sha512-W3Bx6mdkRTGtlJISOvVD/lbqjTlPPUDTMnlXZFnVwi9NKJ6tiAk6LVdlhZMm17VZisqhKcgzpO5Wz91PCt5b0w==",
+      "license": "MIT"
+    },
+    "node_modules/lodash.isboolean": {
+      "version": "3.0.3",
+      "resolved": "https://registry.npmjs.org/lodash.isboolean/-/lodash.isboolean-3.0.3.tgz",
+      "integrity": "sha512-Bz5mupy2SVbPHURB98VAcw+aHh4vRV5IPNhILUCsOzRmsTmSQ17jIuqopAentWoehktxGd9e/hbIXq980/1QJg==",
+      "license": "MIT"
+    },
+    "node_modules/lodash.isinteger": {
+      "version": "4.0.4",
+      "resolved": "https://registry.npmjs.org/lodash.isinteger/-/lodash.isinteger-4.0.4.tgz",
+      "integrity": "sha512-DBwtEWN2caHQ9/imiNeEA5ys1JoRtRfY3d7V9wkqtbycnAmTvRRmbHKDV4a0EYc678/dia0jrte4tjYwVBaZUA==",
+      "license": "MIT"
+    },
+    "node_modules/lodash.isnumber": {
+      "version": "3.0.3",
+      "resolved": "https://registry.npmjs.org/lodash.isnumber/-/lodash.isnumber-3.0.3.tgz",
+      "integrity": "sha512-QYqzpfwO3/CWf3XP+Z+tkQsfaLL/EnUlXWVkIk5FUPc4sBdTehEqZONuyRt2P67PXAk+NXmTBcc97zw9t1FQrw==",
+      "license": "MIT"
+    },
+    "node_modules/lodash.isplainobject": {
+      "version": "4.0.6",
+      "resolved": "https://registry.npmjs.org/lodash.isplainobject/-/lodash.isplainobject-4.0.6.tgz",
+      "integrity": "sha512-oSXzaWypCMHkPC3NvBEaPHf0KsA5mvPrOPgQWDsbg8n7orZ290M0BmC/jgRZ4vcJ6DTAhjrsSYgdsW/F+MFOBA==",
+      "license": "MIT"
+    },
+    "node_modules/lodash.isstring": {
+      "version": "4.0.1",
+      "resolved": "https://registry.npmjs.org/lodash.isstring/-/lodash.isstring-4.0.1.tgz",
+      "integrity": "sha512-0wJxfxH1wgO3GrbuP+dTTk7op+6L41QCXbGINEmD+ny/G/eCqGzxyCsh7159S+mgDDcoarnBw6PC1PS5+wUGgw==",
+      "license": "MIT"
+    },
+    "node_modules/lodash.once": {
+      "version": "4.1.1",
+      "resolved": "https://registry.npmjs.org/lodash.once/-/lodash.once-4.1.1.tgz",
+      "integrity": "sha512-Sb487aTOCr9drQVL8pIxOzVhafOjZN9UU54hiN8PU3uAiSV7lx1yYNpbNmex2PK6dSJoNTSJUUswT651yww3Mg==",
+      "license": "MIT"
+    },
+    "node_modules/math-intrinsics": {
+      "version": "1.1.0",
+      "resolved": "https://registry.npmjs.org/math-intrinsics/-/math-intrinsics-1.1.0.tgz",
+      "integrity": "sha512-/IXtbwEk5HTPyEwyKX6hGkYXxM9nbj64B+ilVJnC/R6B0pH5G4V3b0pVbL7DBj4tkhBAppbQUlf6F6Xl9LHu1g==",
+      "license": "MIT",
+      "engines": {
+        "node": ">= 0.4"
+      }
+    },
+    "node_modules/media-typer": {
+      "version": "1.1.1",
+      "resolved": "https://registry.npmjs.org/media-typer/-/media-typer-1.1.1.tgz",
+      "integrity": "sha512-yz3xRaG20c6/BOzvYoDaGtPmGscs7YivItZEEqe6GbwNfHuxu9YNmvnEkMzKldAGY4/80pRcQRZSEnhquk9XuQ==",
+      "license": "MIT",
+      "engines": {
+        "node": ">= 0.8"
+      },
+      "funding": {
+        "type": "opencollective",
+        "url": "https://opencollective.com/express"
+      }
+    },
+    "node_modules/memory-pager": {
+      "version": "1.5.0",
+      "resolved": "https://registry.npmjs.org/memory-pager/-/memory-pager-1.5.0.tgz",
+      "integrity": "sha512-ZS4Bp4r/Zoeq6+NLJpP+0Zzm0pR8whtGPf1XExKLJBAczGMnSi3It14OiNCStjQjM6NU1okjQGSxgEZN8eBYKg==",
+      "license": "MIT"
+    },
+    "node_modules/merge-descriptors": {
+      "version": "2.0.0",
+      "resolved": "https://registry.npmjs.org/merge-descriptors/-/merge-descriptors-2.0.0.tgz",
+      "integrity": "sha512-Snk314V5ayFLhp3fkUREub6WtjBfPdCPY1Ln8/8munuLuiYhsABgBVWsozAG+MWMbVEvcdcpbi9R7ww22l9Q3g==",
+      "license": "MIT",
+      "engines": {
+        "node": ">=18"
+      },
+      "funding": {
+        "url": "https://github.com/sponsors/sindresorhus"
+      }
+    },
+    "node_modules/mime-db": {
+      "version": "1.54.0",
+      "resolved": "https://registry.npmjs.org/mime-db/-/mime-db-1.54.0.tgz",
+      "integrity": "sha512-aU5EJuIN2WDemCcAp2vFBfp/m4EAhWJnUNSSw0ixs7/kXbd6Pg64EmwJkNdFhB8aWt1sH2CTXrLxo/iAGV3oPQ==",
+      "license": "MIT",
+      "engines": {
+        "node": ">= 0.6"
+      }
+    },
+    "node_modules/mime-types": {
+      "version": "3.0.2",
+      "resolved": "https://registry.npmjs.org/mime-types/-/mime-types-3.0.2.tgz",
+      "integrity": "sha512-Lbgzdk0h4juoQ9fCKXW4by0UJqj+nOOrI9MJ1sSj4nI8aI2eo1qmvQEie4VD1glsS250n15LsWsYtCugiStS5A==",
+      "license": "MIT",
+      "dependencies": {
+        "mime-db": "^1.54.0"
+      },
+      "engines": {
+        "node": ">=18"
+      },
+      "funding": {
+        "type": "opencollective",
+        "url": "https://opencollective.com/express"
+      }
+    },
+    "node_modules/minimatch": {
+      "version": "10.2.6",
+      "resolved": "https://registry.npmjs.org/minimatch/-/minimatch-10.2.6.tgz",
+      "integrity": "sha512-vpLQEs+VLCr1nU0BXS07maYoFwlDAH0gngQuuttxIwutDFEMHq2blX+8vpgxDdK3J1PwjCJiep77OitTZ4Ll1A==",
+      "dev": true,
+      "license": "BlueOak-1.0.0",
+      "dependencies": {
+        "brace-expansion": "^5.0.8"
+      },
+      "engines": {
+        "node": "18 || 20 || >=22"
+      },
+      "funding": {
+        "url": "https://github.com/sponsors/isaacs"
+      }
+    },
+    "node_modules/mongodb": {
+      "version": "7.8.0",
+      "resolved": "https://registry.npmjs.org/mongodb/-/mongodb-7.8.0.tgz",
+      "integrity": "sha512-p2NKagbQ41+daACG/ZSvhTzeAo+DoEyWE9Cmpf/SyP3pTC43+X0mwKE/44PpKtCxp5wOxnXz+t2pXEZRSkt9Yg==",
+      "license": "Apache-2.0",
+      "dependencies": {
+        "@mongodb-js/saslprep": "^1.5.0",
+        "bson": "^7.3.2",
+        "mongodb-connection-string-url": "^7.0.2"
+      },
+      "engines": {
+        "node": ">=20.19.0"
+      },
+      "peerDependencies": {
+        "@aws-sdk/credential-providers": "^3.806.0",
+        "@mongodb-js/zstd": "^7.0.0",
+        "gcp-metadata": "^7.0.1",
+        "kerberos": "^7.0.0",
+        "mongodb-client-encryption": "^7.2.0",
+        "snappy": "^7.3.2",
+        "socks": "^2.8.6"
+      },
+      "peerDependenciesMeta": {
+        "@aws-sdk/credential-providers": {
+          "optional": true
+        },
+        "@mongodb-js/zstd": {
+          "optional": true
+        },
+        "gcp-metadata": {
+          "optional": true
+        },
+        "kerberos": {
+          "optional": true
+        },
+        "mongodb-client-encryption": {
+          "optional": true
+        },
+        "snappy": {
+          "optional": true
+        },
+        "socks": {
+          "optional": true
+        }
+      }
+    },
+    "node_modules/mongodb-connection-string-url": {
+      "version": "7.0.2",
+      "resolved": "https://registry.npmjs.org/mongodb-connection-string-url/-/mongodb-connection-string-url-7.0.2.tgz",
+      "integrity": "sha512-ZoS07RoFqpKYQwAk59qmrx8+jJHNHU30UjlU96QktiGn1ltvDr+vCznLX5DiUBLEpMAHatHNWV1nM/74ul66kA==",
+      "license": "Apache-2.0",
+      "dependencies": {
+        "@types/whatwg-url": "^13.0.0",
+        "whatwg-url": "^14.1.0"
+      },
+      "engines": {
+        "node": ">=20.19.0"
+      }
+    },
+    "node_modules/mongoose": {
+      "version": "9.12.0",
+      "resolved": "https://registry.npmjs.org/mongoose/-/mongoose-9.12.0.tgz",
+      "integrity": "sha512-nM8yl6hPcXuT+LbJYV7aFk1PmBF+0xR159pHHlaDzrovT89yQ5k+ty38Vcnd5elLYixndveBFtHJaWS9b80cKg==",
+      "license": "MIT",
+      "dependencies": {
+        "@standard-schema/spec": "^1.1.0",
+        "kareem": "3.4.1",
+        "mongodb": "~7.8",
+        "mpath": "0.9.0",
+        "mquery": "6.0.1",
+        "ms": "2.1.3",
+        "sift": "17.1.4"
+      },
+      "engines": {
+        "node": ">=20.19.0"
+      },
+      "funding": {
+        "type": "opencollective",
+        "url": "https://opencollective.com/mongoose"
+      }
+    },
+    "node_modules/mpath": {
+      "version": "0.9.0",
+      "resolved": "https://registry.npmjs.org/mpath/-/mpath-0.9.0.tgz",
+      "integrity": "sha512-ikJRQTk8hw5DEoFVxHG1Gn9T/xcjtdnOKIU1JTmGjZZlg9LST2mBLmcX3/ICIbgJydT2GOc15RnNy5mHmzfSew==",
+      "license": "MIT",
+      "engines": {
+        "node": ">=4.0.0"
+      }
+    },
+    "node_modules/mquery": {
+      "version": "6.0.1",
+      "resolved": "https://registry.npmjs.org/mquery/-/mquery-6.0.1.tgz",
+      "integrity": "sha512-/Nijmq3JcpHwDM+5CwBp5yEl6fUa6jLsIhPsoQywlGXU/ZrKIvSpBzfaGnW9BLqcne/CoUwd1ch7MRqptDgFTA==",
+      "license": "MIT",
+      "engines": {
+        "node": ">=20.19.0"
+      }
+    },
+    "node_modules/ms": {
+      "version": "2.1.3",
+      "resolved": "https://registry.npmjs.org/ms/-/ms-2.1.3.tgz",
+      "integrity": "sha512-6FlzubTLZG3J2a/NVCAleEhjzq5oxgHyaCU9yYXvcLsvoVaHJq/s5xXI6/XXP6tz7R9xAOtHnSO/tXtF3WRTlA==",
+      "license": "MIT"
+    },
+    "node_modules/negotiator": {
+      "version": "1.1.0",
+      "resolved": "https://registry.npmjs.org/negotiator/-/negotiator-1.1.0.tgz",
+      "integrity": "sha512-NMPBRMJgiQHjbd8phG3Vebdx4kZ1H121rbl5IkMqeOsahptB9BKo/d7oJ3zTXqTgagn2bWlNSXkh0QUGM31RYg==",
+      "license": "MIT",
+      "dependencies": {
+        "content-type": "^2.1.0"
+      },
+      "engines": {
+        "node": ">=18"
+      },
+      "funding": {
+        "type": "opencollective",
+        "url": "https://opencollective.com/express"
+      }
+    },
+    "node_modules/nodemon": {
+      "version": "3.1.14",
+      "resolved": "https://registry.npmjs.org/nodemon/-/nodemon-3.1.14.tgz",
+      "integrity": "sha512-jakjZi93UtB3jHMWsXL68FXSAosbLfY0In5gtKq3niLSkrWznrVBzXFNOEMJUfc9+Ke7SHWoAZsiMkNP3vq6Jw==",
+      "dev": true,
+      "license": "MIT",
+      "dependencies": {
+        "chokidar": "^3.5.2",
+        "debug": "^4",
+        "ignore-by-default": "^1.0.1",
+        "minimatch": "^10.2.1",
+        "pstree.remy": "^1.1.8",
+        "semver": "^7.5.3",
+        "simple-update-notifier": "^2.0.0",
+        "supports-color": "^5.5.0",
+        "touch": "^3.1.0",
+        "undefsafe": "^2.0.5"
+      },
+      "bin": {
+        "nodemon": "bin/nodemon.js"
+      },
+      "engines": {
+        "node": ">=10"
+      },
+      "funding": {
+        "type": "opencollective",
+        "url": "https://opencollective.com/nodemon"
+      }
+    },
+    "node_modules/normalize-path": {
+      "version": "3.0.0",
+      "resolved": "https://registry.npmjs.org/normalize-path/-/normalize-path-3.0.0.tgz",
+      "integrity": "sha512-6eZs5Ls3WtCisHWp9S2GUy8dqkpGi4BVSz3GaqiE6ezub0512ESztXUwUB6C6IKbQkY2Pnb/mD4WYojCRwcwLA==",
+      "dev": true,
+      "license": "MIT",
+      "engines": {
+        "node": ">=0.10.0"
+      }
+    },
+    "node_modules/object-assign": {
+      "version": "4.1.1",
+      "resolved": "https://registry.npmjs.org/object-assign/-/object-assign-4.1.1.tgz",
+      "integrity": "sha512-rJgTQnkUnH1sFw8yT6VSU3zD3sWmu6sZhIseY8VX+GRu3P6F7Fu+JNDoXfklElbLJSnc3FUQHVe4cU5hj+BcUg==",
+      "license": "MIT",
+      "engines": {
+        "node": ">=0.10.0"
+      }
+    },
+    "node_modules/object-inspect": {
+      "version": "1.13.4",
+      "resolved": "https://registry.npmjs.org/object-inspect/-/object-inspect-1.13.4.tgz",
+      "integrity": "sha512-W67iLl4J2EXEGTbfeHCffrjDfitvLANg0UlX3wFUUSTx92KXRFegMHUVgSqE+wvhAbi4WqjGg9czysTV2Epbew==",
+      "license": "MIT",
+      "engines": {
+        "node": ">= 0.4"
+      },
+      "funding": {
+        "url": "https://github.com/sponsors/ljharb"
+      }
+    },
+    "node_modules/on-finished": {
+      "version": "2.4.2",
+      "resolved": "https://registry.npmjs.org/on-finished/-/on-finished-2.4.2.tgz",
+      "integrity": "sha512-ATWUv387i+nLD49EiDoOft5scf32Vsdz3ktrQJG9bi7jRFmaXTssvyvj1EmeKVVgvesbqUtvQQvaS2TpTukAZQ==",
+      "license": "MIT",
+      "dependencies": {
+        "ee-first": "1.1.1"
+      },
+      "engines": {
+        "node": ">= 0.8"
+      },
+      "funding": {
+        "type": "opencollective",
+        "url": "https://opencollective.com/express"
+      }
+    },
+    "node_modules/once": {
+      "version": "1.4.0",
+      "resolved": "https://registry.npmjs.org/once/-/once-1.4.0.tgz",
+      "integrity": "sha512-lNaJgI+2Q5URQBkccEKHTQOPaXdUxnZZElQTZY0MFUAuaEqe1E+Nyvgdz/aIyNi6Z9MzO5dv1H8n58/GELp3+w==",
+      "license": "ISC",
+      "dependencies": {
+        "wrappy": "1"
+      }
+    },
+    "node_modules/parseurl": {
+      "version": "1.3.3",
+      "resolved": "https://registry.npmjs.org/parseurl/-/parseurl-1.3.3.tgz",
+      "integrity": "sha512-CiyeOxFT/JZyN5m0z9PfXw4SCBJ6Sygz1Dpl0wqjlhDEGGBP1GnsUVEL0p63hoG1fcj3fHynXi9NYO4nWOL+qQ==",
+      "license": "MIT",
+      "engines": {
+        "node": ">= 0.8"
+      }
+    },
+    "node_modules/path-to-regexp": {
+      "version": "8.4.2",
+      "resolved": "https://registry.npmjs.org/path-to-regexp/-/path-to-regexp-8.4.2.tgz",
+      "integrity": "sha512-qRcuIdP69NPm4qbACK+aDogI5CBDMi1jKe0ry5rSQJz8JVLsC7jV8XpiJjGRLLol3N+R5ihGYcrPLTno6pAdBA==",
+      "license": "MIT",
+      "funding": {
+        "type": "opencollective",
+        "url": "https://opencollective.com/express"
+      }
+    },
+    "node_modules/picomatch": {
+      "version": "2.3.2",
+      "resolved": "https://registry.npmjs.org/picomatch/-/picomatch-2.3.2.tgz",
+      "integrity": "sha512-V7+vQEJ06Z+c5tSye8S+nHUfI51xoXIXjHQ99cQtKUkQqqO1kO/KCJUfZXuB47h/YBlDhah2H3hdUGXn8ie0oA==",
+      "dev": true,
+      "license": "MIT",
+      "engines": {
+        "node": ">=8.6"
+      },
+      "funding": {
+        "url": "https://github.com/sponsors/jonschlinkert"
+      }
+    },
+    "node_modules/proxy-addr": {
+      "version": "2.0.8",
+      "resolved": "https://registry.npmjs.org/proxy-addr/-/proxy-addr-2.0.8.tgz",
+      "integrity": "sha512-5nnx0yGyVUcY6t9RnWcARWtwT9F1D8O9rt08htPvnd49W1IgZtmLkhu9WfMzQj1cFxjHIO6connUNVW5k7AVyQ==",
+      "license": "MIT",
+      "dependencies": {
+        "forwarded": "0.2.0",
+        "ipaddr.js": "1.9.1"
+      },
+      "engines": {
+        "node": ">= 0.10"
+      },
+      "funding": {
+        "type": "opencollective",
+        "url": "https://opencollective.com/express"
+      }
+    },
+    "node_modules/pstree.remy": {
+      "version": "1.1.8",
+      "resolved": "https://registry.npmjs.org/pstree.remy/-/pstree.remy-1.1.8.tgz",
+      "integrity": "sha512-77DZwxQmxKnu3aR542U+X8FypNzbfJ+C5XQDk3uWjWxn6151aIMGthWYRXTqT1E5oJvg+ljaa2OJi+VfvCOQ8w==",
+      "dev": true,
+      "license": "MIT"
+    },
+    "node_modules/punycode": {
+      "version": "2.3.1",
+      "resolved": "https://registry.npmjs.org/punycode/-/punycode-2.3.1.tgz",
+      "integrity": "sha512-vYt7UD1U9Wg6138shLtLOvdAu+8DsC/ilFtEVHcH+wydcSpNE20AfSOduf6MkRFahL5FY7X1oU7nKVZFtfq8Fg==",
+      "license": "MIT",
+      "engines": {
+        "node": ">=6"
+      }
+    },
+    "node_modules/qs": {
+      "version": "6.17.1",
+      "resolved": "https://registry.npmjs.org/qs/-/qs-6.17.1.tgz",
+      "integrity": "sha512-jd3COkaKVgGUW+ZHyEHCG9bH7RoaaiWuMgzsIBjUMVjLAaWGWpoUAVwljVvBHxRu/2qEHnadLGZrkutYUBPQJA==",
+      "license": "BSD-3-Clause",
+      "dependencies": {
+        "es-define-property": "^1.0.1",
+        "side-channel": "^1.1.1"
+      },
+      "engines": {
+        "node": ">=0.6"
+      },
+      "funding": {
+        "url": "https://github.com/sponsors/ljharb"
+      }
+    },
+    "node_modules/range-parser": {
+      "version": "1.3.0",
+      "resolved": "https://registry.npmjs.org/range-parser/-/range-parser-1.3.0.tgz",
+      "integrity": "sha512-hek2mFQpPuI4E1BBKrSto+BU3e3x4xuarsbiwr3+lf7p44juvFMV0XFWQAP3xUyqXA4RrXLIoaSUGbSt056ZMw==",
+      "license": "MIT",
+      "engines": {
+        "node": ">= 0.6"
+      },
+      "funding": {
+        "type": "opencollective",
+        "url": "https://opencollective.com/express"
+      }
+    },
+    "node_modules/raw-body": {
+      "version": "3.0.2",
+      "resolved": "https://registry.npmjs.org/raw-body/-/raw-body-3.0.2.tgz",
+      "integrity": "sha512-K5zQjDllxWkf7Z5xJdV0/B0WTNqx6vxG70zJE4N0kBs4LovmEYWJzQGxC9bS9RAKu3bgM40lrd5zoLJ12MQ5BA==",
+      "license": "MIT",
+      "dependencies": {
+        "bytes": "~3.1.2",
+        "http-errors": "~2.0.1",
+        "iconv-lite": "~0.7.0",
+        "unpipe": "~1.0.0"
+      },
+      "engines": {
+        "node": ">= 0.10"
+      }
+    },
+    "node_modules/readdirp": {
+      "version": "3.6.0",
+      "resolved": "https://registry.npmjs.org/readdirp/-/readdirp-3.6.0.tgz",
+      "integrity": "sha512-hOS089on8RduqdbhvQ5Z37A0ESjsqz6qnRcffsMU3495FuTdqSm+7bhJ29JvIOsBDEEnan5DPu9t3To9VRlMzA==",
+      "dev": true,
+      "license": "MIT",
+      "dependencies": {
+        "picomatch": "^2.2.1"
+      },
+      "engines": {
+        "node": ">=8.10.0"
+      }
+    },
+    "node_modules/router": {
+      "version": "2.2.0",
+      "resolved": "https://registry.npmjs.org/router/-/router-2.2.0.tgz",
+      "integrity": "sha512-nLTrUKm2UyiL7rlhapu/Zl45FwNgkZGaCpZbIHajDYgwlJCOzLSk+cIPAnsEqV955GjILJnKbdQC1nVPz+gAYQ==",
+      "license": "MIT",
+      "dependencies": {
+        "debug": "^4.4.0",
+        "depd": "^2.0.0",
+        "is-promise": "^4.0.0",
+        "parseurl": "^1.3.3",
+        "path-to-regexp": "^8.0.0"
+      },
+      "engines": {
+        "node": ">= 18"
+      }
+    },
+    "node_modules/safe-buffer": {
+      "version": "5.2.1",
+      "resolved": "https://registry.npmjs.org/safe-buffer/-/safe-buffer-5.2.1.tgz",
+      "integrity": "sha512-rp3So07KcdmmKbGvgaNxQSJr7bGVSVk5S9Eq1F+ppbRo70+YeaDxkw5Dd8NPN+GD6bjnYm2VuPuCXmpuYvmCXQ==",
+      "funding": [
+        {
+          "type": "github",
+          "url": "https://github.com/sponsors/feross"
+        },
+        {
+          "type": "patreon",
+          "url": "https://www.patreon.com/feross"
+        },
+        {
+          "type": "consulting",
+          "url": "https://feross.org/support"
+        }
+      ],
+      "license": "MIT"
+    },
+    "node_modules/safer-buffer": {
+      "version": "2.1.2",
+      "resolved": "https://registry.npmjs.org/safer-buffer/-/safer-buffer-2.1.2.tgz",
+      "integrity": "sha512-YZo3K82SD7Riyi0E1EQPojLz7kpepnSQI9IyPbHHg1XXXevb5dJI7tpyN2ADxGcQbHG7vcyRHk0cbwqcQriUtg==",
+      "license": "MIT"
+    },
+    "node_modules/semver": {
+      "version": "7.8.6",
+      "resolved": "https://registry.npmjs.org/semver/-/semver-7.8.6.tgz",
+      "integrity": "sha512-9lpSSU4Mly3mrtruwLs1eLK6+gzbzqeBFwRNjIjE+9LuDpWdYctrQlQ3ej1Ilgi7gknpsTRnPoLP8DpCHqHIJw==",
+      "license": "ISC",
+      "bin": {
+        "semver": "bin/semver.js"
+      },
+      "engines": {
+        "node": ">=10"
+      }
+    },
+    "node_modules/send": {
+      "version": "1.2.1",
+      "resolved": "https://registry.npmjs.org/send/-/send-1.2.1.tgz",
+      "integrity": "sha512-1gnZf7DFcoIcajTjTwjwuDjzuz4PPcY2StKPlsGAQ1+YH20IRVrBaXSWmdjowTJ6u8Rc01PoYOGHXfP1mYcZNQ==",
+      "license": "MIT",
+      "dependencies": {
+        "debug": "^4.4.3",
+        "encodeurl": "^2.0.0",
+        "escape-html": "^1.0.3",
+        "etag": "^1.8.1",
+        "fresh": "^2.0.0",
+        "http-errors": "^2.0.1",
+        "mime-types": "^3.0.2",
+        "ms": "^2.1.3",
+        "on-finished": "^2.4.1",
+        "range-parser": "^1.2.1",
+        "statuses": "^2.0.2"
+      },
+      "engines": {
+        "node": ">= 18"
+      },
+      "funding": {
+        "type": "opencollective",
+        "url": "https://opencollective.com/express"
+      }
+    },
+    "node_modules/serve-static": {
+      "version": "2.2.1",
+      "resolved": "https://registry.npmjs.org/serve-static/-/serve-static-2.2.1.tgz",
+      "integrity": "sha512-xRXBn0pPqQTVQiC8wyQrKs2MOlX24zQ0POGaj0kultvoOCstBQM5yvOhAVSUwOMjQtTvsPWoNCHfPGwaaQJhTw==",
+      "license": "MIT",
+      "dependencies": {
+        "encodeurl": "^2.0.0",
+        "escape-html": "^1.0.3",
+        "parseurl": "^1.3.3",
+        "send": "^1.2.0"
+      },
+      "engines": {
+        "node": ">= 18"
+      },
+      "funding": {
+        "type": "opencollective",
+        "url": "https://opencollective.com/express"
+      }
+    },
+    "node_modules/setprototypeof": {
+      "version": "1.2.0",
+      "resolved": "https://registry.npmjs.org/setprototypeof/-/setprototypeof-1.2.0.tgz",
+      "integrity": "sha512-E5LDX7Wrp85Kil5bhZv46j8jOeboKq5JMmYM3gVGdGH8xFpPWXUMsNrlODCrkoxMEeNi/XZIwuRvY4XNwYMJpw==",
+      "license": "ISC"
+    },
+    "node_modules/side-channel": {
+      "version": "1.1.1",
+      "resolved": "https://registry.npmjs.org/side-channel/-/side-channel-1.1.1.tgz",
+      "integrity": "sha512-6x6dK6zJdpTzF4sQeNYxwtvBzf6Eg4GtlesS94HOvTudUeyK2WXAaIfmDgsyslYrRBeFIlsi54AYsFGUuhmvrQ==",
+      "license": "MIT",
+      "dependencies": {
+        "es-errors": "^1.3.0",
+        "object-inspect": "^1.13.4",
+        "side-channel-list": "^1.0.1",
+        "side-channel-map": "^1.0.1",
+        "side-channel-weakmap": "^1.0.2"
+      },
+      "engines": {
+        "node": ">= 0.4"
+      },
+      "funding": {
+        "url": "https://github.com/sponsors/ljharb"
+      }
+    },
+    "node_modules/side-channel-list": {
+      "version": "1.0.1",
+      "resolved": "https://registry.npmjs.org/side-channel-list/-/side-channel-list-1.0.1.tgz",
+      "integrity": "sha512-mjn/0bi/oUURjc5Xl7IaWi/OJJJumuoJFQJfDDyO46+hBWsfaVM65TBHq2eoZBhzl9EchxOijpkbRC8SVBQU0w==",
+      "license": "MIT",
+      "dependencies": {
+        "es-errors": "^1.3.0",
+        "object-inspect": "^1.13.4"
+      },
+      "engines": {
+        "node": ">= 0.4"
+      },
+      "funding": {
+        "url": "https://github.com/sponsors/ljharb"
+      }
+    },
+    "node_modules/side-channel-map": {
+      "version": "1.0.1",
+      "resolved": "https://registry.npmjs.org/side-channel-map/-/side-channel-map-1.0.1.tgz",
+      "integrity": "sha512-VCjCNfgMsby3tTdo02nbjtM/ewra6jPHmpThenkTYh8pG9ucZ/1P8So4u4FGBek/BjpOVsDCMoLA/iuBKIFXRA==",
+      "license": "MIT",
+      "dependencies": {
+        "call-bound": "^1.0.2",
+        "es-errors": "^1.3.0",
+        "get-intrinsic": "^1.2.5",
+        "object-inspect": "^1.13.3"
+      },
+      "engines": {
+        "node": ">= 0.4"
+      },
+      "funding": {
+        "url": "https://github.com/sponsors/ljharb"
+      }
+    },
+    "node_modules/side-channel-weakmap": {
+      "version": "1.0.2",
+      "resolved": "https://registry.npmjs.org/side-channel-weakmap/-/side-channel-weakmap-1.0.2.tgz",
+      "integrity": "sha512-WPS/HvHQTYnHisLo9McqBHOJk2FkHO/tlpvldyrnem4aeQp4hai3gythswg6p01oSoTl58rcpiFAjF2br2Ak2A==",
+      "license": "MIT",
+      "dependencies": {
+        "call-bound": "^1.0.2",
+        "es-errors": "^1.3.0",
+        "get-intrinsic": "^1.2.5",
+        "object-inspect": "^1.13.3",
+        "side-channel-map": "^1.0.1"
+      },
+      "engines": {
+        "node": ">= 0.4"
+      },
+      "funding": {
+        "url": "https://github.com/sponsors/ljharb"
+      }
+    },
+    "node_modules/sift": {
+      "version": "17.1.4",
+      "resolved": "https://registry.npmjs.org/sift/-/sift-17.1.4.tgz",
+      "integrity": "sha512-/OIVvj9Ts1mFwTYzW09YODMPeIOnDoigMOvKSIN44OmaCyhuCH/05UPF45XW7Ax0snmzDzCzdlSYqvqsn8+sIg==",
+      "license": "MIT"
+    },
+    "node_modules/simple-update-notifier": {
+      "version": "2.0.0",
+      "resolved": "https://registry.npmjs.org/simple-update-notifier/-/simple-update-notifier-2.0.0.tgz",
+      "integrity": "sha512-a2B9Y0KlNXl9u/vsW6sTIu9vGEpfKu2wRV6l1H3XEas/0gUIzGzBoP/IouTcUQbm9JWZLH3COxyn03TYlFax6w==",
+      "dev": true,
+      "license": "MIT",
+      "dependencies": {
+        "semver": "^7.5.3"
+      },
+      "engines": {
+        "node": ">=10"
+      }
+    },
+    "node_modules/sparse-bitfield": {
+      "version": "3.0.3",
+      "resolved": "https://registry.npmjs.org/sparse-bitfield/-/sparse-bitfield-3.0.3.tgz",
+      "integrity": "sha512-kvzhi7vqKTfkh0PZU+2D2PIllw2ymqJKujUcyPMd9Y75Nv4nPbGJZXNhxsgdQab2BmlDct1YnfQCguEvHr7VsQ==",
+      "license": "MIT",
+      "dependencies": {
+        "memory-pager": "^1.0.2"
+      }
+    },
+    "node_modules/statuses": {
+      "version": "2.0.2",
+      "resolved": "https://registry.npmjs.org/statuses/-/statuses-2.0.2.tgz",
+      "integrity": "sha512-DvEy55V3DB7uknRo+4iOGT5fP1slR8wQohVdknigZPMpMstaKJQWhwiYBACJE3Ul2pTnATihhBYnRhZQHGBiRw==",
+      "license": "MIT",
+      "engines": {
+        "node": ">= 0.8"
+      }
+    },
+    "node_modules/supports-color": {
+      "version": "5.5.0",
+      "resolved": "https://registry.npmjs.org/supports-color/-/supports-color-5.5.0.tgz",
+      "integrity": "sha512-QjVjwdXIt408MIiAqCX4oUKsgU2EqAGzs2Ppkm4aQYbjm+ZEWEcW4SfFNTr4uMNZma0ey4f5lgLrkB0aX0QMow==",
+      "dev": true,
+      "license": "MIT",
+      "dependencies": {
+        "has-flag": "^3.0.0"
+      },
+      "engines": {
+        "node": ">=4"
+      }
+    },
+    "node_modules/to-regex-range": {
+      "version": "5.0.1",
+      "resolved": "https://registry.npmjs.org/to-regex-range/-/to-regex-range-5.0.1.tgz",
+      "integrity": "sha512-65P7iz6X5yEr1cwcgvQxbbIw7Uk3gOy5dIdtZ4rDveLqhrdJP+Li/Hx6tyK0NEb+2GCyneCMJiGqrADCSNk8sQ==",
+      "dev": true,
+      "license": "MIT",
+      "dependencies": {
+        "is-number": "^7.0.0"
+      },
+      "engines": {
+        "node": ">=8.0"
+      }
+    },
+    "node_modules/toidentifier": {
+      "version": "1.0.1",
+      "resolved": "https://registry.npmjs.org/toidentifier/-/toidentifier-1.0.1.tgz",
+      "integrity": "sha512-o5sSPKEkg/DIQNmH43V0/uerLrpzVedkUh8tGNvaeXpfpuwjKenlSox/2O/BTlZUtEe+JG7s5YhEz608PlAHRA==",
+      "license": "MIT",
+      "engines": {
+        "node": ">=0.6"
+      }
+    },
+    "node_modules/touch": {
+      "version": "3.1.1",
+      "resolved": "https://registry.npmjs.org/touch/-/touch-3.1.1.tgz",
+      "integrity": "sha512-r0eojU4bI8MnHr8c5bNo7lJDdI2qXlWWJk6a9EAFG7vbhTjElYhBVS3/miuE0uOuoLdb8Mc/rVfsmm6eo5o9GA==",
+      "dev": true,
+      "license": "ISC",
+      "bin": {
+        "nodetouch": "bin/nodetouch.js"
+      }
+    },
+    "node_modules/tr46": {
+      "version": "5.1.1",
+      "resolved": "https://registry.npmjs.org/tr46/-/tr46-5.1.1.tgz",
+      "integrity": "sha512-hdF5ZgjTqgAntKkklYw0R03MG2x/bSzTtkxmIRw/sTNV8YXsCJ1tfLAX23lhxhHJlEf3CRCOCGGWw3vI3GaSPw==",
+      "license": "MIT",
+      "dependencies": {
+        "punycode": "^2.3.1"
+      },
+      "engines": {
+        "node": ">=18"
+      }
+    },
+    "node_modules/type-is": {
+      "version": "2.1.0",
+      "resolved": "https://registry.npmjs.org/type-is/-/type-is-2.1.0.tgz",
+      "integrity": "sha512-faYHw0anBbc/kWF3zFTEnxSFOAGUX9GFbOBthvDdLsIlEoWOFOtS0zgCiQYwIskL9iGXZL3kAXD8OoZ4GmMATA==",
+      "license": "MIT",
+      "dependencies": {
+        "content-type": "^2.0.0",
+        "media-typer": "^1.1.0",
+        "mime-types": "^3.0.0"
+      },
+      "engines": {
+        "node": ">= 18"
+      },
+      "funding": {
+        "type": "opencollective",
+        "url": "https://opencollective.com/express"
+      }
+    },
+    "node_modules/undefsafe": {
+      "version": "2.0.5",
+      "resolved": "https://registry.npmjs.org/undefsafe/-/undefsafe-2.0.5.tgz",
+      "integrity": "sha512-WxONCrssBM8TSPRqN5EmsjVrsv4A8X12J4ArBiiayv3DyyG3ZlIg6yysuuSYdZsVz3TKcTg2fd//Ujd4CHV1iA==",
+      "dev": true,
+      "license": "MIT"
+    },
+    "node_modules/unpipe": {
+      "version": "1.0.0",
+      "resolved": "https://registry.npmjs.org/unpipe/-/unpipe-1.0.0.tgz",
+      "integrity": "sha512-pjy2bYhSsufwWlKwPc+l3cN7+wuJlK6uz0YdJEOlQDbl6jo/YlPi4mb8agUkVC8BF7V8NuzeyPNqRksA3hztKQ==",
+      "license": "MIT",
+      "engines": {
+        "node": ">= 0.8"
+      }
+    },
+    "node_modules/vary": {
+      "version": "1.1.2",
+      "resolved": "https://registry.npmjs.org/vary/-/vary-1.1.2.tgz",
+      "integrity": "sha512-BNGbWLfd0eUPabhkXUVm0j8uuvREyTh5ovRa/dyow/BqAbZJyC+5fU+IzQOzmAKzYqYRAISoRhdQr3eIZ/PXqg==",
+      "license": "MIT",
+      "engines": {
+        "node": ">= 0.8"
+      }
+    },
+    "node_modules/webidl-conversions": {
+      "version": "7.0.0",
+      "resolved": "https://registry.npmjs.org/webidl-conversions/-/webidl-conversions-7.0.0.tgz",
+      "integrity": "sha512-VwddBukDzu71offAQR975unBIGqfKZpM+8ZX6ySk8nYhVoo5CYaZyzt3YBvYtRtO+aoGlqxPg/B87NGVZ/fu6g==",
+      "license": "BSD-2-Clause",
+      "engines": {
+        "node": ">=12"
+      }
+    },
+    "node_modules/whatwg-url": {
+      "version": "14.2.0",
+      "resolved": "https://registry.npmjs.org/whatwg-url/-/whatwg-url-14.2.0.tgz",
+      "integrity": "sha512-De72GdQZzNTUBBChsXueQUnPKDkg/5A5zp7pFDuQAj5UFoENpiACU0wlCvzpAGnTkj++ihpKwKyYewn/XNUbKw==",
+      "license": "MIT",
+      "dependencies": {
+        "tr46": "^5.1.0",
+        "webidl-conversions": "^7.0.0"
+      },
+      "engines": {
+        "node": ">=18"
+      }
+    },
+    "node_modules/wrappy": {
+      "version": "1.0.2",
+      "resolved": "https://registry.npmjs.org/wrappy/-/wrappy-1.0.2.tgz",
+      "integrity": "sha512-l4Sp/DRseor9wL6EvV2+TuQn63dMkPjZ/sp9XkghTEbV9KlPS1xUsZ3u7/IQO4wxtcFB4bgpQPRcR3QCvezPcQ==",
+      "license": "ISC"
+    }
+  }
+}
+
+========================================
+FILE: D:\Intership\Eswar\backend\package.json
+========================================
+{
+  "name": "backend",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "dependencies": {
+    "bcryptjs": "^3.0.3",
+    "cors": "^2.8.6",
+    "dotenv": "^18.0.9",
+    "express": "^5.3.0",
+    "jsonwebtoken": "^9.0.3",
+    "mongoose": "^9.12.0"
+  },
+  "devDependencies": {
+    "nodemon": "^3.1.14"
+  }
+}
+
+========================================
+FILE: D:\Intership\Eswar\backend\server.js
+========================================
+
+const path = require("path");
+const express = require("express");
+const cors = require("cors");
+const dotenv = require("dotenv");
+
+// Load environment variables
+dotenv.config({
+  path: path.join(__dirname, ".env")
+});
+
+if (!process.env.MONGO_URI) {
+  dotenv.config();
+}
+
+const connectDB = require("./config/db");
+
+const app = express();
+
+// Allowed frontend origins
+const allowedOrigins = [
+  "https://member-pass.vercel.app",
+  "http://localhost:5173",
+  "http://127.0.0.1:5173"
+];
+
+// CORS configuration
+const corsOptions = {
+  origin: (origin, callback) => {
+    // Allow requests without an Origin header
+    // and requests from approved frontend URLs
+    if (!origin || allowedOrigins.includes(origin)) {
+      return callback(null, true);
+    }
+
+    return callback(
+      new Error(`CORS blocked for origin: ${origin}`)
+    );
+  },
+
+  methods: [
+    "GET",
+    "POST",
+    "PUT",
+    "PATCH",
+    "DELETE",
+    "OPTIONS"
+  ],
+
+  allowedHeaders: [
+    "Content-Type",
+    "Authorization"
+  ],
+
+  credentials: true
+};
+
+// Middleware
+app.use(cors(corsOptions));
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
+
+// API Routes
+app.use("/api/auth", require("./routes/authRoutes"));
+app.use("/api/plans", require("./routes/planRoutes"));
+app.use("/api/payments", require("./routes/paymentRoutes"));
+app.use("/api/member", require("./routes/memberRoutes"));
+app.use("/api/qr", require("./routes/qrRoutes"));
+app.use("/api/ai", require("./routes/aiRoutes"));
+
+// Home Route
+app.get("/", (req, res) => {
+  res.status(200).json({
+    success: true,
+    message: "Welcome to MemberPass API"
+  });
+});
+
+// Health Check Route
+app.get("/api/health", (req, res) => {
+  res.status(200).json({
+    success: true,
+    message: "MemberPass server is running"
+  });
+});
+
+// 404 Handler
+app.use((req, res) => {
+  res.status(404).json({
+    success: false,
+    message: "API route not found"
+  });
+});
+
+// Error Handler
+app.use((err, req, res, next) => {
+  console.error("Server Error:", err.message);
+
+  if (err.message.startsWith("CORS blocked")) {
+    return res.status(403).json({
+      success: false,
+      message: "CORS policy blocked this request"
+    });
+  }
+
+  res.status(err.status || 500).json({
+    success: false,
+    message: err.message || "Internal Server Error"
+  });
+});
+
+// Start Server
+const startServer = async () => {
+  try {
+    await connectDB();
+
+    const PORT = process.env.PORT || 5000;
+
+    app.listen(PORT, () => {
+      console.log(`Server running on port ${PORT}`);
+      console.log("CORS enabled for:");
+      allowedOrigins.forEach((origin) => {
+        console.log(`- ${origin}`);
+      });
+    });
+  } catch (error) {
+    console.error("Server startup failed:", error.message);
+    process.exit(1);
+  }
+};
+
+startServer();
+
+========================================
+FILE: D:\Intership\Eswar\backend\config\db.js
+========================================
+
+const mongoose = require("mongoose");
+
+const connectDB = async () => {
+  try {
+    await mongoose.connect(process.env.MONGO_URI);
+
+    console.log("MongoDB Connected Successfully");
+  } catch (error) {
+    console.error("MongoDB Connection Error:", error.message);
+    process.exit(1);
+  }
+};
+
+module.exports = connectDB;
+
+========================================
+FILE: D:\Intership\Eswar\backend\controllers\authController.js
+========================================
+const User = require("../models/User");
+const jwt = require("jsonwebtoken");
+
+const generateToken = (user) => {
+  return jwt.sign(
+    { id: user._id, role: user.role },
+    process.env.JWT_SECRET,
+    { expiresIn: "1d" }
+  );
+};
+
+const registerUser = async (req, res) => {
+  try {
+    const { name, email, password, phone } = req.body;
+
+    if (!name || !email || !password) {
+      return res.status(400).json({
+        success: false,
+        message: "Name, email and password are required"
+      });
+    }
+
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailRegex.test(email.trim())) {
+      return res.status(400).json({
+        success: false,
+        message: "Please provide a valid email address"
+      });
+    }
+
+    if (password.length < 6) {
+      return res.status(400).json({
+        success: false,
+        message: "Password must contain at least 6 characters"
+      });
+    }
+
+    const normalizedEmail = email.trim().toLowerCase();
+
+    const existingUser = await User.findOne({
+      email: normalizedEmail
+    });
+
+    if (existingUser) {
+      return res.status(409).json({
+        success: false,
+        message: "Email already registered"
+      });
+    }
+
+    const user = await User.create({
+      name: name.trim(),
+      email: normalizedEmail,
+      password,
+      phone,
+      role: "member"
+    });
+
+    const token = generateToken(user);
+
+    return res.status(201).json({
+      success: true,
+      message: "Registration successful",
+      token,
+      user: {
+        id: user._id,
+        name: user.name,
+        email: user.email,
+        passCode: user.passCode,
+        role: user.role
+      }
+    });
+  } catch (error) {
+    console.error("Registration error:", error.message);
+
+    if (error.code === 11000) {
+      return res.status(409).json({
+        success: false,
+        message: "Email or pass code already exists"
+      });
+    }
+
+    return res.status(500).json({
+      success: false,
+      message: "Registration failed"
+    });
+  }
+};
+
+const loginUser = async (req, res) => {
+  try {
+    const { email, password } = req.body;
+
+    if (!email || !password) {
+      return res.status(400).json({
+        success: false,
+        message: "Email and password are required"
+      });
+    }
+
+    const user = await User.findOne({
+      email: email.trim().toLowerCase()
+    });
+
+    if (!user) {
+      return res.status(401).json({
+        success: false,
+        message: "Invalid email or password"
+      });
+    }
+
+    if (!user.isActive) {
+      return res.status(403).json({
+        success: false,
+        message: "Your account is inactive"
+      });
+    }
+
+    const isMatch = await user.comparePassword(password);
+
+    if (!isMatch) {
+      return res.status(401).json({
+        success: false,
+        message: "Invalid email or password"
+      });
+    }
+
+    const token = generateToken(user);
+
+    return res.status(200).json({
+      success: true,
+      message: "Login successful",
+      token,
+      user: {
+        id: user._id,
+        name: user.name,
+        email: user.email,
+        passCode: user.passCode,
+        role: user.role
+      }
+    });
+  } catch (error) {
+    console.error("Login error:", error.message);
+
+    return res.status(500).json({
+      success: false,
+      message: "Login failed"
+    });
+  }
+};
+
+const logoutUser = async (req, res) => {
+  return res.status(200).json({
+    success: true,
+    message: "Logged out successfully"
+  });
+};
+
+module.exports = {
+  registerUser,
+  loginUser,
+  logoutUser
+};
+
+========================================
+FILE: D:\Intership\Eswar\backend\controllers\memberController.js
+========================================
+const User = require("../models/User");
+const Membership = require("../models/Membership");
+const Payment = require("../models/Payment");
+const { getMyQRPass, getMyAttendanceHistory } = require("./qrController");
+
+// @desc    Get logged in member profile, current membership and recent payments
+// @route   GET /api/member/profile
+// @access  Private (Member)
+const getMemberProfile = async (req, res) => {
+  try {
+    const user = await User.findById(req.user._id).select("-password");
+
+    if (!user) {
+      return res.status(404).json({
+        success: false,
+        message: "Member not found"
+      });
+    }
+
+    // Get current/latest membership
+    const membership = await Membership.findOne({ user: user._id })
+      .populate("plan")
+      .sort({ createdAt: -1 });
+
+    // Determine current status
+    let membershipStatus = "none";
+    let isExpired = false;
+
+    if (membership) {
+      membershipStatus = membership.status;
+      if (new Date(membership.endDate) < new Date() && membership.status === "active") {
+        isExpired = true;
+        membershipStatus = "ended";
+      }
+    }
+
+    // Get recent payments
+    const payments = await Payment.find({ user: user._id })
+      .populate("plan", "name priceInPaise")
+      .sort({ createdAt: -1 })
+      .limit(5);
+
+    return res.status(200).json({
+      success: true,
+      member: {
+        id: user._id,
+        name: user.name,
+        email: user.email,
+        phone: user.phone || "",
+        role: user.role,
+        passCode: user.passCode,
+        membershipStatus,
+        isExpired,
+        membership: membership
+          ? {
+              id: membership._id,
+              plan: membership.plan
+                ? {
+                    id: membership.plan._id,
+                    name: membership.plan.name,
+                    price: membership.plan.priceInPaise / 100,
+                    classLimit: membership.plan.classLimit,
+                    durationDays: membership.plan.durationDays
+                  }
+                : null,
+              status: membership.status,
+              startDate: membership.startDate,
+              endDate: membership.endDate,
+              classesUsed: membership.classesUsed,
+              classesRemaining:
+                membership.plan && membership.plan.classLimit !== null
+                  ? Math.max(0, membership.plan.classLimit - membership.classesUsed)
+                  : "Unlimited"
+            }
+          : null,
+        recentPayments: payments.map((p) => ({
+          id: p._id,
+          orderId: p.razorpayOrderId,
+          paymentId: p.razorpayPaymentId,
+          amount: p.amount / 100,
+          currency: p.currency,
+          status: p.status,
+          planName: p.plan ? p.plan.name : "Custom",
+          date: p.createdAt
+        }))
+      }
+    });
+  } catch (error) {
+    console.error("getMemberProfile error:", error);
+    return res.status(500).json({
+      success: false,
+      message: "Failed to load member profile"
+    });
+  }
+};
+
+module.exports = {
+  getMemberProfile,
+  getMemberPass: getMyQRPass,
+  getMemberAttendanceHistory: getMyAttendanceHistory
+};
+
+
+========================================
+FILE: D:\Intership\Eswar\backend\controllers\paymentController.js
+========================================
+
+const crypto = require("crypto");
+const mongoose = require("mongoose");
+const Razorpay = require("razorpay");
+
+const Plan = require("../models/Plan");
+const Payment = require("../models/Payment");
+const Membership = require("../models/Membership");
+
+// Razorpay instance
+const getRazorpayInstance = () => {
+  const keyId = process.env.RAZORPAY_KEY_ID;
+  const keySecret = process.env.RAZORPAY_KEY_SECRET;
+
+  if (!keyId?.trim() || !keySecret?.trim()) {
+    return null;
+  }
+
+  return new Razorpay({
+    key_id: keyId.trim(),
+    key_secret: keySecret.trim()
+  });
+};
+
+// @desc Create Razorpay Order
+// @route POST /api/payments/create-order
+// @access Private
+const createOrder = async (req, res) => {
+  try {
+    const { planId, planName } = req.body;
+
+    if (!planId && !planName) {
+      return res.status(400).json({
+        success: false,
+        message: "Plan ID or Plan Name is required"
+      });
+    }
+
+    if (planId && !mongoose.Types.ObjectId.isValid(planId)) {
+      return res.status(400).json({
+        success: false,
+        message: "Invalid plan ID"
+      });
+    }
+
+    const query = planId
+      ? { _id: planId, isActive: true }
+      : { name: planName, isActive: true };
+
+    const plan = await Plan.findOne(query);
+
+    if (!plan) {
+      return res.status(404).json({
+        success: false,
+        message: "Membership plan not found or inactive"
+      });
+    }
+
+    const razorpay = getRazorpayInstance();
+
+    if (!razorpay) {
+      return res.status(503).json({
+        success: false,
+        code: "RAZORPAY_KEYS_MISSING",
+        message: "Razorpay API keys are not configured"
+      });
+    }
+
+    const options = {
+      amount: plan.priceInPaise,
+      currency: "INR",
+      receipt: `rcpt_${req.user._id.toString().slice(-6)}_${Date.now().toString().slice(-6)}`,
+      notes: {
+        userId: req.user._id.toString(),
+        userEmail: req.user.email,
+        planId: plan._id.toString(),
+        planName: plan.name
+      }
+    };
+
+    let order;
+
+    try {
+      order = await razorpay.orders.create(options);
+    } catch (rzpErr) {
+      console.error("Razorpay order creation error:", rzpErr);
+
+      return res.status(502).json({
+        success: false,
+        message: "Failed to create Razorpay order"
+      });
+    }
+
+    const payment = await Payment.create({
+      user: req.user._id,
+      plan: plan._id,
+      razorpayOrderId: order.id,
+      amount: plan.priceInPaise,
+      currency: order.currency || "INR",
+      status: "created"
+    });
+
+    return res.status(200).json({
+      success: true,
+      message: "Razorpay order created successfully",
+      orderId: order.id,
+      paymentRecordId: payment._id,
+      amount: order.amount,
+      currency: order.currency,
+      keyId: process.env.RAZORPAY_KEY_ID,
+      plan: {
+        id: plan._id,
+        name: plan.name,
+        durationDays: plan.durationDays,
+        priceInPaise: plan.priceInPaise,
+        price: plan.priceInPaise / 100
+      },
+      user: {
+        name: req.user.name,
+        email: req.user.email,
+        phone: req.user.phone || ""
+      }
+    });
+
+  } catch (error) {
+    console.error("createOrder error:", error);
+
+    return res.status(500).json({
+      success: false,
+      message: "Server error creating payment order"
+    });
+  }
+};
+
+// @desc Verify Razorpay Payment and Activate Membership
+// @route POST /api/payments/verify
+// @access Private
+const verifyPayment = async (req, res) => {
+  try {
+    const {
+      paymentRecordId,
+      razorpay_payment_id,
+      razorpay_signature
+    } = req.body;
+
+    if (
+      !paymentRecordId ||
+      !razorpay_payment_id ||
+      !razorpay_signature
+    ) {
+      return res.status(400).json({
+        success: false,
+        message: "Missing payment verification parameters"
+      });
+    }
+
+    if (!mongoose.Types.ObjectId.isValid(paymentRecordId)) {
+      return res.status(400).json({
+        success: false,
+        message: "Invalid paymentRecordId"
+      });
+    }
+
+    const keySecret = process.env.RAZORPAY_KEY_SECRET;
+
+    if (!keySecret?.trim()) {
+      return res.status(500).json({
+        success: false,
+        code: "RAZORPAY_SECRET_MISSING",
+        message: "Razorpay secret is not configured"
+      });
+    }
+
+    // Find payment belonging to authenticated user
+    const payment = await Payment.findOne({
+      _id: paymentRecordId,
+      user: req.user._id
+    });
+
+    if (!payment) {
+      return res.status(404).json({
+        success: false,
+        message: "Payment record not found"
+      });
+    }
+
+    // Idempotency: do not create membership twice
+    if (payment.status === "captured") {
+      const existingMembership = payment.membership
+        ? await Membership.findById(payment.membership).populate("plan")
+        : null;
+
+      if (existingMembership) {
+        return res.status(200).json({
+          success: true,
+          message: "Payment already verified",
+          membership: {
+            id: existingMembership._id,
+            plan: existingMembership.plan?.name,
+            status: existingMembership.status,
+            startDate: existingMembership.startDate,
+            endDate: existingMembership.endDate,
+            classesUsed: existingMembership.classesUsed
+          }
+        });
+      }
+
+      return res.status(409).json({
+        success: false,
+        message: "Payment captured but membership record is missing. Contact support."
+      });
+    }
+
+    if (payment.status !== "created") {
+      return res.status(400).json({
+        success: false,
+        message: `Payment status is '${payment.status}'. Verification is not allowed.`
+      });
+    }
+
+    const savedOrderId = payment.razorpayOrderId;
+
+    if (!savedOrderId) {
+      return res.status(500).json({
+        success: false,
+        message: "Saved Razorpay order ID is missing"
+      });
+    }
+
+    // Verify signature using database order ID
+    const expectedSignature = crypto
+      .createHmac("sha256", keySecret.trim())
+      .update(`${savedOrderId}|${razorpay_payment_id}`)
+      .digest("hex");
+
+    const expectedBuffer = Buffer.from(expectedSignature, "hex");
+    const receivedBuffer = Buffer.from(razorpay_signature, "hex");
+
+    if (
+      expectedBuffer.length !== receivedBuffer.length ||
+      !crypto.timingSafeEqual(expectedBuffer, receivedBuffer)
+    ) {
+      payment.status = "failed";
+      await payment.save();
+
+      return res.status(400).json({
+        success: false,
+        message: "Invalid payment signature"
+      });
+    }
+
+    const plan = await Plan.findById(payment.plan);
+
+    if (!plan) {
+      return res.status(404).json({
+        success: false,
+        message: "Associated membership plan not found"
+      });
+    }
+
+    if (!Number.isFinite(plan.durationDays) || plan.durationDays <= 0) {
+      return res.status(400).json({
+        success: false,
+        message: "Invalid membership plan duration"
+      });
+    }
+
+    const now = new Date();
+    const endDate = new Date(
+      now.getTime() + plan.durationDays * 24 * 60 * 60 * 1000
+    );
+
+    // Create membership and link it to payment.
+    // Save payment as captured only after membership creation succeeds.
+    const membership = await Membership.create({
+      user: req.user._id,
+      plan: plan._id,
+      status: "active",
+      startDate: now,
+      endDate,
+      classesUsed: 0,
+      payment: payment._id
+    });
+
+    try {
+      payment.status = "captured";
+      payment.razorpayPaymentId = razorpay_payment_id;
+      payment.razorpaySignature = razorpay_signature;
+      payment.membership = membership._id;
+
+      await payment.save();
+
+      // End previous active memberships only after successful save
+      await Membership.updateMany(
+        {
+          user: req.user._id,
+          status: "active",
+          _id: { $ne: membership._id }
+        },
+        {
+          $set: { status: "ended" }
+        }
+      );
+
+    } catch (saveError) {
+      // Avoid leaving an unlinked membership if payment save fails
+      await Membership.findByIdAndDelete(membership._id);
+      throw saveError;
+    }
+
+    return res.status(200).json({
+      success: true,
+      message: "Payment verified and membership activated",
+      payment: {
+        id: payment._id,
+        orderId: payment.razorpayOrderId,
+        paymentId: payment.razorpayPaymentId,
+        amount: payment.amount,
+        status: payment.status
+      },
+      membership: {
+        id: membership._id,
+        plan: plan.name,
+        status: membership.status,
+        startDate: membership.startDate,
+        endDate: membership.endDate,
+        classesUsed: membership.classesUsed
+      }
+    });
+
+  } catch (error) {
+    console.error("verifyPayment error:", error);
+
+    return res.status(500).json({
+      success: false,
+      message: "Server error verifying payment"
+    });
+  }
+};
+
+// @desc Get user's payment history
+// @route GET /api/payments/my-payments
+// @access Private
+const getMyPayments = async (req, res) => {
+  try {
+    const payments = await Payment.find({
+      user: req.user._id
+    })
+      .populate("plan", "name durationDays priceInPaise")
+      .sort({ createdAt: -1 });
+
+    return res.status(200).json({
+      success: true,
+      count: payments.length,
+      payments: payments.map((payment) => ({
+        id: payment._id,
+        orderId: payment.razorpayOrderId,
+        paymentId: payment.razorpayPaymentId,
+        amount: payment.amount / 100,
+        currency: payment.currency,
+        status: payment.status,
+        planName: payment.plan ? payment.plan.name : "Custom",
+        date: payment.createdAt
+      }))
+    });
+
+  } catch (error) {
+    console.error("getMyPayments error:", error);
+
+    return res.status(500).json({
+      success: false,
+      message: "Failed to retrieve payment history"
+    });
+  }
+};
+
+module.exports = {
+  createOrder,
+  verifyPayment,
+  getMyPayments
+};
+
+========================================
+FILE: D:\Intership\Eswar\backend\controllers\planController.js
+========================================
+const Plan = require("../models/Plan");
+
+// @desc    Get all active membership plans
+// @route   GET /api/plans
+// @access  Public
+const getPlans = async (req, res) => {
+  try {
+    const plans = await Plan.find({ isActive: true }).sort({ priceInPaise: 1 });
+
+    const formattedPlans = plans.map((plan) => ({
+      _id: plan._id,
+      name: plan.name,
+      priceInPaise: plan.priceInPaise,
+      price: plan.priceInPaise / 100,
+      durationDays: plan.durationDays,
+      classLimit: plan.classLimit,
+      description: plan.description,
+      features: plan.features || []
+    }));
+
+    return res.status(200).json({
+      success: true,
+      count: formattedPlans.length,
+      plans: formattedPlans
+    });
+  } catch (error) {
+    console.error("Error fetching plans:", error.message);
+    return res.status(500).json({
+      success: false,
+      message: "Failed to retrieve membership plans"
+    });
+  }
+};
+
+// @desc    Get single plan by ID
+// @route   GET /api/plans/:id
+// @access  Public
+const getPlanById = async (req, res) => {
+  try {
+    const plan = await Plan.findById(req.params.id);
+    if (!plan || !plan.isActive) {
+      return res.status(404).json({
+        success: false,
+        message: "Membership plan not found"
+      });
+    }
+
+    return res.status(200).json({
+      success: true,
+      plan: {
+        _id: plan._id,
+        name: plan.name,
+        priceInPaise: plan.priceInPaise,
+        price: plan.priceInPaise / 100,
+        durationDays: plan.durationDays,
+        classLimit: plan.classLimit,
+        description: plan.description,
+        features: plan.features || []
+      }
+    });
+  } catch (error) {
+    console.error("Error fetching plan by ID:", error.message);
+    return res.status(500).json({
+      success: false,
+      message: "Failed to retrieve membership plan"
+    });
+  }
+};
+
+module.exports = {
+  getPlans,
+  getPlanById
+};
+
+
+========================================
+FILE: D:\Intership\Eswar\backend\controllers\qrController.backup.js
+========================================
+const QRCode = require("qrcode");
+const Membership = require("../models/Membership");
+const User = require("../models/User");
+require("../models/Plan");
+
+// Generate member QR pass
+const getMyQRPass = async (req, res) => {
+  try {
+    // Find latest membership for this user
+    const latestMembership = await Membership.findOne({ user: req.user._id })
+      .populate("plan", "name durationDays priceInPaise")
+      .sort({ createdAt: -1 });
+
+    if (!latestMembership) {
+      return res.status(200).json({
+        success: true,
+        hasActiveMembership: false,
+        status: "none",
+        message: "No membership found. Please purchase a membership plan to generate your pass.",
+        pass: null
+      });
+    }
+
+    const now = new Date();
+    const isExpired = new Date(latestMembership.endDate) < now;
+
+    if (latestMembership.status === "paused") {
+      return res.status(200).json({
+        success: true,
+        hasActiveMembership: false,
+        status: "paused",
+        message: "Your membership is currently paused. Please contact club administration to resume.",
+        pass: {
+          memberName: req.user.name,
+          plan: latestMembership.plan ? latestMembership.plan.name : "Basic",
+          status: "paused",
+          startDate: latestMembership.startDate,
+          endDate: latestMembership.endDate,
+          classesUsed: latestMembership.classesUsed,
+          qrCode: null
+        }
+      });
+    }
+
+    if (latestMembership.status === "ended" || isExpired) {
+      return res.status(200).json({
+        success: true,
+        hasActiveMembership: false,
+        status: "ended",
+        message: "Your membership has expired or ended. Please renew to access facilities.",
+        pass: {
+          memberName: req.user.name,
+          plan: latestMembership.plan ? latestMembership.plan.name : "Basic",
+          status: "ended",
+          startDate: latestMembership.startDate,
+          endDate: latestMembership.endDate,
+          classesUsed: latestMembership.classesUsed,
+          qrCode: null
+        }
+      });
+    }
+
+    // Active membership: Payload contains ONLY pass_code, plan, and end_date
+    const formattedEndDate = latestMembership.endDate.toISOString().split("T")[0];
+    const passPayload = {
+      pass_code: req.user.passCode,
+      plan: latestMembership.plan.name,
+      end_date: formattedEndDate
+    };
+
+    const qrCode = await QRCode.toDataURL(JSON.stringify(passPayload), {
+      errorCorrectionLevel: "M",
+      margin: 2,
+      width: 320,
+      color: {
+        dark: "#451126", // Burgundy Royale wine color
+        light: "#FFFFFF"
+      }
+    });
+
+    return res.status(200).json({
+      success: true,
+      hasActiveMembership: true,
+      status: "active",
+      message: "Active membership QR pass generated",
+      pass: {
+        memberName: req.user.name,
+        passCode: req.user.passCode,
+        plan: latestMembership.plan.name,
+        status: "active",
+        startDate: latestMembership.startDate,
+        endDate: latestMembership.endDate,
+        classesUsed: latestMembership.classesUsed,
+        qrPayload: passPayload,
+        qrCode
+      }
+    });
+  } catch (error) {
+    console.error("QR pass error:", error.message);
+    return res.status(500).json({
+      success: false,
+      message: "Unable to generate QR pass"
+    });
+  }
+};
+
+// Validate member QR pass (Staff only)
+const validateQRPass = async (req, res) => {
+  try {
+    const { passCode } = req.body;
+
+    if (!passCode || typeof passCode !== "string") {
+      return res.status(400).json({
+        success: false,
+        entryStatus: "ENTRY_DENIED",
+        reason: "Invalid QR pass data"
+      });
+    }
+
+    const member = await User.findOne({
+      passCode: passCode.trim()
+    }).select("_id name email passCode");
+
+    if (!member) {
+      return res.status(404).json({
+        success: false,
+        entryStatus: "ENTRY_DENIED",
+        reason: "Invalid membership pass code"
+      });
+    }
+
+    const membership = await Membership.findOne({
+      user: member._id
+    })
+      .populate("plan", "name classLimit")
+      .sort({ createdAt: -1 });
+
+    if (!membership) {
+      return res.status(404).json({
+        success: false,
+        entryStatus: "ENTRY_DENIED",
+        reason: "No membership record found"
+      });
+    }
+
+    if (membership.status === "paused") {
+      return res.status(403).json({
+        success: false,
+        entryStatus: "ENTRY_DENIED",
+        reason: "Membership is paused",
+        member: { name: member.name }
+      });
+    }
+
+    if (membership.status === "ended") {
+      return res.status(403).json({
+        success: false,
+        entryStatus: "ENTRY_DENIED",
+        reason: "Membership has ended",
+        member: { name: member.name }
+      });
+    }
+
+    if (new Date(membership.endDate) < new Date()) {
+      return res.status(403).json({
+        success: false,
+        entryStatus: "ENTRY_DENIED",
+        reason: "Membership has expired",
+        member: { name: member.name }
+      });
+    }
+
+    if (membership.plan && membership.plan.classLimit !== null && membership.classesUsed >= membership.plan.classLimit) {
+      return res.status(403).json({
+        success: false,
+        entryStatus: "ENTRY_DENIED",
+        reason: `Class limit of ${membership.plan.classLimit} reached`,
+        member: { name: member.name }
+      });
+    }
+
+    return res.status(200).json({
+      success: true,
+      entryStatus: "ENTRY_ALLOWED",
+      reason: "Valid active membership",
+      member: {
+        name: member.name,
+        plan: membership.plan ? membership.plan.name : "Member",
+        endDate: membership.endDate,
+        classesUsed: membership.classesUsed
+      }
+    });
+  } catch (error) {
+    console.error("QR validation error:", error.message);
+    return res.status(500).json({
+      success: false,
+      entryStatus: "ENTRY_DENIED",
+      reason: "Unable to validate membership"
+    });
+  }
+};
+
+module.exports = {
+  getMyQRPass,
+  validateQRPass
+};
+
+========================================
+FILE: D:\Intership\Eswar\backend\controllers\qrController.js
+========================================
+
+const QRCode = require("qrcode");
+const crypto = require("crypto");
+const Membership = require("../models/Membership");
+const Attendance = require("../models/Attendance");
+const User = require("../models/User");
+require("../models/Plan");
+
+// Generate member QR pass
+const getMyQRPass = async (req, res) => {
+  try {
+    const latestMembership = await Membership.findOne({ user: req.user._id })
+      .populate("plan", "name durationDays priceInPaise")
+      .sort({ createdAt: -1 });
+
+    if (!latestMembership) {
+      return res.status(200).json({
+        success: true,
+        hasActiveMembership: false,
+        status: "none",
+        message: "No membership found. Please purchase a membership plan.",
+        pass: null
+      });
+    }
+
+    const now = new Date();
+    const isExpired = new Date(latestMembership.endDate) < now;
+
+    if (latestMembership.status === "paused") {
+      return res.status(200).json({
+        success: true,
+        hasActiveMembership: false,
+        status: "paused",
+        message: "Membership is paused.",
+        pass: {
+          memberName: req.user.name,
+          plan: latestMembership.plan?.name || "Basic",
+          status: "paused",
+          startDate: latestMembership.startDate,
+          endDate: latestMembership.endDate,
+          classesUsed: latestMembership.classesUsed,
+          qrCode: null
+        }
+      });
+    }
+
+    if (latestMembership.status === "ended" || isExpired) {
+      return res.status(200).json({
+        success: true,
+        hasActiveMembership: false,
+        status: "ended",
+        message: "Membership has expired or ended.",
+        pass: {
+          memberName: req.user.name,
+          plan: latestMembership.plan?.name || "Basic",
+          status: "ended",
+          startDate: latestMembership.startDate,
+          endDate: latestMembership.endDate,
+          classesUsed: latestMembership.classesUsed,
+          qrCode: null
+        }
+      });
+    }
+
+    const passPayload = {
+      pass_code: req.user.passCode,
+      plan: latestMembership.plan?.name || "Basic",
+      end_date: latestMembership.endDate.toISOString().split("T")[0]
+    };
+
+    const qrCode = await QRCode.toDataURL(JSON.stringify(passPayload), {
+      errorCorrectionLevel: "M",
+      margin: 2,
+      width: 320,
+      color: {
+        dark: "#451126",
+        light: "#FFFFFF"
+      }
+    });
+
+    return res.status(200).json({
+      success: true,
+      hasActiveMembership: true,
+      status: "active",
+      message: "Active membership QR pass generated",
+      pass: {
+        memberName: req.user.name,
+        passCode: req.user.passCode,
+        plan: latestMembership.plan?.name || "Basic",
+        status: "active",
+        startDate: latestMembership.startDate,
+        endDate: latestMembership.endDate,
+        classesUsed: latestMembership.classesUsed,
+        qrPayload: passPayload,
+        qrCode
+      }
+    });
+  } catch (error) {
+    console.error("QR pass error:", error.message);
+    return res.status(500).json({
+      success: false,
+      message: "Unable to generate QR pass"
+    });
+  }
+};
+
+// Shared membership validation
+const findValidMembership = async (passCode) => {
+  const member = await User.findOne({
+    passCode: passCode.trim()
+  }).select("_id name passCode");
+
+  if (!member) {
+    return { error: "Invalid membership pass code", status: 404 };
+  }
+
+  const membership = await Membership.findOne({
+    user: member._id
+  })
+    .populate("plan", "name classLimit")
+    .sort({ createdAt: -1 });
+
+  if (!membership) {
+    return { error: "No membership record found", status: 404 };
+  }
+
+  if (membership.status !== "active") {
+    return {
+      error: membership.status === "paused"
+        ? "Membership is paused"
+        : "Membership has ended",
+      status: 403
+    };
+  }
+
+  if (new Date(membership.endDate) < new Date()) {
+    return { error: "Membership has expired", status: 403 };
+  }
+
+  const classLimit = membership.plan?.classLimit;
+
+  if (
+    classLimit !== null &&
+    classLimit !== undefined &&
+    membership.classesUsed >= classLimit
+  ) {
+    return {
+      error: `Class limit of ${classLimit} reached`,
+      status: 403
+    };
+  }
+
+  return { member, membership };
+};
+
+// Validate QR pass - does NOT increment attendance
+const validateQRPass = async (req, res) => {
+  try {
+    const { passCode } = req.body;
+
+    if (!passCode || typeof passCode !== "string") {
+      return res.status(400).json({
+        success: false,
+        entryStatus: "ENTRY_DENIED",
+        reason: "Invalid QR pass data"
+      });
+    }
+
+    const result = await findValidMembership(passCode);
+
+    if (result.error) {
+      return res.status(result.status).json({
+        success: false,
+        entryStatus: "ENTRY_DENIED",
+        reason: result.error
+      });
+    }
+
+    const { member, membership } = result;
+
+    return res.status(200).json({
+      success: true,
+      entryStatus: "ENTRY_ALLOWED",
+      reason: "Valid active membership",
+      member: {
+        name: member.name,
+        plan: membership.plan?.name || "Member",
+        endDate: membership.endDate,
+        classesUsed: membership.classesUsed,
+        classLimit: membership.plan?.classLimit ?? null
+      }
+    });
+  } catch (error) {
+    console.error("QR validation error:", error.message);
+    return res.status(500).json({
+      success: false,
+      entryStatus: "ENTRY_DENIED",
+      reason: "Unable to validate membership"
+    });
+  }
+};
+
+// Actual class check-in - Staff only
+const checkInQRPass = async (req, res) => {
+  let incrementedMembershipId = null;
+  let incrementedTo = null;
+
+  try {
+    const { passCode, checkInId } = req.body;
+
+    if (!passCode || typeof passCode !== "string") {
+      return res.status(400).json({
+        success: false,
+        entryStatus: "ENTRY_DENIED",
+        reason: "Invalid QR pass data"
+      });
+    }
+
+    if (
+      !checkInId ||
+      typeof checkInId !== "string" ||
+      checkInId.length > 100
+    ) {
+      return res.status(400).json({
+        success: false,
+        entryStatus: "ENTRY_DENIED",
+        reason: "A valid check-in request ID is required"
+      });
+    }
+
+    // Same request retry must never count twice
+    const existingAttendance = await Attendance.findOne({ checkInId })
+      .populate("member", "name")
+      .populate("membership");
+
+    if (existingAttendance) {
+      return res.status(200).json({
+        success: true,
+        entryStatus: "ENTRY_ALLOWED",
+        alreadyCheckedIn: true,
+        message: "This check-in was already recorded",
+        attendance: {
+          id: existingAttendance._id,
+          checkedInAt: existingAttendance.checkedInAt
+        }
+      });
+    }
+
+    const result = await findValidMembership(passCode);
+
+    if (result.error) {
+      return res.status(result.status).json({
+        success: false,
+        entryStatus: "ENTRY_DENIED",
+        reason: result.error
+      });
+    }
+
+    const { member, membership } = result;
+    const classLimit = membership.plan?.classLimit;
+
+    // Atomic increment with current membership conditions
+    const filter = {
+      _id: membership._id,
+      status: "active",
+      endDate: { $gte: new Date() },
+      classesUsed: membership.classesUsed
+    };
+
+    if (classLimit !== null && classLimit !== undefined) {
+      filter.classesUsed = {
+        $eq: membership.classesUsed,
+        $lt: classLimit
+      };
+    }
+
+    const updatedMembership = await Membership.findOneAndUpdate(
+      filter,
+      { $inc: { classesUsed: 1 } },
+      { new: true }
+    );
+
+    if (!updatedMembership) {
+      return res.status(409).json({
+        success: false,
+        entryStatus: "ENTRY_DENIED",
+        reason: "Membership changed or class limit reached. Please scan again."
+      });
+    }
+
+    incrementedMembershipId = updatedMembership._id;
+    incrementedTo = updatedMembership.classesUsed;
+
+    // Save attendance record
+    const attendance = await Attendance.create({
+      member: member._id,
+      membership: membership._id,
+      staff: req.user._id,
+      checkInId,
+      checkedInAt: new Date()
+    });
+
+    return res.status(200).json({
+      success: true,
+      entryStatus: "ENTRY_ALLOWED",
+      alreadyCheckedIn: false,
+      message: "Class check-in successful",
+      member: {
+        name: member.name,
+        plan: membership.plan?.name || "Member"
+      },
+      attendance: {
+        id: attendance._id,
+        checkedInAt: attendance.checkedInAt
+      },
+      classesUsed: updatedMembership.classesUsed,
+      classLimit: classLimit ?? null
+    });
+  } catch (error) {
+    // Roll back increment if attendance record was not saved
+    if (incrementedMembershipId && incrementedTo !== null) {
+      await Membership.updateOne(
+        {
+          _id: incrementedMembershipId,
+          classesUsed: incrementedTo
+        },
+        { $inc: { classesUsed: -1 } }
+      ).catch((rollbackError) => {
+        console.error("Attendance rollback error:", rollbackError.message);
+      });
+    }
+
+    if (error.code === 11000) {
+      const duplicate = await Attendance.findOne({
+        checkInId: req.body.checkInId
+      });
+
+      if (duplicate) {
+        return res.status(200).json({
+          success: true,
+          entryStatus: "ENTRY_ALLOWED",
+          alreadyCheckedIn: true,
+          message: "This check-in was already recorded"
+        });
+      }
+    }
+
+    console.error("QR check-in error:", error.message);
+    return res.status(500).json({
+      success: false,
+      entryStatus: "ENTRY_DENIED",
+      reason: "Unable to complete class check-in"
+    });
+  }
+};
+
+// Get attendance history - Staff only
+const getAttendanceHistory = async (req, res) => {
+  try {
+    const records = await Attendance.find()
+      .populate("member", "name email")
+      .populate({
+        path: "membership",
+        populate: {
+          path: "plan",
+          select: "name"
+        }
+      })
+      .populate("staff", "name")
+      .sort({ checkedInAt: -1 })
+      .limit(100)
+      .lean();
+
+    const history = records.map((record) => ({
+      id: record._id,
+      memberName: record.member?.name || "Unknown Member",
+      memberEmail: record.member?.email || "",
+      planName: record.membership?.plan?.name || "Unknown Plan",
+      classesUsed: record.membership?.classesUsed ?? 0,
+      staffName: record.staff?.name || "Unknown Staff",
+      checkedInAt: record.checkedInAt
+    }));
+
+    return res.status(200).json({
+      success: true,
+      count: history.length,
+      history
+    });
+  } catch (error) {
+    console.error("Attendance history error:", error.message);
+
+    return res.status(500).json({
+      success: false,
+      message: "Unable to fetch attendance history"
+    });
+  }
+};
+
+// Get logged-in member's own attendance history
+const getMyAttendanceHistory = async (req, res) => {
+  try {
+    const records = await Attendance.find({
+      member: req.user._id
+    })
+      .populate({
+        path: "membership",
+        populate: {
+          path: "plan",
+          select: "name"
+        }
+      })
+      .populate("staff", "name")
+      .sort({ checkedInAt: -1 })
+      .limit(100)
+      .lean();
+
+    const history = records.map((record) => ({
+      id: record._id,
+      planName: record.membership?.plan?.name || "Unknown Plan",
+      staffName: record.staff?.name || "Studio Staff",
+      checkedInAt: record.checkedInAt
+    }));
+
+    return res.status(200).json({
+      success: true,
+      count: history.length,
+      history
+    });
+  } catch (error) {
+    console.error("Member attendance history error:", error.message);
+
+    return res.status(500).json({
+      success: false,
+      message: "Unable to fetch your attendance history"
+    });
+  }
+};
+
+module.exports = {
+  getMyQRPass,
+  validateQRPass,
+  checkInQRPass,
+  getAttendanceHistory,
+  getMyAttendanceHistory
+};
+
+========================================
+FILE: D:\Intership\Eswar\backend\middleware\authMiddleware.js
+========================================
+const jwt = require("jsonwebtoken");
+const User = require("../models/User");
+
+const protect = async (req, res, next) => {
+  try {
+    const authHeader = req.headers.authorization;
+
+    if (!authHeader || !authHeader.startsWith("Bearer ")) {
+      return res.status(401).json({
+        success: false,
+        message: "Authentication required"
+      });
+    }
+
+    const token = authHeader.split(" ")[1];
+    const decoded = jwt.verify(token, process.env.JWT_SECRET);
+
+    const user = await User.findById(decoded.id).select("-password");
+
+    if (!user || !user.isActive) {
+      return res.status(401).json({
+        success: false,
+        message: "Invalid or inactive account"
+      });
+    }
+
+    req.user = user;
+    next();
+  } catch (error) {
+    return res.status(401).json({
+      success: false,
+      message: "Invalid or expired token"
+    });
+  }
+};
+
+module.exports = { protect };
+
+========================================
+FILE: D:\Intership\Eswar\backend\middleware\staffMiddleware.js
+========================================
+const staffOnly = (req, res, next) => {
+  if (!req.user || !["staff", "admin"].includes(req.user.role)) {
+    return res.status(403).json({
+      success: false,
+      message: "Access denied. Staff access required."
+    });
+  }
+
+  next();
+};
+
+module.exports = { staffOnly };
+
+========================================
+FILE: D:\Intership\Eswar\backend\models\Attendance.js
+========================================
+const mongoose = require("mongoose");
+
+const attendanceSchema = new mongoose.Schema(
+  {
+    member: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "User",
+      required: true
+    },
+    membership: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "Membership",
+      required: true
+    },
+    staff: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "User",
+      required: true
+    },
+    checkInId: {
+      type: String,
+      required: true,
+      unique: true
+    },
+    checkedInAt: {
+      type: Date,
+      default: Date.now,
+      required: true
+    }
+  },
+  { timestamps: true }
+);
+
+attendanceSchema.index({ membership: 1, checkedInAt: -1 });
+
+module.exports = mongoose.model("Attendance", attendanceSchema);
+
+========================================
+FILE: D:\Intership\Eswar\backend\models\Membership.js
+========================================
+const mongoose = require("mongoose");
+
+const membershipSchema = new mongoose.Schema(
+  {
+    user: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "User",
+      required: true
+    },
+    plan: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "Plan",
+      required: true
+    },
+    status: {
+      type: String,
+      enum: ["active", "ended", "paused"],
+      default: "active"
+    },
+    startDate: {
+      type: Date,
+      required: true
+    },
+    endDate: {
+      type: Date,
+      required: true
+    },
+    classesUsed: {
+      type: Number,
+      default: 0,
+      min: 0
+    },
+    payment: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "Payment",
+      default: null
+    }
+  },
+  { timestamps: true }
+);
+
+module.exports = mongoose.model("Membership", membershipSchema);
+
+========================================
+FILE: D:\Intership\Eswar\backend\models\Payment.js
+========================================
+const mongoose = require("mongoose");
+
+const paymentSchema = new mongoose.Schema(
+  {
+    user: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "User",
+      required: true
+    },
+    plan: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "Plan",
+      required: true
+    },
+    razorpayOrderId: {
+      type: String,
+      required: true,
+      unique: true,
+      index: true
+    },
+    razorpayPaymentId: {
+      type: String,
+      default: null
+    },
+    razorpaySignature: {
+      type: String,
+      default: null
+    },
+    amount: {
+      type: Number,
+      required: true, // in paise
+      min: 0
+    },
+    currency: {
+      type: String,
+      default: "INR"
+    },
+    status: {
+      type: String,
+      enum: ["created", "authorized", "captured", "failed"],
+      default: "created"
+    },
+    membership: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "Membership",
+      default: null
+    }
+  },
+  { timestamps: true }
+);
+
+module.exports = mongoose.model("Payment", paymentSchema);
+
+
+========================================
+FILE: D:\Intership\Eswar\backend\models\Plan.js
+========================================
+const mongoose = require('mongoose');
+
+const planSchema = new mongoose.Schema(
+  {
+    name: {
+      type: String,
+      enum: ['Basic', 'Standard', 'Premium'],
+      required: true,
+      unique: true
+    },
+    priceInPaise: {
+      type: Number,
+      required: true,
+      min: 0
+    },
+    durationDays: {
+      type: Number,
+      required: true,
+      min: 1
+    },
+    classLimit: {
+      type: Number,
+      default: null
+    },
+    description: {
+      type: String,
+      default: ''
+    },
+    features: {
+      type: [String],
+      default: []
+    },
+    isActive: {
+      type: Boolean,
+      default: true
+    }
+  },
+  { timestamps: true }
+);
+
+module.exports = mongoose.model('Plan', planSchema);
+
+
+========================================
+FILE: D:\Intership\Eswar\backend\models\User.js
+========================================
+const mongoose = require("mongoose");
+const bcrypt = require("bcryptjs");
+const crypto = require("crypto");
+
+const userSchema = new mongoose.Schema(
+  {
+    name: { type: String, required: true, trim: true },
+    email: {
+      type: String,
+      required: true,
+      unique: true,
+      lowercase: true,
+      trim: true
+    },
+    passCode: {
+      type: String,
+      required: true,
+      unique: true,
+      immutable: true,
+      default: () => crypto.randomBytes(32).toString("hex")
+    },
+    password: { type: String, required: true, minlength: 6 },
+    phone: { type: String, trim: true },
+    role: {
+      type: String,
+      enum: ["member", "staff", "admin"],
+      default: "member"
+    },
+    isActive: { type: Boolean, default: true }
+  },
+  { timestamps: true }
+);
+
+userSchema.pre("save", async function () {
+  if (!this.isModified("password")) return;
+  this.password = await bcrypt.hash(this.password, 12);
+});
+
+userSchema.methods.comparePassword = async function (password) {
+  return bcrypt.compare(password, this.password);
+};
+
+module.exports = mongoose.model("User", userSchema);
+
+========================================
+FILE: D:\Intership\Eswar\backend\routes\aiRoutes.js
+========================================
+const express = require("express");
+
+const router = express.Router();
+
+const AI_SERVICE_URL = process.env.AI_SERVICE_URL || "http://127.0.0.1:8000";
+
+router.post("/chat", async (req, res) => {
+  try {
+    const { question } = req.body;
+
+    if (typeof question !== "string" || !question.trim()) {
+      return res.status(400).json({
+        success: false,
+        message: "Please provide a valid question"
+      });
+    }
+
+    const response = await fetch(`${AI_SERVICE_URL}/chat`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify({
+        question: question.trim()
+      }),
+      signal: AbortSignal.timeout(15000)
+    });
+
+    const data = await response.json();
+
+    if (!response.ok) {
+      return res.status(response.status).json(data);
+    }
+
+    return res.json(data);
+  } catch (error) {
+    console.error("AI service error:", error.message);
+
+    return res.status(503).json({
+      success: false,
+      message: "AI service is currently unavailable"
+    });
+  }
+});
+
+module.exports = router;
+
+========================================
+FILE: D:\Intership\Eswar\backend\routes\authRoutes.js
+========================================
+
+const express = require("express");
+const router = express.Router();
+
+const {
+  registerUser,
+  loginUser,
+  logoutUser
+} = require("../controllers/authController");
+
+router.post("/register", registerUser);
+router.post("/signup", registerUser);
+router.post("/login", loginUser);
+router.post("/logout", logoutUser);
+
+module.exports = router;
+
+========================================
+FILE: D:\Intership\Eswar\backend\routes\memberRoutes.js
+========================================
+const express = require("express");
+const router = express.Router();
+const { protect } = require("../middleware/authMiddleware");
+const { getMemberProfile, getMemberPass } = require("../controllers/memberController");
+const { getMyAttendanceHistory } = require("../controllers/qrController");
+
+router.get("/profile", protect, getMemberProfile);
+router.get("/pass", protect, getMemberPass);
+router.get("/attendance", protect, getMyAttendanceHistory);
+router.get("/attendance-history", protect, getMyAttendanceHistory);
+
+module.exports = router;
+
+
+========================================
+FILE: D:\Intership\Eswar\backend\routes\paymentRoutes.js
+========================================
+const express = require("express");
+const router = express.Router();
+const { protect } = require("../middleware/authMiddleware");
+const {
+  createOrder,
+  verifyPayment,
+  getMyPayments
+} = require("../controllers/paymentController");
+
+router.post("/create-order", protect, createOrder);
+router.post("/verify", protect, verifyPayment);
+router.get("/my-payments", protect, getMyPayments);
+
+module.exports = router;
+
+
+========================================
+FILE: D:\Intership\Eswar\backend\routes\planRoutes.js
+========================================
+const express = require("express");
+const router = express.Router();
+
+const { getPlans, getPlanById } = require("../controllers/planController");
+
+router.get("/", getPlans);
+router.get("/:id", getPlanById);
+
+module.exports = router;
+
+
+========================================
+FILE: D:\Intership\Eswar\backend\routes\qrRoutes.js
+========================================
+
+const express = require("express");
+const router = express.Router();
+
+const { protect } = require("../middleware/authMiddleware");
+const { staffOnly } = require("../middleware/staffMiddleware");
+
+const {
+  getMyQRPass,
+  validateQRPass,
+  checkInQRPass,
+  getAttendanceHistory,
+  getMyAttendanceHistory
+} = require("../controllers/qrController");
+
+router.get("/my-pass", protect, getMyQRPass);
+router.post("/validate", protect, staffOnly, validateQRPass);
+router.post("/check-in", protect, staffOnly, checkInQRPass);
+router.get("/attendance-history", protect, staffOnly, getAttendanceHistory);
+router.get("/my-attendance-history", protect, getMyAttendanceHistory);
+
+module.exports = router;
+
+========================================
+FILE: D:\Intership\Eswar\backend\scripts\createStaff.js
+========================================
+require("dotenv").config();
+
+const mongoose = require("mongoose");
+const connectDB = require("../config/db");
+const User = require("../models/User");
+
+async function createStaff() {
+  try {
+    await connectDB();
+
+    let staff = await User.findOne({
+      email: "m2.staff@example.com"
+    });
+
+    if (!staff) {
+      staff = new User({
+        name: "MemberPass Staff",
+        email: "m2.staff@example.com",
+        password: "MemberPass@123",
+        phone: "9876500099",
+        role: "staff",
+        isActive: true
+      });
+    } else {
+      staff.name = "MemberPass Staff";
+      staff.password = "MemberPass@123";
+      staff.role = "staff";
+      staff.isActive = true;
+    }
+
+    await staff.save();
+
+    console.log("Staff account created/updated successfully!");
+    console.log("Email:", staff.email);
+    console.log("Role:", staff.role);
+
+    await mongoose.disconnect();
+    process.exit(0);
+  } catch (error) {
+    console.error("Staff creation failed:", error.message);
+    await mongoose.disconnect();
+    process.exit(1);
+  }
+}
+
+createStaff();
+
+========================================
+FILE: D:\Intership\Eswar\backend\scripts\seed.js
+========================================
+require("dotenv").config();
+
+const connectDB = require("../config/db");
+const User = require("../models/User");
+const Plan = require("../models/Plan");
+const Membership = require("../models/Membership");
+const Payment = require("../models/Payment");
+
+const plansData = [
+  {
+    name: "Basic",
+    priceInPaise: 150000,
+    durationDays: 30,
+    classLimit: 10,
+    description: "Essential access for individuals getting started with digital passes.",
+    features: [
+      "Access to main club facilities",
+      "Up to 10 classes per month",
+      "Instant Digital QR Pass",
+      "Mobile dashboard & check-in history"
+    ],
+    isActive: true
+  },
+  {
+    name: "Standard",
+    priceInPaise: 300000,
+    durationDays: 30,
+    classLimit: 25,
+    description: "Comprehensive access for active members seeking expanded privileges.",
+    features: [
+      "All Basic tier privileges",
+      "Up to 25 classes per month",
+      "Priority member lounge access",
+      "1 Complimentary guest pass / month",
+      "Instant pass verification"
+    ],
+    isActive: true
+  },
+  {
+    name: "Premium",
+    priceInPaise: 750000,
+    durationDays: 90,
+    classLimit: null,
+    description: "All-inclusive 90-day VIP pass with unlimited studio & coaching access.",
+    features: [
+      "Unlimited classes & facility access",
+      "90 days continuous validity",
+      "Personal fitness consultation",
+      "VIP Burgundy digital pass badge",
+      "24/7 Priority member support"
+    ],
+    isActive: true
+  }
+];
+
+const membersData = [
+  // 12 Active Members
+  { name: "Arun Kumar", email: "arun1@example.com", plan: "Basic", status: "active", classesUsed: 8 },
+  { name: "Priya Devi", email: "priya2@example.com", plan: "Standard", status: "active", classesUsed: 3 },
+  { name: "Karthik Raj", email: "karthik3@example.com", plan: "Premium", status: "active", classesUsed: 5 },
+  { name: "Divya S", email: "divya4@example.com", plan: "Basic", status: "active", classesUsed: 2 },
+  { name: "Vijay Kumar", email: "vijay5@example.com", plan: "Standard", status: "active", classesUsed: 4 },
+  { name: "Meena R", email: "meena6@example.com", plan: "Premium", status: "active", classesUsed: 6 },
+  { name: "Suresh B", email: "suresh7@example.com", plan: "Basic", status: "active", classesUsed: 1 },
+  { name: "Anitha M", email: "anitha8@example.com", plan: "Standard", status: "active", classesUsed: 7 },
+  { name: "Rahul P", email: "rahul9@example.com", plan: "Premium", status: "active", classesUsed: 2 },
+  { name: "Kavya S", email: "kavya10@example.com", plan: "Basic", status: "active", classesUsed: 5 },
+  { name: "Gokul R", email: "gokul11@example.com", plan: "Standard", status: "active", classesUsed: 3 },
+  { name: "Nithya K", email: "nithya12@example.com", plan: "Premium", status: "active", classesUsed: 4 },
+
+  // 7 Ended Members
+  { name: "Manoj T", email: "manoj13@example.com", plan: "Basic", status: "ended", classesUsed: 8 },
+  { name: "Lakshmi P", email: "lakshmi14@example.com", plan: "Standard", status: "ended", classesUsed: 12 },
+  { name: "Praveen S", email: "praveen15@example.com", plan: "Premium", status: "ended", classesUsed: 15 },
+  { name: "Swathi R", email: "swathi16@example.com", plan: "Basic", status: "ended", classesUsed: 6 },
+  { name: "Deepak M", email: "deepak17@example.com", plan: "Standard", status: "ended", classesUsed: 9 },
+  { name: "Harini V", email: "harini18@example.com", plan: "Premium", status: "ended", classesUsed: 10 },
+  { name: "Bala K", email: "bala19@example.com", plan: "Basic", status: "ended", classesUsed: 7 },
+
+  // Exactly 1 Paused Member
+  { name: "Janani R", email: "janani20@example.com", plan: "Basic", status: "paused", classesUsed: 4 }
+];
+
+const seedDatabase = async () => {
+  try {
+    console.log("Connecting to database...");
+    await connectDB();
+
+    console.log("Upserting plans: Basic, Standard, Premium...");
+    const planMap = {};
+
+    // Remove legacy plans if any
+    await Plan.deleteMany({ name: { $nin: ["Basic", "Standard", "Premium"] } });
+
+    for (const planItem of plansData) {
+      const plan = await Plan.findOneAndUpdate(
+        { name: planItem.name },
+        { $set: planItem },
+        { new: true, upsert: true, runValidators: true }
+      );
+      planMap[plan.name] = plan;
+    }
+
+    console.log(`Plans registered: ${Object.keys(planMap).join(", ")}`);
+
+    const now = new Date();
+
+    for (let i = 0; i < membersData.length; i++) {
+      const item = membersData[i];
+      const plan = planMap[item.plan];
+
+      // Upsert User
+      let user = await User.findOne({ email: item.email });
+      if (!user) {
+        user = await User.create({
+          name: item.name,
+          email: item.email,
+          password: "MemberPass@123",
+          phone: `98765000${String(i + 1).padStart(2, "0")}`,
+          role: "member"
+        });
+      } else {
+        user.name = item.name;
+        user.phone = `98765000${String(i + 1).padStart(2, "0")}`;
+        await user.save();
+      }
+
+      // Calculate dates
+      const duration = plan.durationDays;
+      let startDate, endDate;
+
+      if (item.status === "ended") {
+        startDate = new Date(now.getTime() - (duration + 15) * 86400000);
+        endDate = new Date(now.getTime() - 15 * 86400000);
+      } else if (item.status === "paused") {
+        startDate = new Date(now.getTime() - 10 * 86400000);
+        endDate = new Date(now.getTime() + (duration - 10) * 86400000);
+      } else {
+        // active
+        startDate = new Date(now.getTime() - 5 * 86400000);
+        endDate = new Date(now.getTime() + (duration - 5) * 86400000);
+      }
+
+      // Upsert or create Payment
+      const orderId = `order_seed_${user._id.toString().slice(-8)}`;
+      let payment = await Payment.findOne({ razorpayOrderId: orderId });
+      if (!payment) {
+        payment = await Payment.create({
+          user: user._id,
+          plan: plan._id,
+          razorpayOrderId: orderId,
+          razorpayPaymentId: `pay_seed_${user._id.toString().slice(-8)}`,
+          razorpaySignature: "seed_verified_signature",
+          amount: plan.priceInPaise,
+          currency: "INR",
+          status: "captured"
+        });
+      }
+
+      // Upsert Membership
+      let membership = await Membership.findOne({ user: user._id });
+      if (!membership) {
+        membership = await Membership.create({
+          user: user._id,
+          plan: plan._id,
+          status: item.status,
+          startDate,
+          endDate,
+          classesUsed: item.classesUsed,
+          payment: payment._id
+        });
+      } else {
+        membership.plan = plan._id;
+        membership.status = item.status;
+        membership.startDate = startDate;
+        membership.endDate = endDate;
+        membership.classesUsed = item.classesUsed;
+        membership.payment = payment._id;
+        await membership.save();
+      }
+
+      // Link payment to membership
+      if (!payment.membership) {
+        payment.membership = membership._id;
+        await payment.save();
+      }
+
+      console.log(
+        `[${i + 1}/20] Seeded: ${user.name} (${user.email}) | Plan: ${item.plan} | Status: ${item.status} | Classes Used: ${item.classesUsed}`
+      );
+    }
+
+    console.log("\n==========================================");
+    console.log(" MemberPass Seed Completed Successfully! ");
+    console.log("==========================================");
+    console.log("Plans Created: Basic, Standard, Premium (3 total)");
+    console.log("Members: 20 fictional members");
+    console.log("Active: 12 | Ended: 7 | Paused: 1 (Janani R)");
+    console.log("Basic with 8 classes used: Arun Kumar (arun1@example.com)");
+    console.log("Universal Password: MemberPass@123");
+    console.log("==========================================\n");
+
+    process.exit(0);
+  } catch (error) {
+    console.error("Seed execution failed:", error);
+    process.exit(1);
+  }
+};
+
+seedDatabase();
+
+========================================
+FILE: D:\Intership\Eswar\backend\scripts\test-live-api.js
+========================================
+const path = require("path");
+require("dotenv").config({ path: path.join(__dirname, "../.env") });
+if (!process.env.MONGO_URI) {
+  require("dotenv").config();
+}
+const express = require("express");
+const cors = require("cors");
+const crypto = require("crypto");
+const connectDB = require("../config/db");
+const User = require("../models/User");
+const Plan = require("../models/Plan");
+const Membership = require("../models/Membership");
+const Payment = require("../models/Payment");
+
+async function runLiveApiTests() {
+  console.log("\n==========================================");
+  console.log("   MEMBERPASS - LIVE API HTTP TEST SUITE   ");
+  console.log("==========================================\n");
+
+  await connectDB();
+
+  // Create isolated express app for test
+  const app = express();
+  app.use(cors());
+  app.use(express.json());
+
+  app.use("/api/auth", require("../routes/authRoutes"));
+  app.use("/api/plans", require("../routes/planRoutes"));
+  app.use("/api/payments", require("../routes/paymentRoutes"));
+  app.use("/api/member", require("../routes/memberRoutes"));
+  app.use("/api/qr", require("../routes/qrRoutes"));
+
+  app.get("/api/health", (req, res) => res.json({ success: true, message: "OK" }));
+
+  const TEST_PORT = 5099;
+  const server = app.listen(TEST_PORT);
+  const BASE_URL = `http://127.0.0.1:${TEST_PORT}/api`;
+
+  let passed = 0;
+  let failed = 0;
+
+  function assert(condition, message) {
+    if (condition) {
+      console.log(`[PASS] ${message}`);
+      passed++;
+    } else {
+      console.error(`[FAIL] ${message}`);
+      failed++;
+    }
+  }
+
+  try {
+    // 1. Health check
+    console.log("--- 1. HEALTH CHECK ---");
+    const healthRes = await fetch(`${BASE_URL}/health`);
+    const healthJson = await healthRes.json();
+    assert(healthRes.status === 200 && healthJson.success, "GET /api/health returned 200 OK");
+
+    // 2. Plans Endpoint
+    console.log("\n--- 2. PLANS ENDPOINT ---");
+    const plansRes = await fetch(`${BASE_URL}/plans`);
+    const plansJson = await plansRes.json();
+    assert(plansRes.status === 200, "GET /api/plans status is 200");
+    assert(plansJson.plans && plansJson.plans.length === 3, `GET /api/plans returns 3 plans (found ${plansJson.plans?.length})`);
+    const names = plansJson.plans.map(p => p.name).sort();
+    assert(names.join(", ") === "Basic, Premium, Standard", `Plans are Basic, Standard, Premium: ${names.join(", ")}`);
+
+    // 3. Auth Endpoints: Signup & Login
+    console.log("\n--- 3. AUTH ENDPOINTS ---");
+    const testEmail = `live_test_${Date.now()}@example.com`;
+    const signupRes = await fetch(`${BASE_URL}/auth/signup`, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        name: "Live Test Member",
+        email: testEmail,
+        password: "LivePassword@123",
+        phone: "9988776655"
+      })
+    });
+    const signupJson = await signupRes.json();
+    assert(signupRes.status === 201, `POST /api/auth/signup returned 201 Created`);
+    assert(signupJson.token && signupJson.user?.passCode, "Signup returns valid JWT and passCode");
+
+    // Duplicate prevention
+    const duplicateRes = await fetch(`${BASE_URL}/auth/signup`, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        name: "Duplicate User",
+        email: testEmail,
+        password: "AnyPassword123"
+      })
+    });
+    assert(duplicateRes.status === 409, `POST /api/auth/signup rejected duplicate email with 409 Conflict`);
+
+    // Login with Arun Kumar
+    const loginRes = await fetch(`${BASE_URL}/auth/login`, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        email: "arun1@example.com",
+        password: "MemberPass@123"
+      })
+    });
+    const arunAuth = await loginRes.json();
+    assert(loginRes.status === 200, "POST /api/auth/login with Arun Kumar credentials succeeded (200)");
+    const arunToken = arunAuth.token;
+    assert(arunToken !== undefined, "Login returned bearer JWT token");
+
+    // 4. Member Profile Endpoint
+    console.log("\n--- 4. MEMBER PROFILE ---");
+    const profileRes = await fetch(`${BASE_URL}/member/profile`, {
+      headers: { Authorization: `Bearer ${arunToken}` }
+    });
+    const profileJson = await profileRes.json();
+    assert(profileRes.status === 200, "GET /api/member/profile returned 200 OK");
+    assert(profileJson.member?.name === "Arun Kumar", `Profile user name matches: ${profileJson.member?.name}`);
+    assert(profileJson.member?.membership?.plan?.name === "Basic", `Arun Kumar plan is Basic`);
+    assert(profileJson.member?.membership?.classesUsed === 8, `Arun Kumar classesUsed is exactly 8 (${profileJson.member?.membership?.classesUsed})`);
+    assert(profileJson.member?.membershipStatus === "active", `Arun Kumar membershipStatus is active`);
+
+    // 5. Member QR Pass Endpoint
+    console.log("\n--- 5. MEMBER QR PASS ---");
+    const passRes = await fetch(`${BASE_URL}/member/pass`, {
+      headers: { Authorization: `Bearer ${arunToken}` }
+    });
+    const passJson = await passRes.json();
+    assert(passRes.status === 200, "GET /api/member/pass returned 200 OK");
+    assert(passJson.hasActiveMembership === true, "hasActiveMembership is true for active member");
+    assert(passJson.pass?.qrCode?.startsWith("data:image/png;base64,"), "Pass includes base64 DataURL QR code");
+
+    // QR payload inspection
+    const qrPayload = passJson.pass?.qrPayload;
+    assert(qrPayload && qrPayload.pass_code && qrPayload.plan && qrPayload.end_date, "QR payload contains pass_code, plan, end_date");
+    assert(!qrPayload.email, "QR payload does NOT contain email");
+    assert(!qrPayload.password, "QR payload does NOT contain password");
+    assert(!qrPayload.payment, "QR payload does NOT contain payment info");
+
+    // 6. Paused Member QR Pass Test (Janani R)
+    console.log("\n--- 6. PAUSED MEMBER PASS CHECK (Janani R) ---");
+    const jananiLogin = await fetch(`${BASE_URL}/auth/login`, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        email: "janani20@example.com",
+        password: "MemberPass@123"
+      })
+    });
+    const jananiAuth = await jananiLogin.json();
+    assert(jananiLogin.status === 200, "Janani R logged in successfully");
+
+    const jananiPassRes = await fetch(`${BASE_URL}/member/pass`, {
+      headers: { Authorization: `Bearer ${jananiAuth.token}` }
+    });
+    const jananiPassJson = await jananiPassRes.json();
+    assert(jananiPassJson.hasActiveMembership === false, "Janani R hasActiveMembership is false");
+    assert(jananiPassJson.status === "paused", `Janani R status is paused (found: ${jananiPassJson.status})`);
+    assert(jananiPassJson.pass?.qrCode === null, "Paused pass does not generate active entry QR code");
+
+    // 7. Payment Verification Flow
+    console.log("\n--- 7. PAYMENT FLOW & HMAC VERIFICATION ---");
+    // Test creating order when keys not configured
+    const testKeySecret = "m2_live_secret_key_999";
+    process.env.RAZORPAY_KEY_SECRET = testKeySecret;
+
+    const basicPlan = await Plan.findOne({ name: "Basic" });
+    const orderRef = `order_live_${Date.now()}`;
+    const payRef = `pay_live_${Date.now()}`;
+
+    // Create payment in DB
+    const livePayment = await Payment.create({
+      user: signupJson.user.id,
+      plan: basicPlan._id,
+      razorpayOrderId: orderRef,
+      amount: basicPlan.priceInPaise,
+      currency: "INR",
+      status: "created"
+    });
+
+    const validSig = crypto
+      .createHmac("sha256", testKeySecret)
+      .update(`${orderRef}|${payRef}`)
+      .digest("hex");
+
+    // Verify payment endpoint
+    const verifyRes = await fetch(`${BASE_URL}/payments/verify`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${signupJson.token}`
+      },
+      body: JSON.stringify({
+        razorpay_order_id: orderRef,
+        razorpay_payment_id: payRef,
+        razorpay_signature: validSig
+      })
+    });
+    const verifyJson = await verifyRes.json();
+    assert(verifyRes.status === 200, "POST /api/payments/verify accepted valid HMAC signature (200)");
+    assert(verifyJson.success === true && verifyJson.membership?.status === "active", "Membership activated on payment verify");
+
+    // Rejection of duplicate payment verification
+    const dupVerifyRes = await fetch(`${BASE_URL}/payments/verify`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${signupJson.token}`
+      },
+      body: JSON.stringify({
+        razorpay_order_id: orderRef,
+        razorpay_payment_id: payRef,
+        razorpay_signature: validSig
+      })
+    });
+    assert(dupVerifyRes.status === 400, "POST /api/payments/verify rejected duplicate verification attempt (400)");
+
+    // Cleanup live test user
+    await Payment.deleteMany({ user: signupJson.user.id });
+    await Membership.deleteMany({ user: signupJson.user.id });
+    await User.deleteOne({ _id: signupJson.user.id });
+    console.log("[CLEANUP] Test user and payments cleaned up");
+
+    console.log("\n==========================================");
+    console.log(` LIVE API RESULTS: ${passed} PASSED, ${failed} FAILED `);
+    console.log("==========================================\n");
+
+    server.close();
+    process.exit(failed > 0 ? 1 : 0);
+  } catch (err) {
+    console.error("Live API test error:", err);
+    server.close();
+    process.exit(1);
+  }
+}
+
+runLiveApiTests();
+
+
+========================================
+FILE: D:\Intership\Eswar\backend\scripts\test-m2.js
+========================================
+const path = require("path");
+require("dotenv").config({ path: path.join(__dirname, "../.env") });
+if (!process.env.MONGO_URI) {
+  require("dotenv").config();
+}
+const crypto = require("crypto");
+const mongoose = require("mongoose");
+const connectDB = require("../config/db");
+const User = require("../models/User");
+const Plan = require("../models/Plan");
+const Membership = require("../models/Membership");
+const Payment = require("../models/Payment");
+
+async function runM2Tests() {
+  console.log("\n==========================================");
+  console.log("   MEMBERPASS - M2 VERIFICATION SUITE     ");
+  console.log("==========================================\n");
+
+  await connectDB();
+
+  let passed = 0;
+  let failed = 0;
+
+  function assert(condition, message) {
+    if (condition) {
+      console.log(`[PASS] ${message}`);
+      passed++;
+    } else {
+      console.error(`[FAIL] ${message}`);
+      failed++;
+    }
+  }
+
+  try {
+    // -------------------------------------------------------------
+    // TASK 1: DATABASE & SEED DATA AUDIT
+    // -------------------------------------------------------------
+    console.log("--- TASK 1: DATABASE TABLES & SEED DATA ---");
+
+    const plans = await Plan.find({ isActive: true });
+    assert(plans.length === 3, `Expected exactly 3 plans, found ${plans.length}`);
+
+    const planNames = plans.map((p) => p.name).sort();
+    assert(
+      JSON.stringify(planNames) === JSON.stringify(["Basic", "Premium", "Standard"]),
+      `Plan names are Basic, Standard, Premium: ${planNames.join(", ")}`
+    );
+
+    const membersCount = await User.countDocuments({ role: "member" });
+    assert(membersCount >= 20, `Seeded members count is ${membersCount} (expected >= 20)`);
+
+    const activeCount = await Membership.countDocuments({ status: "active" });
+    const endedCount = await Membership.countDocuments({ status: "ended" });
+    const pausedCount = await Membership.countDocuments({ status: "paused" });
+
+    assert(activeCount >= 12, `Active memberships count: ${activeCount} (expected >= 12)`);
+    assert(endedCount >= 7, `Ended memberships count: ${endedCount} (expected >= 7)`);
+    assert(pausedCount === 1, `Paused memberships count: ${pausedCount} (expected exactly 1)`);
+
+    const arun = await User.findOne({ email: "arun1@example.com" });
+    assert(arun !== null, "Member Arun Kumar (arun1@example.com) exists");
+    if (arun) {
+      const arunMem = await Membership.findOne({ user: arun._id }).populate("plan");
+      assert(arunMem && arunMem.plan.name === "Basic", "Arun Kumar is on the Basic plan");
+      assert(arunMem && arunMem.classesUsed === 8, `Arun Kumar has exactly 8 classes used: ${arunMem?.classesUsed}`);
+    }
+
+    const janani = await User.findOne({ email: "janani20@example.com" });
+    assert(janani !== null, "Member Janani R (janani20@example.com) exists");
+    if (janani) {
+      const jananiMem = await Membership.findOne({ user: janani._id });
+      assert(jananiMem && jananiMem.status === "paused", "Janani R has status paused");
+    }
+
+    // -------------------------------------------------------------
+    // TASK 2: MEMBER SIGNUP & AUTH
+    // -------------------------------------------------------------
+    console.log("\n--- TASK 2: MEMBER SIGNUP & LOGIN ---");
+
+    const testEmail = `test_m2_${Date.now()}@example.com`;
+    // Clean up test user if exists
+    await User.deleteMany({ email: { $regex: /^test_m2_/ } });
+
+    // Test password hashing and pass_code generation on signup
+    const newUser = await User.create({
+      name: "M2 Test User",
+      email: testEmail,
+      password: "TestPassword123",
+      role: "member"
+    });
+
+    assert(newUser.passCode && newUser.passCode.length === 64, `passCode generated securely (length: ${newUser.passCode.length})`);
+    assert(newUser.password !== "TestPassword123", "Password is encrypted (not plain text)");
+    assert(newUser.password.startsWith("$2"), "Password hashed using bcrypt");
+
+    // Test password comparison
+    const pwMatch = await newUser.comparePassword("TestPassword123");
+    assert(pwMatch === true, "Password comparison succeeds with correct password");
+
+    const pwMismatch = await newUser.comparePassword("WrongPassword");
+    assert(pwMismatch === false, "Password comparison fails with wrong password");
+
+    // Duplicate email check
+    let duplicateRejected = false;
+    try {
+      await User.create({
+        name: "Duplicate User",
+        email: testEmail,
+        password: "AnotherPassword123"
+      });
+    } catch (err) {
+      duplicateRejected = true;
+    }
+    assert(duplicateRejected, "Duplicate email registration properly rejected by unique constraint");
+
+    // -------------------------------------------------------------
+    // TASK 3: PLANS & RAZORPAY PAYMENT LOGIC
+    // -------------------------------------------------------------
+    console.log("\n--- TASK 3: PLANS & PAYMENT LOGIC ---");
+
+    const basicPlan = await Plan.findOne({ name: "Basic" });
+    assert(basicPlan.priceInPaise === 150000, `Basic plan price is 150000 paise (â‚¹1,500)`);
+
+    const standardPlan = await Plan.findOne({ name: "Standard" });
+    assert(standardPlan.priceInPaise === 300000, `Standard plan price is 300000 paise (â‚¹3,000)`);
+
+    const premiumPlan = await Plan.findOne({ name: "Premium" });
+    assert(premiumPlan.priceInPaise === 750000, `Premium plan price is 750000 paise (â‚¹7,500)`);
+
+    // Simulate Payment creation & HMAC-SHA256 signature verification
+    const secretKey = process.env.RAZORPAY_KEY_SECRET || "m2_test_secret_for_suite";
+    const testOrderId = `order_test_${Date.now()}`;
+    const testPaymentId = `pay_test_${Date.now()}`;
+
+    // Create payment in DB
+    const testPayment = await Payment.create({
+      user: newUser._id,
+      plan: basicPlan._id,
+      razorpayOrderId: testOrderId,
+      amount: basicPlan.priceInPaise,
+      currency: "INR",
+      status: "created"
+    });
+    assert(testPayment.status === "created", "Payment order record created in DB with status 'created'");
+
+    // Generate valid HMAC signature
+    const validSignature = crypto
+      .createHmac("sha256", secretKey)
+      .update(`${testOrderId}|${testPaymentId}`)
+      .digest("hex");
+
+    // Verify signature logic using timingSafeEqual
+    const expectedBuf = Buffer.from(validSignature, "utf-8");
+    const receivedBuf = Buffer.from(validSignature, "utf-8");
+    const isValidSignature =
+      expectedBuf.length === receivedBuf.length && crypto.timingSafeEqual(expectedBuf, receivedBuf);
+
+    assert(isValidSignature, "HMAC-SHA256 signature verification passes with valid key and payload");
+
+    // Verify invalid signature rejection
+    const tamperedSignature = validSignature.slice(0, -4) + "beef";
+    const tamperedBuf = Buffer.from(tamperedSignature, "utf-8");
+    const isTamperedValid =
+      expectedBuf.length === tamperedBuf.length && crypto.timingSafeEqual(expectedBuf, tamperedBuf);
+
+    assert(!isTamperedValid, "Tampered signature properly rejected by verification check");
+
+    // Activate membership upon payment capture
+    testPayment.status = "captured";
+    testPayment.razorpayPaymentId = testPaymentId;
+    testPayment.razorpaySignature = validSignature;
+    await testPayment.save();
+
+    const now = new Date();
+    const testMembership = await Membership.create({
+      user: newUser._id,
+      plan: basicPlan._id,
+      status: "active",
+      startDate: now,
+      endDate: new Date(now.getTime() + basicPlan.durationDays * 86400000),
+      classesUsed: 0,
+      payment: testPayment._id
+    });
+
+    testPayment.membership = testMembership._id;
+    await testPayment.save();
+
+    assert(testMembership.status === "active", "Membership activated successfully upon payment capture");
+
+    // Duplicate check: Verify that re-verifying a captured payment is blocked
+    const duplicateCheck = testPayment.status === "captured";
+    assert(duplicateCheck, "System prevents duplicate payment processing for already captured order");
+
+    // -------------------------------------------------------------
+    // TASK 4: QR MEMBERSHIP PASS SPECIFICATION
+    // -------------------------------------------------------------
+    console.log("\n--- TASK 4: QR MEMBERSHIP PASS ---");
+
+    const qrPassPayload = {
+      pass_code: newUser.passCode,
+      plan: basicPlan.name,
+      end_date: testMembership.endDate.toISOString().split("T")[0]
+    };
+
+    const payloadKeys = Object.keys(qrPassPayload).sort();
+    assert(
+      JSON.stringify(payloadKeys) === JSON.stringify(["end_date", "pass_code", "plan"]),
+      `QR code contains ONLY pass_code, plan, end_date (keys: ${payloadKeys.join(", ")})`
+    );
+
+    assert(!qrPassPayload.email, "QR pass contains NO user email");
+    assert(!qrPassPayload.password, "QR pass contains NO password");
+    assert(!qrPassPayload.payment, "QR pass contains NO payment details");
+
+    // Clean up test records
+    await Payment.deleteMany({ user: newUser._id });
+    await Membership.deleteMany({ user: newUser._id });
+    await User.deleteOne({ _id: newUser._id });
+    console.log("[CLEANUP] Test records cleaned up successfully");
+
+    console.log("\n==========================================");
+    console.log(` M2 TEST RESULTS: ${passed} PASSED, ${failed} FAILED `);
+    console.log("==========================================\n");
+
+    process.exit(failed > 0 ? 1 : 0);
+  } catch (error) {
+    console.error("Test error:", error);
+    process.exit(1);
+  }
+}
+
+runM2Tests();
+

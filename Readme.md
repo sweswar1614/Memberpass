@@ -1,63 +1,44 @@
-# MemberPass – Yoga Centre
+# MemberPass – Premium AI-Powered Membership Management
 
-### Discover the Art of Inner Balance
-
-MemberPass is a modern Yoga Centre website designed to introduce a wellness space focused on yoga, mindfulness, relaxation, and healthy living.
-
-The website provides visitors with an elegant and welcoming digital experience through a clean layout, minimal content, and a premium Zen Luxe visual identity.
+**A smarter way to manage memberships.**
 
 ## 🌐 Live Demo
 
-**Website:** https://memberpass-flax.vercel.app/
+[Visit MemberPass](https://member-pass.vercel.app/)
 
-## ✨ Project Highlights
+[Drive Link](https://drive.google.com/file/d/11nW79ZUdcOa7IDWZXaMWA7gHmg-vu8A4/view?usp=sharing)
+## 📌 About the Project
 
-- **Premium Homepage** – An elegant introductory landing page for the Yoga Centre.
-- **Zen Luxe Theme** – A sophisticated combination of charcoal backgrounds and champagne-gold accents.
-- **Minimal UI/UX** – Clean layouts with simple and meaningful content.
-- **Responsive Design** – Designed to provide a consistent experience across different screen sizes.
-- **Contact Section** – Provides a simple way for visitors to connect with the centre.
-- **Premium Typography** – Elegant typography and refined visual styling.
-- **Modern Visual Elements** – Subtle gradients, visual effects, and carefully designed interface elements.
+MemberPass is a web-based membership management project focused on making membership-related processes smarter and more convenient.
 
-## 🎨 Design Theme
+The project aims to bring membership management and AI-powered capabilities together through a modern web application.
 
-**Theme:** Zen Luxe
+## 🎯 Project Objectives
 
-**Color Palette:**
-- Charcoal – Primary background
-- Champagne Gold – Accent color
-- Warm Neutral – Supporting text
-- Soft Dark Shades – Section backgrounds
+- Simplify membership management.
+- Provide a user-friendly digital experience.
+- Explore AI-powered capabilities for membership-related tasks.
+- Build a modern and responsive web application.
+- Make membership-related processes more efficient.
 
-The design focuses on simplicity, elegance, balance, and a premium wellness experience.
+## ✨ Key Highlights
+
+- Modern web application interface.
+- AI-powered membership management concept.
+- User-focused design.
+- Responsive layout.
+- Deployed using Vercel.
 
 ## 🛠️ Technologies Used
 
-- React.js
-- JavaScript
-- CSS3
-- HTML5
-- Vercel – Deployment
+> Update this section with the exact technologies used in your project.
 
-## 📂 Project Structure
-
-```text
-MemberPass/
-│
-├── frontend/
-│   ├── public/
-│   ├── src/
-│   │   ├── App.jsx
-│   │   ├── App.css
-│   │   └── assets/
-│   └── package.json
-│
-├── README.md
-└── .gitignore
-```
-
-*Project structure may vary depending on the latest development changes.*
+- **Frontend:** [Add frontend framework]
+- **Backend:** [Add backend technology]
+- **Database:** [Add database]
+- **AI/ML:** [Add AI/ML technology]
+- **Deployment:** Vercel
+- **Version Control:** Git & GitHub
 
 ## 🚀 Getting Started
 
@@ -67,52 +48,45 @@ MemberPass/
 git clone <your-github-repository-url>
 ```
 
-### 2. Navigate to the Frontend
+### 2. Navigate to the Project
 
 ```bash
-cd frontend
+cd MemberPass
 ```
 
 ### 3. Install Dependencies
+
+Navigate to the relevant project folder and run:
 
 ```bash
 npm install
 ```
 
-### 4. Start the Development Server
+### 4. Run the Application
 
 ```bash
 npm run dev
 ```
 
-### 5. Open in Browser
+Open the local URL displayed in your terminal.
 
-```text
-http://localhost:5173
-```
+## 🔗 Project Links
 
-## 🎯 Project Objective
-
-The main objective of MemberPass Yoga Centre is to establish a premium digital presence for a yoga and wellness centre through a visually appealing, user-friendly, and minimal website experience.
+- **Live Website:** https://member-pass.vercel.app/
+- **GitHub Repository:** Add your GitHub repository URL here.
 
 ## 🔮 Future Enhancements
 
-- Membership registration
-- User authentication
-- Digital membership passes
-- Yoga session scheduling
-- Membership management
-- Payment integration
-- Member dashboard
+- Enhanced membership management features.
+- AI-powered membership assistance.
+- Digital membership passes.
+- Membership analytics and insights.
+- Improved user experience and dashboard capabilities.
 
-## 🌍 Deployment
+## 👨‍💻 Project Status
 
-The website is deployed using **Vercel**.
-
-**Live URL:** https://memberpass-flax.vercel.app/
+The project is under development. Features and functionality may evolve as development progresses.
 
 ---
 
-### MemberPass – Yoga Centre
-
-*Find Your Balance. Embrace Your Wellness.*
+**MemberPass – Smarter Membership. Better Experiences.**
