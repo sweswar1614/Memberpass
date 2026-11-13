@@ -5,7 +5,7 @@
 ## 🌐 Live Demo
 
 - **Live Website:** [Visit MemberPass](https://memberpass-flax.vercel.app/)
-- **Project Demo Video:** [Watch on Google Drive](https://drive.google.com/file/d/1PMWupO4TsZ5-pn8VQKYQh88LlFHTdfuY/view?usp=sharing)
+- **Project Demo Video:** [Watch on Google Drive](https://drive.google.com/file/d/1VmwohU4dBHJXu0cL5B6wm8xF0GjOByJ4/view?usp=sharing)
 
 ## 📌 About the Project
 
@@ -138,7 +138,7 @@ Open the local frontend URL displayed in your terminal.
 - **Backend API:** https://memberpass-uzxv.onrender.com/api
 - **Backend Health Check:** https://memberpass-uzxv.onrender.com/api/health
 - **GitHub Repository:** https://github.com/sweswar1614/Memberpass
-- **Project Demo Video:** [Google Drive](https://drive.google.com/file/d/1PMWupO4TsZ5-pn8VQKYQh88LlFHTdfuY/view?usp=sharing)
+- **Project Demo Video:** [Google Drive](https://drive.google.com/file/d/1VmwohU4dBHJXu0cL5B6wm8xF0GjOByJ4/view?usp=sharing)
 
 ## 🔮 Future Enhancements
 
