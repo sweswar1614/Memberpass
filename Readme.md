@@ -4,13 +4,14 @@
 
 ## 🌐 Live Demo
 
-[Visit MemberPass](https://memberpass-flax.vercel.app/)
+- **Live Website:** [Visit MemberPass](https://memberpass-flax.vercel.app/)
+- **Project Demo Video:** [Watch on Google Drive](https://drive.google.com/file/d/1PMWupO4TsZ5-pn8VQKYQh88LlFHTdfuY/view?usp=sharing)
 
 ## 📌 About the Project
 
-MemberPass is a web-based membership management project focused on making membership-related processes smarter and more convenient.
+MemberPass is a web-based membership management application designed to make membership-related processes smarter, simpler, and more convenient.
 
-The project aims to bring membership management and AI-powered capabilities together through a modern web application.
+The project brings membership management and AI-powered capabilities together through a modern, user-friendly web application.
 
 ## 🎯 Project Objectives
 
@@ -18,18 +19,18 @@ The project aims to bring membership management and AI-powered capabilities toge
 - Provide a user-friendly digital experience.
 - Explore AI-powered capabilities for membership-related tasks.
 - Build a modern and responsive web application.
-- Make membership-related processes more efficient.
+- Improve the efficiency of membership-related processes.
 
 ## ✨ Key Highlights
 
 - Modern web application interface.
 - AI-powered membership management concept.
-- User-focused design.
-- Responsive layout.
+- User-friendly and responsive design.
 - User registration and authentication.
 - Membership plans and subscription management.
-- Digital membership passes and QR-based features.
-- Deployed frontend and backend services.
+- Digital membership passes.
+- QR-based membership and attendance features.
+- Frontend and backend deployment.
 
 ## 🛠️ Technologies Used
 
@@ -43,16 +44,18 @@ The project aims to bring membership management and AI-powered capabilities toge
 | API | REST API |
 | Payment Integration | Razorpay |
 | Deployment | Vercel, Render |
-| Version Control | Git & GitHub |
+| Version Control | Git, GitHub |
 
 ## 🚀 Getting Started
 
 ### Prerequisites
 
+Make sure you have the following installed:
+
 - Node.js and npm
 - Git
 - MongoDB connection
-- Python (if running the AI module)
+- Python (for the AI module, if required)
 
 ### 1. Clone the Repository
 
@@ -75,7 +78,9 @@ npm install
 
 ### 4. Configure Frontend Environment
 
-Create a `.env` file inside the `frontend` folder:
+Create a `.env` file inside the `frontend` folder.
+
+For production backend:
 
 ```env
 VITE_API_URL=https://memberpass-uzxv.onrender.com/api
@@ -133,14 +138,15 @@ Open the local frontend URL displayed in your terminal.
 - **Backend API:** https://memberpass-uzxv.onrender.com/api
 - **Backend Health Check:** https://memberpass-uzxv.onrender.com/api/health
 - **GitHub Repository:** https://github.com/sweswar1614/Memberpass
+- **Project Demo Video:** [Google Drive](https://drive.google.com/file/d/1PMWupO4TsZ5-pn8VQKYQh88LlFHTdfuY/view?usp=sharing)
 
 ## 🔮 Future Enhancements
 
 - Enhanced membership management features.
 - AI-powered membership assistance.
-- Digital membership passes.
+- Advanced digital membership passes.
 - Membership analytics and insights.
-- Improved user experience and dashboard capabilities.
+- Improved dashboard capabilities.
 - Additional membership automation features.
 
 ## 📌 Project Status
