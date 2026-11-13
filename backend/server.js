@@ -71,16 +71,33 @@ const corsOptions = {
 
 // Middleware
 app.use(cors(corsOptions));
+
+// Normalization middleware in case client request contains /VITE_API_URL prefix
+app.use((req, res, next) => {
+  if (req.url.startsWith("/VITE_API_URL")) {
+    req.url = req.url.replace(/^\/VITE_API_URL/, "") || "/";
+  }
+  next();
+});
+
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
-// API Routes
+// Primary API Routes (standard /api prefix)
 app.use("/api/auth", require("./routes/authRoutes"));
 app.use("/api/plans", require("./routes/planRoutes"));
 app.use("/api/payments", require("./routes/paymentRoutes"));
 app.use("/api/member", require("./routes/memberRoutes"));
 app.use("/api/qr", require("./routes/qrRoutes"));
 app.use("/api/ai", require("./routes/aiRoutes"));
+
+// Route Aliases without /api prefix for resilient client connectivity
+app.use("/auth", require("./routes/authRoutes"));
+app.use("/plans", require("./routes/planRoutes"));
+app.use("/payments", require("./routes/paymentRoutes"));
+app.use("/member", require("./routes/memberRoutes"));
+app.use("/qr", require("./routes/qrRoutes"));
+app.use("/ai", require("./routes/aiRoutes"));
 
 // Home Route
 app.get("/", (req, res) => {
@@ -90,8 +107,33 @@ app.get("/", (req, res) => {
   });
 });
 
+// API Root Route
+app.get("/api", (req, res) => {
+  res.status(200).json({
+    success: true,
+    message: "MemberPass API Gateway",
+    endpoints: {
+      health: "/api/health",
+      auth: "/api/auth",
+      plans: "/api/plans",
+      payments: "/api/payments",
+      member: "/api/member",
+      qr: "/api/qr",
+      ai: "/api/ai"
+    }
+  });
+});
+
 // Health Check Route
 app.get("/api/health", (req, res) => {
+  res.status(200).json({
+    success: true,
+    message: "MemberPass server is running",
+  });
+});
+
+// Health Check Alias
+app.get("/health", (req, res) => {
   res.status(200).json({
     success: true,
     message: "MemberPass server is running",
