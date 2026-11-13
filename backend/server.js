@@ -19,7 +19,7 @@ const app = express();
 
 // Allowed frontend origins
 const allowedOrigins = [
-  "https://member-pass.vercel.app",
+  "https://memberpass-flax.vercel.app",
   "http://localhost:5173",
   "http://127.0.0.1:5173"
 ];
@@ -28,11 +28,11 @@ const allowedOrigins = [
 const corsOptions = {
   origin: (origin, callback) => {
     // Allow requests without an Origin header
-    // and requests from approved frontend URLs
     if (!origin || allowedOrigins.includes(origin)) {
       return callback(null, true);
     }
 
+    console.error(`CORS blocked for origin: ${origin}`);
     return callback(
       new Error(`CORS blocked for origin: ${origin}`)
     );
@@ -119,6 +119,7 @@ const startServer = async () => {
     app.listen(PORT, () => {
       console.log(`Server running on port ${PORT}`);
       console.log("CORS enabled for:");
+
       allowedOrigins.forEach((origin) => {
         console.log(`- ${origin}`);
       });
