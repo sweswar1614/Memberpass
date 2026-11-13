@@ -1,7 +1,37 @@
-
 import { useEffect, useState } from 'react';
 import { Html5QrcodeScanner } from 'html5-qrcode';
 import { qrApi, authApi } from '../services/api';
+
+const formatSafeDate = (val) => {
+  if (!val) return 'N/A';
+  try {
+    const d = new Date(val);
+    if (isNaN(d.getTime())) return 'N/A';
+    return d.toLocaleDateString('en-IN', {
+      day: 'numeric',
+      month: 'short',
+      year: 'numeric'
+    });
+  } catch {
+    return 'N/A';
+  }
+};
+
+const formatSafeDateTime = (val) => {
+  if (!val) return 'Date unavailable';
+  try {
+    const d = new Date(val);
+    if (isNaN(d.getTime())) return 'Date unavailable';
+    return d.toLocaleString('en-IN', {
+      day: 'numeric',
+      month: 'short',
+      hour: '2-digit',
+      minute: '2-digit'
+    });
+  } catch {
+    return 'Date unavailable';
+  }
+};
 
 export default function StaffDashboard({ currentUser, onLogout }) {
   const [passCode, setPassCode] = useState('');
@@ -22,10 +52,10 @@ export default function StaffDashboard({ currentUser, onLogout }) {
     try {
       const result = await qrApi.getAttendanceHistory();
 
-      if (result.success) {
-        setAttendanceHistory(result.history || []);
+      if (result && result.success) {
+        setAttendanceHistory(Array.isArray(result.history) ? result.history : []);
       } else {
-        setHistoryError(result.message || 'Unable to load attendance history');
+        setHistoryError(result?.message || 'Unable to load attendance history');
       }
     } catch {
       setHistoryError('Unable to connect to server');
@@ -34,35 +64,47 @@ export default function StaffDashboard({ currentUser, onLogout }) {
     }
   };
 
-  useEffect(() => {
-    let active = true;
-    (async () => {
-      try {
-        const result = await qrApi.getAttendanceHistory();
-        if (active) {
-          if (result.success) {
-            setAttendanceHistory(result.history || []);
-          } else {
-            setHistoryError(result.message || 'Unable to load attendance history');
-          }
-        }
-      } catch {
-        if (active) setHistoryError('Unable to connect to server');
-      }
-    })();
-    return () => {
-      active = false;
-    };
-  }, []);
-
   const stopScanner = () => {
     const scanner = window.memberPassScanner;
     if (scanner) {
-      scanner.clear().catch(() => { });
+      try {
+        scanner.clear().catch(() => { });
+      } catch {
+        // Ignore cleanup error
+      }
       window.memberPassScanner = null;
     }
     setScannerOpen(false);
   };
+
+  useEffect(() => {
+    let unmounted = false;
+
+    qrApi.getAttendanceHistory()
+      .then((result) => {
+        if (!unmounted && result && result.success) {
+          setAttendanceHistory(Array.isArray(result.history) ? result.history : []);
+        } else if (!unmounted && result && !result.success) {
+          setHistoryError(result?.message || 'Unable to load attendance history');
+        }
+      })
+      .catch(() => {
+        if (!unmounted) setHistoryError('Unable to connect to server');
+      });
+
+    return () => {
+      unmounted = true;
+      const scanner = window.memberPassScanner;
+      if (scanner) {
+        try {
+          scanner.clear().catch(() => { });
+        } catch {
+          // Ignore cleanup error
+        }
+        window.memberPassScanner = null;
+      }
+    };
+  }, []);
 
   const startScanner = () => {
     setMessage('');
@@ -70,38 +112,48 @@ export default function StaffDashboard({ currentUser, onLogout }) {
     setScannerOpen(true);
 
     setTimeout(() => {
-      const scanner = new Html5QrcodeScanner(
-        'memberpass-qr-reader',
-        { fps: 10, qrbox: { width: 230, height: 230 } },
-        false
-      );
+      const el = document.getElementById('memberpass-qr-reader');
+      if (!el) return;
 
-      window.memberPassScanner = scanner;
+      try {
+        const scanner = new Html5QrcodeScanner(
+          'memberpass-qr-reader',
+          { fps: 10, qrbox: { width: 230, height: 230 } },
+          false
+        );
 
-      scanner.render(
-        (decodedText) => {
-          try {
-            const payload = JSON.parse(decodedText);
-            if (!payload.pass_code) {
-              setMessage('Invalid MemberPass QR code');
-              return;
+        window.memberPassScanner = scanner;
+
+        scanner.render(
+          (decodedText) => {
+            try {
+              const payload = JSON.parse(decodedText);
+              if (!payload.pass_code) {
+                setMessage('Invalid MemberPass QR code');
+                return;
+              }
+              setPassCode(payload.pass_code);
+              scanner.clear().catch(() => { });
+              window.memberPassScanner = null;
+              setScannerOpen(false);
+              validateMember(payload.pass_code);
+            } catch {
+              setMessage('Unable to read QR pass payload');
             }
-            setPassCode(payload.pass_code);
-            scanner.clear().catch(() => { });
-            window.memberPassScanner = null;
-            setScannerOpen(false);
-            validateMember(payload.pass_code);
-          } catch {
-            setMessage('Unable to read QR pass');
-          }
-        },
-        () => { }
-      );
-    }, 100);
+          },
+          () => { }
+        );
+      } catch (err) {
+        console.error('QR scanner init error:', err);
+        setMessage('Camera scanner could not be started. Please enter pass code manually.');
+        setScannerOpen(false);
+      }
+    }, 120);
   };
 
   const validateMember = async (code = passCode) => {
-    if (!code.trim()) {
+    const trimmed = String(code || '').trim();
+    if (!trimmed) {
       setMessage('Please scan or enter a pass code');
       return;
     }
@@ -111,13 +163,13 @@ export default function StaffDashboard({ currentUser, onLogout }) {
     setMessage('');
 
     try {
-      const result = await qrApi.validate(code.trim());
+      const result = await qrApi.validate(trimmed);
 
-      if (result.success && result.entryStatus === 'ENTRY_ALLOWED') {
+      if (result && result.success && result.entryStatus === 'ENTRY_ALLOWED') {
         setMember(result.member);
         setMessage('Membership verified. Confirm check-in below.');
       } else {
-        setMessage(result.reason || 'Membership verification failed');
+        setMessage(result?.reason || 'Membership verification failed');
       }
     } catch {
       setMessage('Unable to connect to server');
@@ -127,17 +179,20 @@ export default function StaffDashboard({ currentUser, onLogout }) {
   };
 
   const confirmCheckIn = async () => {
-    if (!member || !passCode.trim()) return;
+    if (!member || !String(passCode || '').trim()) return;
 
     setLoading(true);
     setMessage('');
 
-    const checkInId = crypto.randomUUID();
+    const checkInId =
+      typeof crypto !== 'undefined' && crypto.randomUUID
+        ? crypto.randomUUID()
+        : `chk_${Math.random().toString(36).substring(2)}${Date.now().toString(36)}`;
 
     try {
-      const result = await qrApi.checkIn(passCode.trim(), checkInId);
+      const result = await qrApi.checkIn(String(passCode).trim(), checkInId);
 
-      if (result.success && result.entryStatus === 'ENTRY_ALLOWED') {
+      if (result && result.success && result.entryStatus === 'ENTRY_ALLOWED') {
         setLastCheckIn(result);
         setMessage(
           result.alreadyCheckedIn
@@ -148,7 +203,7 @@ export default function StaffDashboard({ currentUser, onLogout }) {
         setPassCode('');
         await loadAttendanceHistory();
       } else {
-        setMessage(result.reason || 'Check-in denied');
+        setMessage(result?.reason || 'Check-in denied');
       }
     } catch {
       setMessage('Check-in request failed. Please verify before retrying.');
@@ -158,7 +213,7 @@ export default function StaffDashboard({ currentUser, onLogout }) {
   };
 
   return (
-    <div className="staff-dashboard">
+    <div className="staff-dashboard" style={{ paddingTop: '105px' }}>
       <header className="staff-header">
         <div>
           <span className="staff-kicker">MEMBERPASS • STUDIO ADMIN</span>
@@ -220,7 +275,7 @@ export default function StaffDashboard({ currentUser, onLogout }) {
               <h3>{member.name}</h3>
               <p>Plan: {member.plan}</p>
               <p>Classes used: {member.classesUsed} / {member.classLimit ?? 'Unlimited'}</p>
-              <p>Membership ends: {new Date(member.endDate).toLocaleDateString()}</p>
+              <p>Membership ends: {formatSafeDate(member.endDate)}</p>
               <button
                 className="staff-primary-btn"
                 onClick={confirmCheckIn}
@@ -272,25 +327,18 @@ export default function StaffDashboard({ currentUser, onLogout }) {
             </div>
           ) : (
             <div className="attendance-history-list">
-              {attendanceHistory.map((record) => (
-                <div className="attendance-history-item" key={record.id}>
+              {attendanceHistory.map((record, idx) => (
+                <div className="attendance-history-item" key={record?.id || record?._id || idx}>
                   <div className="attendance-info-col">
-                    <h3>{record.memberName}</h3>
-                    <p className="attendance-email">{record.memberEmail}</p>
+                    <h3>{record?.memberName || 'Member'}</h3>
+                    <p className="attendance-email">{record?.memberEmail || ''}</p>
                     <div className="attendance-tags">
-                      <span className="attendance-tag-pill plan-pill">{record.planName}</span>
-                      <span className="attendance-tag-pill staff-pill">Staff: {record.staffName}</span>
+                      <span className="attendance-tag-pill plan-pill">{record?.planName || 'Yoga'}</span>
+                      <span className="attendance-tag-pill staff-pill">Staff: {record?.staffName || 'Staff'}</span>
                     </div>
                   </div>
                   <div className="attendance-history-date">
-                    {record.checkedInAt
-                      ? new Date(record.checkedInAt).toLocaleString('en-IN', {
-                          day: 'numeric',
-                          month: 'short',
-                          hour: '2-digit',
-                          minute: '2-digit'
-                        })
-                      : 'Date unavailable'}
+                    {formatSafeDateTime(record?.checkedInAt)}
                   </div>
                 </div>
               ))}

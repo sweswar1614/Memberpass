@@ -1,6 +1,21 @@
 import { useEffect, useState } from 'react';
 import { memberApi } from '../services/api';
 
+const formatSafeDate = (val) => {
+  if (!val) return 'N/A';
+  try {
+    const d = new Date(val);
+    if (isNaN(d.getTime())) return String(val).slice(0, 10);
+    return d.toLocaleDateString('en-IN', {
+      day: 'numeric',
+      month: 'short',
+      year: 'numeric'
+    });
+  } catch {
+    return 'N/A';
+  }
+};
+
 export default function QRPassModal({ isOpen, onClose, currentUser }) {
   const [passData, setPassData] = useState(null);
   const [loading, setLoading] = useState(true);
@@ -8,6 +23,7 @@ export default function QRPassModal({ isOpen, onClose, currentUser }) {
   useEffect(() => {
     if (!isOpen) return;
     let active = true;
+
     (async () => {
       try {
         const res = await memberApi.getPass();
@@ -22,6 +38,7 @@ export default function QRPassModal({ isOpen, onClose, currentUser }) {
         }
       }
     })();
+
     return () => {
       active = false;
     };
@@ -33,14 +50,15 @@ export default function QRPassModal({ isOpen, onClose, currentUser }) {
     if (!passData?.pass?.qrCode) return;
     const a = document.createElement('a');
     a.href = passData.pass.qrCode;
-    a.download = `MemberPass-${(currentUser?.name || 'card').replace(/\s+/g, '_')}.png`;
+    const nameStr = String(currentUser?.name || passData?.pass?.memberName || 'card').replace(/\s+/g, '_');
+    a.download = `MemberPass-${nameStr}.png`;
     document.body.appendChild(a);
     a.click();
     document.body.removeChild(a);
   };
 
   const pass = passData?.pass;
-  const isActive = passData?.hasActiveMembership;
+  const isActive = Boolean(passData?.hasActiveMembership);
 
   return (
     <div className="modal-backdrop fade-in" onClick={onClose}>
@@ -76,15 +94,15 @@ export default function QRPassModal({ isOpen, onClose, currentUser }) {
             <div className="modal-pass-meta">
               <div className="meta-line">
                 <span className="meta-label">MEMBER</span>
-                <strong className="meta-val">{currentUser?.name || pass.memberName}</strong>
+                <strong className="meta-val">{currentUser?.name || pass.memberName || 'Member'}</strong>
               </div>
               <div className="meta-line">
                 <span className="meta-label">TIER</span>
-                <strong className="meta-val">{pass.plan} Plan</strong>
+                <strong className="meta-val">{pass.plan || 'Active'} Plan</strong>
               </div>
               <div className="meta-line">
                 <span className="meta-label">VALID UNTIL</span>
-                <strong className="meta-val">{pass.endDate?.slice(0, 10)}</strong>
+                <strong className="meta-val">{formatSafeDate(pass.endDate)}</strong>
               </div>
             </div>
 
@@ -109,4 +127,3 @@ export default function QRPassModal({ isOpen, onClose, currentUser }) {
     </div>
   );
 }
-

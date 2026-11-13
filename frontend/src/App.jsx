@@ -5,6 +5,7 @@ import PlansSection from './components/PlansSection'
 import MemberDashboard from './components/MemberDashboard'
 import QRPassModal from './components/QRPassModal'
 import StaffDashboard from './components/StaffDashboard'
+import ErrorBoundary from './components/ErrorBoundary'
 import { getStoredUser, authApi, API_BASE } from './services/api'
 
 export default function App() {
@@ -12,7 +13,26 @@ export default function App() {
   const [authModalOpen, setAuthModalOpen] = useState(false)
   const [authModalMode, setAuthModalMode] = useState('login')
   const [qrModalOpen, setQrModalOpen] = useState(false)
-  const [currentView, setCurrentView] = useState('landing') // 'landing' | 'dashboard'
+  const [currentView, setCurrentView] = useState(() => {
+    try {
+      const stored = sessionStorage.getItem('memberpass_view')
+      if (stored === 'dashboard' && getStoredUser()) {
+        return 'dashboard'
+      }
+    } catch {
+      // storage fallback
+    }
+    return 'landing'
+  })
+
+  const navigateToView = (view) => {
+    setCurrentView(view)
+    try {
+      sessionStorage.setItem('memberpass_view', view)
+    } catch {
+      // storage fallback
+    }
+  }
 
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
   const [scrolled, setScrolled] = useState(false)
@@ -28,18 +48,18 @@ export default function App() {
   const handleLogout = async () => {
     await authApi.logout()
     setCurrentUser(null)
-    setCurrentView('landing')
+    navigateToView('landing')
     setSelectedPlanToast('You have securely signed out of MemberPass.')
   }
 
   const handleAuthSuccess = (user) => {
     setCurrentUser(user)
-    setCurrentView('dashboard')
+    navigateToView('dashboard')
     setSelectedPlanToast(`Welcome back, ${user.name}! Access credentials authenticated.`)
   }
 
   const handlePaymentSuccess = (data) => {
-    setCurrentView('dashboard')
+    navigateToView('dashboard')
     setSelectedPlanToast(`Payment successful! Your ${data.plan} membership is now active.`)
   }
 
@@ -142,7 +162,7 @@ export default function App() {
             aria-label="MemberPass Home"
             onClick={(e) => {
               e.preventDefault()
-              setCurrentView('landing')
+              navigateToView('landing')
             }}
           >
             <span className="crest-mark">
@@ -159,7 +179,7 @@ export default function App() {
               href="#home"
               onClick={(e) => {
                 e.preventDefault()
-                setCurrentView('landing')
+                navigateToView('landing')
                 setMobileMenuOpen(false)
                 window.scrollTo({ top: 0, behavior: 'smooth' })
               }}
@@ -169,7 +189,7 @@ export default function App() {
             <a
               href="#features"
               onClick={() => {
-                if (currentView !== 'landing') setCurrentView('landing')
+                if (currentView !== 'landing') navigateToView('landing')
                 setMobileMenuOpen(false)
               }}
             >
@@ -178,7 +198,7 @@ export default function App() {
             <a
               href="#plans"
               onClick={() => {
-                if (currentView !== 'landing') setCurrentView('landing')
+                if (currentView !== 'landing') navigateToView('landing')
                 setMobileMenuOpen(false)
               }}
             >
@@ -187,7 +207,7 @@ export default function App() {
             <a
               href="#about"
               onClick={() => {
-                if (currentView !== 'landing') setCurrentView('landing')
+                if (currentView !== 'landing') navigateToView('landing')
                 setMobileMenuOpen(false)
               }}
             >
@@ -199,7 +219,7 @@ export default function App() {
                 <button
                   className="nav-link-btn"
                   onClick={() => {
-                    setCurrentView('dashboard')
+                    navigateToView('dashboard')
                     setMobileMenuOpen(false)
                   }}
                 >
@@ -245,7 +265,7 @@ export default function App() {
               <div className="nav-auth-group">
                 <button
                   className="nav-user-pill"
-                  onClick={() => setCurrentView('dashboard')}
+                  onClick={() => navigateToView('dashboard')}
                   title={['staff', 'admin'].includes(currentUser.role) ? 'Open Staff Portal' : 'Open Member Dashboard'}
                 >
                   <div className="nav-avatar-mini">
@@ -298,29 +318,34 @@ export default function App() {
         </div>
       </header>
 
-      {currentView === 'dashboard' && currentUser ? (
-        <main>
-          {['staff', 'admin'].includes(currentUser.role) ? (
-            <StaffDashboard
-              currentUser={currentUser}
-              onLogout={handleLogout}
-            />
-          ) : (
-            <MemberDashboard
-              currentUser={currentUser}
-              onLogout={handleLogout}
-              onNavigateToPlans={() => {
-                setCurrentView('landing')
-                setTimeout(() => {
-                  const el = document.getElementById('plans')
-                  el?.scrollIntoView({ behavior: 'smooth' })
-                }, 120)
-              }}
-              onOpenQRModal={() => setQrModalOpen(true)}
-            />
-          )}
-        </main>
-      ) : (
+      <ErrorBoundary
+        onReset={() => navigateToView('dashboard')}
+        onGoHome={() => navigateToView('landing')}
+        onLogout={handleLogout}
+      >
+        {currentView === 'dashboard' && currentUser ? (
+          <main>
+            {['staff', 'admin'].includes(currentUser.role) ? (
+              <StaffDashboard
+                currentUser={currentUser}
+                onLogout={handleLogout}
+              />
+            ) : (
+              <MemberDashboard
+                currentUser={currentUser}
+                onLogout={handleLogout}
+                onNavigateToPlans={() => {
+                  navigateToView('landing')
+                  setTimeout(() => {
+                    const el = document.getElementById('plans')
+                    el?.scrollIntoView({ behavior: 'smooth' })
+                  }, 120)
+                }}
+                onOpenQRModal={() => setQrModalOpen(true)}
+              />
+            )}
+          </main>
+        ) : (
         <main>
           {/* =========================================================================
             2. HERO SECTION
@@ -1067,6 +1092,7 @@ export default function App() {
           </section>
         </main>
       )}
+      </ErrorBoundary>
 
       {/* =========================================================================
           9. REFINED FOOTER

@@ -1,13 +1,61 @@
 import { useState, useEffect } from 'react';
 import { memberApi } from '../services/api';
 
+const safeUpper = (val, fallback = '') => {
+  if (val === null || val === undefined) return fallback;
+  return String(val).toUpperCase();
+};
+
+const safeSlice = (val, start, end) => {
+  if (val === null || val === undefined) return '';
+  const str = String(val);
+  return typeof end === 'number' ? str.slice(start, end) : str.slice(start);
+};
+
+const formatSafeDate = (val, options = { day: 'numeric', month: 'short', year: 'numeric' }) => {
+  if (!val) return 'N/A';
+  try {
+    const d = new Date(val);
+    if (isNaN(d.getTime())) return 'N/A';
+    return d.toLocaleDateString('en-IN', options);
+  } catch {
+    return 'N/A';
+  }
+};
+
+const formatSafeTime = (val, options = { hour: '2-digit', minute: '2-digit' }) => {
+  if (!val) return '--:--';
+  try {
+    const d = new Date(val);
+    if (isNaN(d.getTime())) return '--:--';
+    return d.toLocaleTimeString('en-IN', options);
+  } catch {
+    return '--:--';
+  }
+};
+
 export default function MemberDashboard({
-  currentUser: _currentUser,
+  currentUser,
   onLogout: _onLogout,
   onNavigateToPlans,
-  onOpenQRModal: _onOpenQRModal
+  onOpenQRModal
 }) {
-  const [profile, setProfile] = useState(null);
+  const [profile, setProfile] = useState(() => {
+    if (currentUser) {
+      return {
+        id: currentUser.id || currentUser._id || '',
+        name: currentUser.name || 'Member',
+        email: currentUser.email || '',
+        role: currentUser.role || 'member',
+        passCode: currentUser.passCode || '',
+        membershipStatus: 'none',
+        membership: null,
+        recentPayments: []
+      };
+    }
+    return null;
+  });
+
   const [passData, setPassData] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState('');
@@ -26,10 +74,10 @@ export default function MemberDashboard({
         memberApi.getPass()
       ]);
 
-      if (profRes && profRes.success) {
+      if (profRes && profRes.success && profRes.member) {
         setProfile(profRes.member);
       } else {
-        setError(profRes?.message || 'Failed to load member profile');
+        setError(profRes?.message || 'Failed to load membership details. Showing local session credentials.');
       }
 
       if (passRes && passRes.success) {
@@ -37,7 +85,7 @@ export default function MemberDashboard({
       }
     } catch (err) {
       console.error('Error loading dashboard data:', err);
-      setError('Communication error loading membership telemetry');
+      setError('Communication error loading membership telemetry. Showing cached session data.');
     } finally {
       setLoading(false);
     }
@@ -50,10 +98,10 @@ export default function MemberDashboard({
 
       const result = await memberApi.getAttendanceHistory();
 
-      if (result.success) {
-        setAttendanceHistory(result.history || []);
+      if (result && result.success) {
+        setAttendanceHistory(Array.isArray(result.history) ? result.history : []);
       } else {
-        setAttendanceError(result.message || 'Unable to load attendance history');
+        setAttendanceError(result?.message || 'Unable to load attendance history');
       }
     } catch (err) {
       console.error('Attendance history error:', err);
@@ -65,18 +113,21 @@ export default function MemberDashboard({
 
   useEffect(() => {
     let active = true;
+
     (async () => {
       try {
         const [profRes, passRes] = await Promise.all([
           memberApi.getProfile(),
           memberApi.getPass()
         ]);
+
         if (active) {
-          if (profRes && profRes.success) {
+          if (profRes && profRes.success && profRes.member) {
             setProfile(profRes.member);
           } else {
-            setError(profRes?.message || 'Failed to load member profile');
+            setError(profRes?.message || 'Failed to load membership details');
           }
+
           if (passRes && passRes.success) {
             setPassData(passRes);
           }
@@ -89,13 +140,14 @@ export default function MemberDashboard({
           setLoading(false);
         }
       }
+
       try {
         const result = await memberApi.getAttendanceHistory();
         if (active) {
-          if (result.success) {
-            setAttendanceHistory(result.history || []);
+          if (result && result.success) {
+            setAttendanceHistory(Array.isArray(result.history) ? result.history : []);
           } else {
-            setAttendanceError(result.message || 'Unable to load attendance history');
+            setAttendanceError(result?.message || 'Unable to load attendance history');
           }
           setAttendanceLoading(false);
         }
@@ -107,16 +159,22 @@ export default function MemberDashboard({
         }
       }
     })();
+
     return () => {
       active = false;
     };
   }, []);
 
   const handleCopyPassCode = () => {
-    if (profile?.passCode) {
-      navigator.clipboard.writeText(profile.passCode);
-      setCopyToast(true);
-      setTimeout(() => setCopyToast(false), 2500);
+    const code = profile?.passCode || currentUser?.passCode;
+    if (code) {
+      try {
+        navigator.clipboard.writeText(code);
+        setCopyToast(true);
+        setTimeout(() => setCopyToast(false), 2500);
+      } catch (err) {
+        console.warn('Clipboard write failed:', err);
+      }
     }
   };
 
@@ -126,22 +184,48 @@ export default function MemberDashboard({
 
     const link = document.createElement('a');
     link.href = qrUrl;
-    link.download = `MemberPass-${(profile?.name || 'card').replace(/\s+/g, '_')}.png`;
+    link.download = `MemberPass-${safeSlice(profile?.name || currentUser?.name || 'card', 0, 30).replace(/\s+/g, '_')}.png`;
     document.body.appendChild(link);
     link.click();
     document.body.removeChild(link);
   };
 
-  if (loading) {
+  // If loading and we have no profile and no currentUser fallback, render visible loading state
+  if (loading && !profile && !currentUser) {
     return (
-      <div className="dashboard-loading-state">
-        <div className="crest-spinner"></div>
-        <p>Retrieving sovereign membership credentials...</p>
+      <div className="member-dashboard-wrap">
+        <div
+          className="dashboard-loading-state"
+          style={{
+            minHeight: '380px',
+            display: 'flex',
+            flexDirection: 'column',
+            alignItems: 'center',
+            justifyContent: 'center',
+            background: '#242424',
+            borderRadius: '20px',
+            border: '1px solid rgba(198, 166, 107, 0.25)',
+            padding: '60px 24px',
+            marginTop: '30px'
+          }}
+        >
+          <div className="crest-spinner"></div>
+          <p style={{ marginTop: '20px', color: '#B6A58C', fontSize: '1rem', letterSpacing: '0.04em' }}>
+            Retrieving sovereign membership credentials...
+          </p>
+        </div>
       </div>
     );
   }
 
-  const membership = profile?.membership;
+  const displayName = profile?.name || currentUser?.name || 'Member';
+  const displayEmail = profile?.email || currentUser?.email || '';
+  const rawId = profile?.id || profile?._id || currentUser?.id || currentUser?._id;
+  const displayId = rawId ? safeSlice(rawId, -8) : 'ACTIVE';
+  const displayPassCode = profile?.passCode || currentUser?.passCode || '';
+  const avatarInitials = safeUpper(safeSlice(displayName, 0, 2), 'MP');
+
+  const membership = profile?.membership || null;
   const status = profile?.membershipStatus || 'none';
   const isActive = status === 'active';
   const isPaused = status === 'paused';
@@ -160,21 +244,28 @@ export default function MemberDashboard({
       <div className="dashboard-banner">
         <div className="banner-left">
           <div className="member-avatar-lg">
-            <span>{(profile?.name || 'M').slice(0, 2).toUpperCase()}</span>
+            <span>{avatarInitials}</span>
           </div>
           <div className="banner-text">
             <div className="banner-eyebrow">
               <span className="crest-sparkle">✦</span>
               <span>AUTHENTICATED YOGA PRACTITIONER</span>
             </div>
-            <h1 className="banner-heading">Welcome back, {profile?.name}</h1>
-            <p className="banner-email">{profile?.email} • Member ID: {profile?.id?.slice(-8)}</p>
+            <h1 className="banner-heading">Welcome back, {displayName}</h1>
+            <p className="banner-email">
+              {displayEmail} • Member ID: {displayId}
+            </p>
           </div>
         </div>
 
         <div className="banner-actions">
-          <button className="btn-outline btn-sm" onClick={loadDashboardData} title="Refresh telemetry">
-            <span>↻ Refresh Data</span>
+          <button
+            className="btn-outline btn-sm"
+            onClick={loadDashboardData}
+            title="Refresh telemetry"
+            disabled={loading}
+          >
+            <span>{loading ? 'Refreshing...' : '↻ Refresh Data'}</span>
           </button>
           <button className="btn-primary btn-sm" onClick={onNavigateToPlans}>
             <span>Upgrade / Renew Plan</span>
@@ -200,11 +291,9 @@ export default function MemberDashboard({
         <div className="metric-box">
           <span className="metric-kicker">MEMBERSHIP STANDING</span>
           <div className="metric-status-row">
-            <span
-              className={`status-indicator-badge badge-${status}`}
-            >
+            <span className={`status-indicator-badge badge-${status}`}>
               <span className="status-dot"></span>
-              {status.toUpperCase()}
+              {safeUpper(status, 'NONE')}
             </span>
           </div>
           <p className="metric-note">
@@ -223,12 +312,8 @@ export default function MemberDashboard({
           <span className="metric-kicker">PRIVILEGE TIER</span>
           <h3 className="metric-value">{membership?.plan?.name || 'Standard Tier'}</h3>
           <p className="metric-note">
-            {membership
-              ? `Valid through ${new Date(membership.endDate).toLocaleDateString('en-IN', {
-                day: 'numeric',
-                month: 'short',
-                year: 'numeric'
-              })}`
+            {membership?.endDate
+              ? `Valid through ${formatSafeDate(membership.endDate)}`
               : 'Select a plan to activate privileges'}
           </p>
         </div>
@@ -238,7 +323,7 @@ export default function MemberDashboard({
           <span className="metric-kicker">CLASS UTILIZATION</span>
           <div className="metric-classes-row">
             <span className="metric-value">
-              {membership?.classesUsed || 0}
+              {membership?.classesUsed ?? 0}
               <span className="metric-sub">
                 {membership?.plan?.classLimit !== null && membership?.plan?.classLimit !== undefined
                   ? ` / ${membership.plan.classLimit} Classes`
@@ -258,8 +343,8 @@ export default function MemberDashboard({
           <span className="metric-kicker">PASS CODE (CRYPTOGRAPHIC)</span>
           <div className="pass-code-display" onClick={handleCopyPassCode} title="Click to copy pass code">
             <code>
-              {profile?.passCode
-                ? `${profile.passCode.slice(0, 12)}••••${profile.passCode.slice(-6)}`
+              {displayPassCode
+                ? `${safeSlice(displayPassCode, 0, 12)}••••${safeSlice(displayPassCode, -6)}`
                 : 'GENERATING...'}
             </code>
             <span className="copy-icon">⎘</span>
@@ -322,7 +407,7 @@ export default function MemberDashboard({
 
                 <div className="pass-status-pill">
                   <span className={`status-pulse ${isActive ? 'pulse-active' : 'pulse-inactive'}`}></span>
-                  <span>{status.toUpperCase()}</span>
+                  <span>{safeUpper(status, 'NONE')}</span>
                 </div>
               </div>
 
@@ -330,19 +415,23 @@ export default function MemberDashboard({
               <div className="pass-tier-ribbon">
                 <span className="ribbon-sparkle">✦</span>
                 <span className="ribbon-text">
-                  {membership?.plan?.name ? `${membership.plan.name.toUpperCase()} YOGA PASS` : 'YOGA PRACTITIONER'}
+                  {membership?.plan?.name
+                    ? `${safeUpper(membership.plan.name)} YOGA PASS`
+                    : 'YOGA PRACTITIONER'}
                 </span>
               </div>
 
               {/* Member Profile */}
               <div className="pass-member-profile">
                 <div className="pass-avatar">
-                  <span>{(profile?.name || 'M').slice(0, 2).toUpperCase()}</span>
+                  <span>{avatarInitials}</span>
                 </div>
                 <div className="member-meta">
-                  <h3 className="member-name">{profile?.name}</h3>
+                  <h3 className="member-name">{displayName}</h3>
                   <p className="member-role">Verified Yoga Member</p>
-                  <code className="pass-code">CODE: {profile?.passCode?.slice(0, 16)}...</code>
+                  <code className="pass-code">
+                    CODE: {displayPassCode ? `${safeSlice(displayPassCode, 0, 16)}...` : 'PENDING'}
+                  </code>
                 </div>
               </div>
 
@@ -386,13 +475,7 @@ export default function MemberDashboard({
                 <div className="bottom-col">
                   <span className="label">EXPIRY DATE</span>
                   <span className="value">
-                    {membership?.endDate
-                      ? new Date(membership.endDate).toLocaleDateString('en-IN', {
-                        day: 'numeric',
-                        month: 'short',
-                        year: 'numeric'
-                      })
-                      : 'N/A'}
+                    {membership?.endDate ? formatSafeDate(membership.endDate) : 'N/A'}
                   </span>
                 </div>
 
@@ -431,7 +514,7 @@ export default function MemberDashboard({
             </div>
 
             <div className="payment-history-card">
-              {profile?.recentPayments && profile.recentPayments.length > 0 ? (
+              {Array.isArray(profile?.recentPayments) && profile.recentPayments.length > 0 ? (
                 <div className="payments-table-wrap">
                   <table className="payments-table">
                     <thead>
@@ -444,28 +527,33 @@ export default function MemberDashboard({
                       </tr>
                     </thead>
                     <tbody>
-                      {profile.recentPayments.map((p) => (
-                        <tr key={p.id || p.orderId}>
-                          <td>
-                            <strong>{p.planName}</strong>
-                          </td>
-                          <td>
-                            <code className="order-ref">{p.orderId?.slice(-10) || p.id?.slice(-8)}</code>
-                          </td>
-                          <td>
-                            {new Date(p.date).toLocaleDateString('en-IN', {
-                              day: 'numeric',
-                              month: 'short'
-                            })}
-                          </td>
-                          <td className="amount-col">₹{Number(p.amount).toLocaleString('en-IN')}</td>
-                          <td>
-                            <span className={`payment-status-badge ${p.status}`}>
-                              {p.status.toUpperCase()}
-                            </span>
-                          </td>
-                        </tr>
-                      ))}
+                      {profile.recentPayments.map((p, idx) => {
+                        const orderRef = p?.orderId
+                          ? safeSlice(p.orderId, -10)
+                          : (p?.id ? safeSlice(p.id, -8) : `TX-${idx + 1}`);
+                        const statusStr = safeUpper(p?.status, 'COMPLETED');
+                        const amountNum = Number(p?.amount) || 0;
+
+                        return (
+                          <tr key={p?.id || p?.orderId || idx}>
+                            <td>
+                              <strong>{p?.planName || 'Yoga Membership'}</strong>
+                            </td>
+                            <td>
+                              <code className="order-ref">{orderRef}</code>
+                            </td>
+                            <td>
+                              {formatSafeDate(p?.date, { day: 'numeric', month: 'short' })}
+                            </td>
+                            <td className="amount-col">₹{amountNum.toLocaleString('en-IN')}</td>
+                            <td>
+                              <span className={`payment-status-badge ${safeUpper(p?.status || 'captured').toLowerCase()}`}>
+                                {statusStr}
+                              </span>
+                            </td>
+                          </tr>
+                        );
+                      })}
                     </tbody>
                   </table>
                 </div>
@@ -500,7 +588,7 @@ export default function MemberDashboard({
 
             <div className="payment-history-card">
               {attendanceError && (
-                <div className="staff-message">{attendanceError}</div>
+                <div className="staff-message" role="status">{attendanceError}</div>
               )}
 
               {attendanceLoading && attendanceHistory.length === 0 ? (
@@ -524,22 +612,15 @@ export default function MemberDashboard({
                       </tr>
                     </thead>
                     <tbody>
-                      {attendanceHistory.map((record) => (
-                        <tr key={record.id}>
-                          <td><strong>{record.planName}</strong></td>
-                          <td>{record.staffName}</td>
+                      {attendanceHistory.map((record, idx) => (
+                        <tr key={record?.id || record?._id || idx}>
+                          <td><strong>{record?.planName || 'Yoga Session'}</strong></td>
+                          <td>{record?.staffName || 'Studio Staff'}</td>
                           <td>
-                            {new Date(record.checkedInAt).toLocaleDateString('en-IN', {
-                              day: 'numeric',
-                              month: 'short',
-                              year: 'numeric'
-                            })}
+                            {formatSafeDate(record?.checkedInAt)}
                           </td>
                           <td>
-                            {new Date(record.checkedInAt).toLocaleTimeString('en-IN', {
-                              hour: '2-digit',
-                              minute: '2-digit'
-                            })}
+                            {formatSafeTime(record?.checkedInAt)}
                           </td>
                         </tr>
                       ))}
@@ -554,4 +635,3 @@ export default function MemberDashboard({
     </div>
   );
 }
-
