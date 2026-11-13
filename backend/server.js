@@ -6,7 +6,7 @@ const dotenv = require("dotenv");
 
 // Load environment variables
 dotenv.config({
-  path: path.join(__dirname, ".env")
+  path: path.join(__dirname, ".env"),
 });
 
 if (!process.env.MONGO_URI) {
@@ -21,21 +21,34 @@ const app = express();
 const allowedOrigins = [
   "https://memberpass-flax.vercel.app",
   "http://localhost:5173",
-  "http://127.0.0.1:5173"
+  "http://127.0.0.1:5173",
 ];
+
+// Allow production, local and matching Vercel preview URLs
+const isAllowedOrigin = (origin) => {
+  if (!origin) return true;
+
+  if (allowedOrigins.includes(origin)) {
+    return true;
+  }
+
+  // Allow Vercel preview deployments for this project
+  const vercelPreviewPattern =
+    /^https:\/\/memberpass-[a-zA-Z0-9-]+\.vercel\.app$/;
+
+  return vercelPreviewPattern.test(origin);
+};
 
 // CORS configuration
 const corsOptions = {
   origin: (origin, callback) => {
-    // Allow requests without an Origin header
-    if (!origin || allowedOrigins.includes(origin)) {
+    if (isAllowedOrigin(origin)) {
       return callback(null, true);
     }
 
-    console.error(`CORS blocked for origin: ${origin}`);
-    return callback(
-      new Error(`CORS blocked for origin: ${origin}`)
-    );
+    console.error("CORS blocked for origin:", origin);
+
+    return callback(new Error(`CORS blocked for origin: ${origin}`));
   },
 
   methods: [
@@ -44,15 +57,16 @@ const corsOptions = {
     "PUT",
     "PATCH",
     "DELETE",
-    "OPTIONS"
+    "OPTIONS",
   ],
 
   allowedHeaders: [
     "Content-Type",
-    "Authorization"
+    "Authorization",
   ],
 
-  credentials: true
+  credentials: true,
+  optionsSuccessStatus: 204,
 };
 
 // Middleware
@@ -72,7 +86,7 @@ app.use("/api/ai", require("./routes/aiRoutes"));
 app.get("/", (req, res) => {
   res.status(200).json({
     success: true,
-    message: "Welcome to MemberPass API"
+    message: "Welcome to MemberPass API",
   });
 });
 
@@ -80,7 +94,7 @@ app.get("/", (req, res) => {
 app.get("/api/health", (req, res) => {
   res.status(200).json({
     success: true,
-    message: "MemberPass server is running"
+    message: "MemberPass server is running",
   });
 });
 
@@ -88,7 +102,8 @@ app.get("/api/health", (req, res) => {
 app.use((req, res) => {
   res.status(404).json({
     success: false,
-    message: "API route not found"
+    message: "API route not found",
+    path: req.originalUrl,
   });
 });
 
@@ -99,13 +114,13 @@ app.use((err, req, res, next) => {
   if (err.message.startsWith("CORS blocked")) {
     return res.status(403).json({
       success: false,
-      message: "CORS policy blocked this request"
+      message: "CORS policy blocked this request",
     });
   }
 
   res.status(err.status || 500).json({
     success: false,
-    message: err.message || "Internal Server Error"
+    message: err.message || "Internal Server Error",
   });
 });
 
@@ -123,6 +138,8 @@ const startServer = async () => {
       allowedOrigins.forEach((origin) => {
         console.log(`- ${origin}`);
       });
+
+      console.log("- Matching Vercel preview deployments");
     });
   } catch (error) {
     console.error("Server startup failed:", error.message);
