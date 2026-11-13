@@ -1,12 +1,11 @@
 # MemberPass – Premium AI-Powered Membership Management
 
-**A smarter way to manage memberships.**
+### A smarter way to manage memberships.
 
 ## 🌐 Live Demo
 
-[Visit MemberPass](https://member-pass.vercel.app/)
+[Visit MemberPass](https://memberpass-flax.vercel.app/)
 
-[Drive Link](https://drive.google.com/file/d/11nW79ZUdcOa7IDWZXaMWA7gHmg-vu8A4/view?usp=sharing)
 ## 📌 About the Project
 
 MemberPass is a web-based membership management project focused on making membership-related processes smarter and more convenient.
@@ -27,53 +26,113 @@ The project aims to bring membership management and AI-powered capabilities toge
 - AI-powered membership management concept.
 - User-focused design.
 - Responsive layout.
-- Deployed using Vercel.
+- User registration and authentication.
+- Membership plans and subscription management.
+- Digital membership passes and QR-based features.
+- Deployed frontend and backend services.
 
 ## 🛠️ Technologies Used
 
-> Update this section with the exact technologies used in your project.
-
-- **Frontend:** [Add frontend framework]
-- **Backend:** [Add backend technology]
-- **Database:** [Add database]
-- **AI/ML:** [Add AI/ML technology]
-- **Deployment:** Vercel
-- **Version Control:** Git & GitHub
+| Category | Technologies |
+|---|---|
+| Frontend | React.js, Vite, CSS |
+| Backend | Node.js, Express.js |
+| Database | MongoDB |
+| Authentication | JSON Web Token (JWT) |
+| AI/ML | Python, PyTorch |
+| API | REST API |
+| Payment Integration | Razorpay |
+| Deployment | Vercel, Render |
+| Version Control | Git & GitHub |
 
 ## 🚀 Getting Started
+
+### Prerequisites
+
+- Node.js and npm
+- Git
+- MongoDB connection
+- Python (if running the AI module)
 
 ### 1. Clone the Repository
 
 ```bash
-git clone <your-github-repository-url>
+git clone https://github.com/sweswar1614/Memberpass.git
 ```
 
 ### 2. Navigate to the Project
 
 ```bash
-cd MemberPass
+cd Memberpass
 ```
 
-### 3. Install Dependencies
-
-Navigate to the relevant project folder and run:
+### 3. Install Frontend Dependencies
 
 ```bash
+cd frontend
 npm install
 ```
 
-### 4. Run the Application
+### 4. Configure Frontend Environment
+
+Create a `.env` file inside the `frontend` folder:
+
+```env
+VITE_API_URL=https://memberpass-uzxv.onrender.com/api
+```
+
+For local backend development:
+
+```env
+VITE_API_URL=http://localhost:5000/api
+```
+
+### 5. Run the Frontend
 
 ```bash
 npm run dev
 ```
 
-Open the local URL displayed in your terminal.
+### 6. Install Backend Dependencies
+
+Open another terminal from the project root:
+
+```bash
+cd backend
+npm install
+```
+
+### 7. Configure Backend Environment
+
+Create a `.env` file inside the `backend` folder:
+
+```env
+PORT=5000
+MONGO_URI=your_mongodb_connection_string
+JWT_SECRET=your_jwt_secret
+NODE_ENV=development
+```
+
+Add the required Razorpay credentials if payment integration is enabled.
+
+**Important:** Never upload `.env` files or secret credentials to GitHub.
+
+### 8. Run the Backend
+
+From the backend folder:
+
+```bash
+npm run dev
+```
+
+Open the local frontend URL displayed in your terminal.
 
 ## 🔗 Project Links
 
-- **Live Website:** https://member-pass.vercel.app/
-- **GitHub Repository:** Add your GitHub repository URL here.
+- **Live Website:** https://memberpass-flax.vercel.app/
+- **Backend API:** https://memberpass-uzxv.onrender.com/api
+- **Backend Health Check:** https://memberpass-uzxv.onrender.com/api/health
+- **GitHub Repository:** https://github.com/sweswar1614/Memberpass
 
 ## 🔮 Future Enhancements
 
@@ -82,11 +141,12 @@ Open the local URL displayed in your terminal.
 - Digital membership passes.
 - Membership analytics and insights.
 - Improved user experience and dashboard capabilities.
+- Additional membership automation features.
 
-## 👨‍💻 Project Status
+## 📌 Project Status
 
-The project is under development. Features and functionality may evolve as development progresses.
+The project is currently under development. Features and functionality may evolve as development progresses.
 
 ---
 
-**MemberPass – Smarter Membership. Better Experiences.**
+### MemberPass – Smarter Membership. Better Experiences.
