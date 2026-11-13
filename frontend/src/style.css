@@ -20,7 +20,7 @@
     --color-primary-hover: #4f46e5;
     --color-primary-soft: rgba(99, 102, 241, 0.1);
     --color-primary-glow: rgba(99, 102, 241, 0.2);
-    
+
     --color-accent: #38bdf8;
     --color-accent-soft: rgba(56, 189, 248, 0.1);
 
@@ -72,7 +72,9 @@
 /* --------------------------------------------------------------------------
    2. GLOBAL BASE & SUBTLE GRID BACKGROUND
    -------------------------------------------------------------------------- */
-*, *::before, *::after {
+*,
+*::before,
+*::after {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
@@ -97,7 +99,7 @@ body {
     -moz-osx-font-smoothing: grayscale;
 
     /* Minimalist Technical Grid Background */
-    background-image: 
+    background-image:
         radial-gradient(circle at 50% 0%, rgba(99, 102, 241, 0.08) 0%, transparent 60%),
         linear-gradient(to right, rgba(255, 255, 255, 0.02) 1px, transparent 1px),
         linear-gradient(to bottom, rgba(255, 255, 255, 0.02) 1px, transparent 1px);
@@ -109,13 +111,16 @@ body {
 ::-webkit-scrollbar {
     width: 8px;
 }
+
 ::-webkit-scrollbar-track {
     background: var(--bg-page);
 }
+
 ::-webkit-scrollbar-thumb {
     background: #1e2538;
     border-radius: 4px;
 }
+
 ::-webkit-scrollbar-thumb:hover {
     background: #2e3852;
 }
@@ -136,7 +141,12 @@ body {
 /* --------------------------------------------------------------------------
    3. MINIMAL TYPOGRAPHY & HEADINGS
    -------------------------------------------------------------------------- */
-h1, h2, h3, h4, h5, h6 {
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
     font-family: var(--font-heading);
     color: var(--text-white);
     font-weight: 600;
@@ -161,16 +171,31 @@ ul {
 
 .gradient-text {
     background: var(--gradient-text);
+    background-clip: text;
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     display: inline-block;
 }
 
-.text-accent { color: var(--color-primary); }
-.text-cyan { color: var(--color-accent); }
-.text-success { color: var(--status-success); }
-.text-danger { color: var(--status-danger); }
-.text-center { text-align: center; }
+.text-accent {
+    color: var(--color-primary);
+}
+
+.text-cyan {
+    color: var(--color-accent);
+}
+
+.text-success {
+    color: var(--status-success);
+}
+
+.text-danger {
+    color: var(--status-danger);
+}
+
+.text-center {
+    text-align: center;
+}
 
 /* Section Header Styles */
 .section {
@@ -238,6 +263,7 @@ ul {
     color: #ffffff;
     box-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
 }
+
 .btn-primary:hover {
     background: var(--color-primary-hover);
     transform: translateY(-1px);
@@ -249,6 +275,7 @@ ul {
     color: var(--text-primary);
     border: 1px solid var(--border-hairline);
 }
+
 .btn-secondary:hover {
     background: rgba(255, 255, 255, 0.08);
     border-color: var(--border-subtle);
@@ -261,6 +288,7 @@ ul {
     color: var(--text-primary);
     border: 1px solid var(--border-subtle);
 }
+
 .btn-outline:hover {
     border-color: var(--color-primary);
     color: #ffffff;
@@ -343,6 +371,7 @@ ul {
     color: var(--color-primary);
     transition: var(--transition);
 }
+
 .logo:hover .logo-icon {
     border-color: var(--color-primary);
     color: #ffffff;
@@ -436,9 +465,11 @@ ul {
 .nav-toggle.open .bar:nth-child(1) {
     transform: translateY(7.5px) rotate(45deg);
 }
+
 .nav-toggle.open .bar:nth-child(2) {
     opacity: 0;
 }
+
 .nav-toggle.open .bar:nth-child(3) {
     transform: translateY(-7.5px) rotate(-45deg);
 }
@@ -591,7 +622,8 @@ ul {
 }
 
 .card-shimmer {
-    display: none; /* Removed for clean minimalism */
+    display: none;
+    /* Removed for clean minimalism */
 }
 
 .pass-card-top {
@@ -769,14 +801,17 @@ ul {
     justify-content: center;
     font-size: 0.95rem;
 }
+
 .icon-purple {
     background: var(--color-primary-soft);
     color: var(--color-primary);
 }
+
 .icon-cyan {
     background: var(--color-accent-soft);
     color: var(--color-accent);
 }
+
 .icon-blue {
     background: rgba(99, 102, 241, 0.1);
     color: #818cf8;
@@ -787,6 +822,7 @@ ul {
     font-weight: 600;
     color: var(--text-white);
 }
+
 .badge-content .badge-subtitle {
     font-size: 0.72rem;
     color: var(--text-muted);
@@ -823,7 +859,8 @@ ul {
 }
 
 .card-glow-indicator {
-    display: none; /* Removed for clean minimalism */
+    display: none;
+    /* Removed for clean minimalism */
 }
 
 .card-icon-header {
@@ -845,6 +882,7 @@ ul {
     font-size: 1.15rem;
     color: var(--color-primary);
 }
+
 .purple-circle {
     color: var(--color-primary);
 }
@@ -860,6 +898,7 @@ ul {
     margin-bottom: 16px;
     font-size: 0.96rem;
 }
+
 .about-text strong {
     color: var(--text-white);
     font-weight: 600;
@@ -884,6 +923,7 @@ ul {
     font-weight: 500;
     color: var(--text-secondary);
 }
+
 .about-tags .tag i {
     color: var(--color-primary);
     font-size: 0.75rem;
@@ -957,10 +997,12 @@ ul {
     letter-spacing: 0.05em;
     margin-bottom: 12px;
 }
+
 .badge-muted {
     background: rgba(255, 255, 255, 0.05);
     color: var(--text-muted);
 }
+
 .badge-gradient {
     background: var(--color-primary-soft);
     color: var(--color-primary);
@@ -981,6 +1023,7 @@ ul {
     font-size: 0.9rem;
     border-bottom: 1px solid var(--border-hairline);
 }
+
 .comparison-list li:last-child {
     border-bottom: none;
 }
@@ -1016,7 +1059,8 @@ ul {
 }
 
 .feature-card-glow {
-    display: none; /* Removed for clean minimalism */
+    display: none;
+    /* Removed for clean minimalism */
 }
 
 .feature-icon-box {
@@ -1033,9 +1077,18 @@ ul {
     margin-bottom: 20px;
     transition: var(--transition);
 }
-.purple-icon { color: var(--color-primary); }
-.cyan-icon { color: var(--color-accent); }
-.blue-icon { color: #818cf8; }
+
+.purple-icon {
+    color: var(--color-primary);
+}
+
+.cyan-icon {
+    color: var(--color-accent);
+}
+
+.blue-icon {
+    color: #818cf8;
+}
 
 .feature-card:hover .feature-icon-box {
     border-color: var(--border-subtle);
@@ -1055,14 +1108,17 @@ ul {
     color: var(--color-primary);
     margin-bottom: 12px;
 }
+
 .pill-purple {
     background: var(--color-primary-soft);
     color: var(--color-primary);
 }
+
 .pill-cyan {
     background: var(--color-accent-soft);
     color: var(--color-accent);
 }
+
 .pill-blue {
     background: rgba(99, 102, 241, 0.1);
     color: #818cf8;
@@ -1134,6 +1190,7 @@ ul {
     font-weight: 600;
     color: var(--text-white);
 }
+
 .demo-panel-title i {
     color: var(--color-primary);
 }
@@ -1173,6 +1230,7 @@ ul {
 .demo-tab-content {
     display: none;
 }
+
 .demo-tab-content.active {
     display: block;
 }
@@ -1241,9 +1299,17 @@ ul {
     color: var(--text-muted);
 }
 
-.tier-silver i { color: #94a3b8; }
-.tier-gold i { color: var(--status-warning); }
-.tier-platinum i { color: #818cf8; }
+.tier-silver i {
+    color: #94a3b8;
+}
+
+.tier-gold i {
+    color: var(--status-warning);
+}
+
+.tier-platinum i {
+    color: #818cf8;
+}
 
 .tier-pill.active-tier {
     border-color: rgba(245, 158, 11, 0.4);
@@ -1339,6 +1405,7 @@ ul {
     cursor: pointer;
     transition: var(--transition);
 }
+
 .prompt-chip:hover {
     border-color: var(--border-subtle);
     color: var(--text-white);
@@ -1389,6 +1456,7 @@ ul {
     cursor: pointer;
     transition: var(--transition);
 }
+
 .chat-send-btn:hover {
     background: var(--color-primary-hover);
 }
@@ -1433,10 +1501,12 @@ ul {
     font-size: 0.7rem;
     margin-right: 10px;
 }
+
 .feed-icon.success {
     background: var(--status-success-soft);
     color: var(--status-success);
 }
+
 .feed-icon.warning {
     background: var(--status-warning-soft);
     color: var(--status-warning);
@@ -1526,9 +1596,18 @@ ul {
     font-size: 1.25rem;
     margin-bottom: 22px;
 }
-.step-icon-purple { color: var(--color-primary); }
-.step-icon-cyan { color: var(--color-accent); }
-.step-icon-blue { color: #818cf8; }
+
+.step-icon-purple {
+    color: var(--color-primary);
+}
+
+.step-icon-cyan {
+    color: var(--color-accent);
+}
+
+.step-icon-blue {
+    color: #818cf8;
+}
 
 .step-title {
     font-size: 1.15rem;
@@ -1580,6 +1659,7 @@ ul {
     color: var(--text-white);
     margin-bottom: 2px;
 }
+
 .banner-text p {
     font-size: 0.88rem;
     color: var(--text-secondary);
@@ -1666,6 +1746,7 @@ ul {
     color: var(--text-white);
     margin-top: 1px;
 }
+
 .info-val:hover {
     color: var(--color-primary);
 }
@@ -1975,6 +2056,7 @@ ul {
     align-items: center;
     gap: 5px;
 }
+
 .back-to-top-text:hover {
     color: #ffffff;
 }
@@ -2166,6 +2248,7 @@ ul {
 }
 
 @media (max-width: 480px) {
+
     .features-grid,
     .workflow-steps-wrapper {
         grid-template-columns: 1fr;
