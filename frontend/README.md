@@ -1,79 +1,48 @@
-# MemberPass – Yoga Centre (Zen Luxe Design System)
+# MemberPass – Yoga & Wellness Membership Platform (Zen Luxe Design System)
 
-An introductory website for **MemberPass Yoga Centre**, designed with the luxury editorial **Zen Luxe** visual identity.
-
----
-
-## 🧘 Core Identity & Design System: Zen Luxe
-
-* **Visual Identity:** Luxury, peaceful, mindful editorial aesthetic for a high-end Yoga Centre.
-* **Official Colour Palette:**
-  * **Primary Background:** Charcoal Black (`#242424`)
-  * **Secondary Background:** Deep Charcoal (`#303030`)
-  * **Primary Accent:** Champagne Gold (`#C6A66B`)
-  * **Secondary Accent:** Soft Gold (`#D6BB87`)
-  * **Main Light Background (Philosophy Section):** Warm Ivory (`#F7F2E9`)
-  * **Secondary Light Background:** Beige (`#EAE1D3`)
-  * **Body Text:** Warm Grey (`#B6A58C`)
-  * **Dark Text (Light Sections):** `#292721`
-* **Typography:**
-  * Headings: *Cormorant Garamond* / *Playfair Display*
-  * Body & UI: *Inter*
-* **Design Philosophy:** Content-first, typography-driven, generous whitespace, minimal subtle gold accents, and zero neon/cyan or dashboard elements.
+An AI-powered digital membership, optical QR pass, and attendance management platform for premium yoga centres and wellness communities, designed with the **Zen Luxe Design System (Charcoal Black + Champagne Gold + Warm Ivory)**.
 
 ---
 
-## 📋 Structure & Sections
+## 🧘 Official Zen Luxe Palette
 
-1. **Navigation:**
-   * MemberPass logo with refined champagne gold emblem.
-   * Navigation links: *Home*, *About Us*, *Yoga Practices*, *Benefits*, *Contact*.
-   * Responsive mobile drawer navigation.
-   * Strict adherence: No login/signup buttons, no member dashboards.
+* **Primary Colors:**
+  * **Charcoal Black:** `#242424` (Primary Background, Navigation, Card Surfaces)
+  * **Deep Charcoal:** `#303030` (Secondary Background, Card Depth)
+* **Accent Colors:**
+  * **Champagne Gold:** `#C6A66B` (Primary Accent, Borders, Highlights, CTAs)
+  * **Soft Gold:** `#D6BB87` (Secondary Accent, Ribbon Accents, Hover Gradients)
+* **Background Colors:**
+  * **Warm Ivory:** `#F7F2E9` (Main Light Page Background)
+  * **Beige:** `#EAE1D3` (Secondary Light Background, Subtle Cards)
+* **Supporting Colors:**
+  * **Warm Grey:** `#B6A58C` / `#6B655B` (Muted Captions, Subtle Accents)
+  * **Dark Text:** `#292721` (High-Contrast Editorial Typography)
 
-2. **Hero / Introduction:**
-   * Main Heading: **"DISCOVER THE ART OF INNER BALANCE."**
-   * Supporting Text: *"Reconnect with your mind and body through mindful movement, traditional yoga practices and a journey towards holistic wellness."*
-   * Primary CTA: **EXPLORE OUR CENTRE** (smooth scrolls to About).
-   * Secondary CTA: **DISCOVER YOGA** (smooth scrolls to Practices).
-   * Minimalist 3-pillar introductory ribbon.
+---
 
-3. **About Our Centre:**
-   * Heading: **"A SPACE TO RECONNECT."**
-   * Split layout focusing on mindful living, physical wellness, mental clarity, traditional yoga practices, and a peaceful sanctuary environment.
+## 🎨 Core Enhancements Applied
 
-4. **Our Yoga Practices:**
-   * Heading: **"EXPLORE YOUR PRACTICE."**
-   * 5 Core Practices:
-     * **Hatha Yoga:** Traditional postures, deliberate alignment, and conscious breath control.
-     * **Vinyasa Yoga:** Fluid movement synchronized with breath flow.
-     * **Ashtanga Yoga:** Structured discipline building internal heat, stamina, and focus.
-     * **Meditation:** Stillness, sensory withdrawal, and inner quietude.
-     * **Pranayama:** Ancient vital breath regulation restoring mental clarity.
-   * Minimalist cards with subtle gold line indicators and icon medallions.
-
-5. **The Benefits of Yoga:**
-   * Heading: **"BEYOND MOVEMENT. TOWARDS WELLNESS."**
-   * Numbered editorial grid exploring:
-     * *Flexibility & Mobility*
-     * *Core Strength & Stability*
-     * *Physical & Mental Balance*
-     * *Mindful Awareness & Focus*
-     * *Nervous System Regulation & Stress Relief*
-
-6. **Our Philosophy (Contrasting Light Section):**
-   * Heading: **"WHERE MOVEMENT MEETS MINDFULNESS."**
-   * Warm Ivory (`#F7F2E9`) background with Dark Charcoal (`#292721`) typography.
-   * Featured quote: *"Yoga is not about touching your toes. It is about what you learn on the way down."*
-   * Editorial insights on non-competitive exploration, breath as an anchor, and personal transformation.
-
-7. **Contact / Visit Us:**
-   * Heading: **"BEGIN YOUR JOURNEY."**
-   * Centre location, contact details, operating hours, and dedicated contact inquiry form.
-
-8. **Footer:**
-   * MemberPass monogram branding and summary.
-   * Quick navigation directory, contact details, copyright, and smooth Back to Top trigger.
+1. **Hero Section Enhancement:**
+   * Refined editorial typography hierarchy with Playfair Display and Cormorant Garamond.
+   * Champagne-Gold gradient accent on headline (*"Elevated to Excellence."*).
+   * Elevated primary CTA button with champagne-gold metallic gradient and soft gold hover.
+   * Digital Pass Mockup in charcoal black with gold borders, geometric watermark, and high-contrast QR code.
+2. **Cards and Sections Enhancement:**
+   * Consistent 20px card radius, refined 1px champagne-gold borders, and soft shadows.
+   * Smooth hover lift animations across About, Features, Membership Plans, How It Works, Testimonials, Contact, and Footer.
+   * Gold icon medallions with delicate borders.
+3. **Typography Enhancement:**
+   * Editorial serif headings (Playfair Display / Cormorant Garamond).
+   * Clean, legible modern sans body copy (Inter / Plus Jakarta Sans).
+   * Monospace technical tags (JetBrains Mono).
+4. **UI Polish & State Management:**
+   * **Navbar:** Sticky charcoal black glassmorphic background (`rgba(36, 36, 36, 0.94)`, `backdrop-filter: blur(16px)`), champagne-gold logo accents, ivory links, gold active indicators.
+   * **Authentication Modals:** Elegant charcoal & warm ivory modal dialogs, champagne-gold tab switcher, refined focus rings.
+   * **Member Dashboard:** Luxury charcoal banner, champagne-gold member avatar, metric cards with subtle gold borders, digital pass optical preview, attendance history table.
+   * **Staff Dashboard:** Clean dashboard layout, camera QR scanner card, sub-second pass validation, attendance check-in feed.
+   * **Digital QR Pass Modal:** High-contrast QR pass card, member validity telemetry, one-click image download.
+   * **Responsive Design:** Verified across Desktop, Laptop, Tablet, and Mobile without horizontal overflow.
 
 ---
 

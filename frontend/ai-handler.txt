@@ -1,0 +1,53 @@
+  const [aiQuery, setAiQuery] = useState('')
+  const [aiResponse, setAiResponse] = useState(
+    'MemberPass Intelligence is ready. Ask me about membership management, digital passes, QR check-ins, and attendance.'
+  )
+  const [aiLoading, setAiLoading] = useState(false)
+
+  const handleAiAsk = async (question) => {
+    if (!question.trim() || aiLoading) return
+
+    setAiLoading(true)
+
+    try {
+      const response = await fetch('http://localhost:5000/api/ai/chat', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({ question: question.trim() })
+      })
+
+      const data = await response.json()
+
+      if (!response.ok || !data.success) {
+        throw new Error(data.message || 'AI request failed')
+      }
+
+      setAiResponse(data.answer)
+      setAiQuery('')
+    } catch (error) {
+      console.error('MemberPass AI error:', error)
+      setAiResponse('Unable to connect to MemberPass AI. Please check whether the backend and AI service are running.')
+    } finally {
+      setAiLoading(false)
+    }
+  }
+
+  const handleAiSimulate = (key) => {
+    const prompts = {
+      renewals: 'How can I check membership renewals?',
+      attendance: 'How can I view attendance history?',
+      tiers: 'What membership plans are available?',
+      passes: 'How does the digital QR pass work?'
+    }
+
+    if (prompts[key]) {
+      handleAiAsk(prompts[key])
+    }
+  }
+
+  const handleCustomAiSubmit = (e) => {
+    e.preventDefault()
+    handleAiAsk(aiQuery)
+  }

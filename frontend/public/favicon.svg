@@ -1,13 +1,24 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" fill="none">
-    <!-- Charcoal Black background -->
-    <rect width="64" height="64" rx="14" fill="#242424" stroke="#C6A66B" stroke-width="1.5" />
-    
-    <!-- Subtle Zen Circular Ring -->
-    <circle cx="32" cy="32" r="21" stroke="#D6BB87" stroke-width="1" stroke-dasharray="2 3" opacity="0.6" />
-    
-    <!-- Elegant Monogram M with Lotus Flourish -->
-    <path d="M22 41V23L32 33L42 23V41" stroke="#C6A66B" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" />
-    
-    <!-- Delicate Gold Diamond Accent -->
-    <circle cx="32" cy="19" r="2" fill="#D6BB87" />
+    <defs>
+        <linearGradient id="charcoalGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" stop-color="#1A1A1A" />
+            <stop offset="60%" stop-color="#242424" />
+            <stop offset="100%" stop-color="#303030" />
+        </linearGradient>
+        <linearGradient id="goldGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" stop-color="#D6BB87" />
+            <stop offset="50%" stop-color="#C6A66B" />
+            <stop offset="100%" stop-color="#B59458" />
+        </linearGradient>
+    </defs>
+    <!-- Background squircle in Charcoal Black -->
+    <rect width="64" height="64" rx="16" fill="#242424" stroke="url(#goldGrad)" stroke-width="2" />
+    <!-- Pass Badge Card in Deep Charcoal -->
+    <rect x="13" y="15" width="38" height="28" rx="6" fill="#303030" stroke="url(#goldGrad)" stroke-width="1.5" />
+    <!-- Lanyard slot in Champagne Gold -->
+    <rect x="27" y="11" width="10" height="3" rx="1.5" fill="url(#goldGrad)" />
+    <!-- Monogram M in Warm Ivory -->
+    <text x="32" y="34" font-family="'Playfair Display', 'Cormorant Garamond', Georgia, serif" font-size="18" font-weight="700" fill="#F7F2E9" text-anchor="middle">M</text>
+    <!-- Mini Diamond Sparkle in Champagne Gold -->
+    <path d="M48 38L49.5 42.5L54 44L49.5 45.5L48 50L46.5 45.5L42 44L46.5 42.5L48 38Z" fill="url(#goldGrad)" />
 </svg>
