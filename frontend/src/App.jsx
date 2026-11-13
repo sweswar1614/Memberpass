@@ -5,7 +5,7 @@ import PlansSection from './components/PlansSection'
 import MemberDashboard from './components/MemberDashboard'
 import QRPassModal from './components/QRPassModal'
 import StaffDashboard from './components/StaffDashboard'
-import { getStoredUser, authApi } from './services/api'
+import { getStoredUser, authApi, API_BASE } from './services/api'
 
 export default function App() {
   const [currentUser, setCurrentUser] = useState(getStoredUser())
@@ -66,7 +66,7 @@ export default function App() {
     setAiLoading(true)
 
     try {
-      const response = await fetch('http://localhost:5000/api/ai/chat', {
+      const response = await fetch(`${API_BASE}/ai/chat`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ question: question.trim() })
