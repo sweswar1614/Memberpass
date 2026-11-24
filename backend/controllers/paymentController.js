@@ -1,4 +1,3 @@
-
 const crypto = require("crypto");
 const mongoose = require("mongoose");
 const Razorpay = require("razorpay");
@@ -132,9 +131,11 @@ const createOrder = async (req, res) => {
   }
 };
 
-// @desc Verify Razorpay Payment and Activate Membership
+// @desc Verify Razorpay Payment Signature
 // @route POST /api/payments/verify
 // @access Private
+// IMPORTANT: This function does NOT activate membership.
+// Only the payment.captured webhook activates membership.
 const verifyPayment = async (req, res) => {
   try {
     const {
@@ -143,11 +144,7 @@ const verifyPayment = async (req, res) => {
       razorpay_signature
     } = req.body;
 
-    if (
-      !paymentRecordId ||
-      !razorpay_payment_id ||
-      !razorpay_signature
-    ) {
+    if (!paymentRecordId || !razorpay_payment_id || !razorpay_signature) {
       return res.status(400).json({
         success: false,
         message: "Missing payment verification parameters"
@@ -171,7 +168,6 @@ const verifyPayment = async (req, res) => {
       });
     }
 
-    // Find payment belonging to authenticated user
     const payment = await Payment.findOne({
       _id: paymentRecordId,
       user: req.user._id
@@ -184,30 +180,34 @@ const verifyPayment = async (req, res) => {
       });
     }
 
-    // Idempotency: do not create membership twice
+    // Webhook may have captured the payment before this request.
     if (payment.status === "captured") {
-      const existingMembership = payment.membership
-        ? await Membership.findById(payment.membership).populate("plan")
-        : null;
+      let activeMembership = null;
+      if (payment.membership) {
+        activeMembership = await Membership.findById(payment.membership).populate("plan", "name durationDays priceInPaise");
+      }
+      return res.status(200).json({
+        success: true,
+        message: "Payment already captured and membership activation completed",
+        status: "captured",
+        membership: activeMembership
+      });
+    }
 
-      if (existingMembership) {
-        return res.status(200).json({
-          success: true,
-          message: "Payment already verified",
-          membership: {
-            id: existingMembership._id,
-            plan: existingMembership.plan?.name,
-            status: existingMembership.status,
-            startDate: existingMembership.startDate,
-            endDate: existingMembership.endDate,
-            classesUsed: existingMembership.classesUsed
-          }
+    // An already authorized payment must match the stored payment ID.
+    if (payment.status === "authorized") {
+      if (payment.razorpayPaymentId !== razorpay_payment_id) {
+        return res.status(409).json({
+          success: false,
+          message: "Payment ID does not match the authorized payment"
         });
       }
 
-      return res.status(409).json({
-        success: false,
-        message: "Payment captured but membership record is missing. Contact support."
+      return res.status(200).json({
+        success: true,
+        message: "Payment verified. Membership activation is pending webhook confirmation.",
+        status: "authorized",
+        membership: null
       });
     }
 
@@ -227,7 +227,7 @@ const verifyPayment = async (req, res) => {
       });
     }
 
-    // Verify signature using database order ID
+    // Verify checkout signature using the saved Razorpay order ID.
     const expectedSignature = crypto
       .createHmac("sha256", keySecret.trim())
       .update(`${savedOrderId}|${razorpay_payment_id}`)
@@ -240,92 +240,83 @@ const verifyPayment = async (req, res) => {
       expectedBuffer.length !== receivedBuffer.length ||
       !crypto.timingSafeEqual(expectedBuffer, receivedBuffer)
     ) {
-      payment.status = "failed";
-      await payment.save();
-
       return res.status(400).json({
         success: false,
         message: "Invalid payment signature"
       });
     }
 
-    const plan = await Plan.findById(payment.plan);
-
-    if (!plan) {
-      return res.status(404).json({
-        success: false,
-        message: "Associated membership plan not found"
-      });
-    }
-
-    if (!Number.isFinite(plan.durationDays) || plan.durationDays <= 0) {
-      return res.status(400).json({
-        success: false,
-        message: "Invalid membership plan duration"
-      });
-    }
-
-    const now = new Date();
-    const endDate = new Date(
-      now.getTime() + plan.durationDays * 24 * 60 * 60 * 1000
+    // Atomically authorize only a payment that is still in created state.
+    // This prevents a late verification request from overwriting a webhook
+    // that has already changed the payment to captured.
+    const authorizedPayment = await Payment.findOneAndUpdate(
+      {
+        _id: payment._id,
+        user: req.user._id,
+        status: "created"
+      },
+      {
+        $set: {
+          status: "authorized",
+          razorpayPaymentId: razorpay_payment_id,
+          razorpaySignature: razorpay_signature
+        }
+      },
+      {
+        new: true,
+        runValidators: true
+      }
     );
 
-    // Create membership and link it to payment.
-    // Save payment as captured only after membership creation succeeds.
-    const membership = await Membership.create({
-      user: req.user._id,
-      plan: plan._id,
-      status: "active",
-      startDate: now,
-      endDate,
-      classesUsed: 0,
-      payment: payment._id
-    });
+    if (!authorizedPayment) {
+      const latestPayment = await Payment.findById(payment._id);
 
-    try {
-      payment.status = "captured";
-      payment.razorpayPaymentId = razorpay_payment_id;
-      payment.razorpaySignature = razorpay_signature;
-      payment.membership = membership._id;
-
-      await payment.save();
-
-      // End previous active memberships only after successful save
-      await Membership.updateMany(
-        {
-          user: req.user._id,
-          status: "active",
-          _id: { $ne: membership._id }
-        },
-        {
-          $set: { status: "ended" }
+      if (
+        latestPayment?.status === "captured"
+      ) {
+        let activeMembership = null;
+        if (latestPayment.membership) {
+          activeMembership = await Membership.findById(latestPayment.membership).populate("plan", "name durationDays priceInPaise");
         }
-      );
+        return res.status(200).json({
+          success: true,
+          message: "Payment already captured and membership activation completed",
+          status: "captured",
+          membership: activeMembership
+        });
+      }
 
-    } catch (saveError) {
-      // Avoid leaving an unlinked membership if payment save fails
-      await Membership.findByIdAndDelete(membership._id);
-      throw saveError;
+      if (
+        latestPayment?.status === "authorized" &&
+        latestPayment.razorpayPaymentId === razorpay_payment_id
+      ) {
+        return res.status(200).json({
+          success: true,
+          message: "Payment verified. Membership activation is pending webhook confirmation.",
+          status: "authorized",
+          membership: null
+        });
+      }
+
+      return res.status(409).json({
+        success: false,
+        message: "Payment status changed. Please refresh and check payment history."
+      });
     }
 
+    // Membership activation is intentionally handled only by the webhook.
     return res.status(200).json({
       success: true,
-      message: "Payment verified and membership activated",
+      message: "Payment signature verified. Membership activation is pending webhook confirmation.",
       payment: {
-        id: payment._id,
-        orderId: payment.razorpayOrderId,
-        paymentId: payment.razorpayPaymentId,
-        amount: payment.amount,
-        status: payment.status
+        id: authorizedPayment._id,
+        orderId: authorizedPayment.razorpayOrderId,
+        paymentId: authorizedPayment.razorpayPaymentId,
+        amount: authorizedPayment.amount,
+        status: authorizedPayment.status
       },
-      membership: {
-        id: membership._id,
-        plan: plan.name,
-        status: membership.status,
-        startDate: membership.startDate,
-        endDate: membership.endDate,
-        classesUsed: membership.classesUsed
-      }
+      status: "authorized",
+      membership: null
     });
 
   } catch (error) {

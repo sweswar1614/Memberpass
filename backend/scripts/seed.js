@@ -11,11 +11,11 @@ const plansData = [
     name: "Basic",
     priceInPaise: 150000,
     durationDays: 30,
-    classLimit: 10,
+    classLimit: 8,
     description: "Essential access for individuals getting started with digital passes.",
     features: [
       "Access to main club facilities",
-      "Up to 10 classes per month",
+      "Up to 8 classes per month",
       "Instant Digital QR Pass",
       "Mobile dashboard & check-in history"
     ],

@@ -1,72 +1,71 @@
 # MemberPass – Premium AI-Powered Membership Management
 
-### A smarter way to manage memberships.
+**A smarter way to manage memberships.**
 
 ## 🌐 Live Demo
 
-- **Live Website:** [Visit MemberPass](https://memberpass-flax.vercel.app/)
-- **Project Demo Video:** [Watch on Google Drive](https://drive.google.com/file/d/1VmwohU4dBHJXu0cL5B6wm8xF0GjOByJ4/view?usp=sharing)
+- **Live Website:** https://member-pass.vercel.app/
+- **Project Drive:** https://drive.google.com/file/d/11nW79ZUdcOa7IDWZXaMWA7gHmg-vu8A4/view?usp=sharing
+- **AI Assistant Demo:** https://drive.google.com/file/d/1fE0dK_WYZGUPuKz4V554H17JqjZujUlv/view?usp=sharing
+
+---
 
 ## 📌 About the Project
 
-MemberPass is a web-based membership management application designed to make membership-related processes smarter, simpler, and more convenient.
+MemberPass is a web-based membership management platform designed to simplify and modernize membership-related processes.
 
-The project brings membership management and AI-powered capabilities together through a modern, user-friendly web application.
+It combines membership management, payment integration, attendance tracking, QR-based check-ins, membership pause functionality, automated expiry reminders and AI-powered assistance into a modern web application.
+
+MemberPass aims to provide a smoother experience for both members and administrators by making membership-related operations easier, more accessible and efficient.
 
 ## 🎯 Project Objectives
 
 - Simplify membership management.
 - Provide a user-friendly digital experience.
-- Explore AI-powered capabilities for membership-related tasks.
+- Integrate AI-powered membership assistance.
+- Enable secure online membership payments.
+- Track member attendance and class usage.
+- Automate membership expiry notifications.
 - Build a modern and responsive web application.
-- Improve the efficiency of membership-related processes.
 
-## ✨ Key Highlights
+## ✨ Key Features
 
-- Modern web application interface.
-- AI-powered membership management concept.
-- User-friendly and responsive design.
-- User registration and authentication.
-- Membership plans and subscription management.
-- Digital membership passes.
-- QR-based membership and attendance features.
-- Frontend and backend deployment.
+- **Membership Management** – Manage memberships, plans and member information.
+- **Multiple Membership Tiers** – Basic, Standard and Premium membership plans.
+- **Razorpay Payment Integration** – Payment processing with payment verification and webhook handling.
+- **QR-Based Check-In** – QR validation and attendance check-in functionality.
+- **Class Usage Tracking** – Track class usage and enforce membership class limits.
+- **Membership Pause** – Pause memberships with expiry-date adjustments.
+- **Automated Expiry Management** – Automated membership expiry processing and reminder notifications.
+- **AI Assistant** – AI-powered assistance for membership-related queries.
+- **AI Absentee Drafts** – Generate draft messages for members with attendance concerns.
+- **Member Dashboard** – Access membership status, attendance and membership details.
+- **Staff/Admin Features** – Membership-related administrative functionality.
+- **Responsive UI** – Modern interface designed for a convenient digital experience.
 
 ## 🛠️ Technologies Used
 
-| Category | Technologies |
-|---|---|
-| Frontend | React.js, Vite, CSS |
-| Backend | Node.js, Express.js |
-| Database | MongoDB |
-| Authentication | JSON Web Token (JWT) |
-| AI/ML | Python, PyTorch |
-| API | REST API |
-| Payment Integration | Razorpay |
-| Deployment | Vercel, Render |
-| Version Control | Git, GitHub |
+- **Frontend:** React.js, Vite, JavaScript, CSS
+- **Backend:** Node.js, Express.js
+- **Database:** MongoDB, Mongoose
+- **Authentication:** JWT-based authentication
+- **Payment Integration:** Razorpay
+- **AI Integration:** AI service integration
+- **Deployment:** Vercel
+- **Version Control:** Git & GitHub
 
 ## 🚀 Getting Started
-
-### Prerequisites
-
-Make sure you have the following installed:
-
-- Node.js and npm
-- Git
-- MongoDB connection
-- Python (for the AI module, if required)
 
 ### 1. Clone the Repository
 
 ```bash
-git clone https://github.com/sweswar1614/Memberpass.git
+git clone https://github.com/sweetha1416/MemberPass.git
 ```
 
 ### 2. Navigate to the Project
 
 ```bash
-cd Memberpass
+cd MemberPass
 ```
 
 ### 3. Install Frontend Dependencies
@@ -76,83 +75,54 @@ cd frontend
 npm install
 ```
 
-### 4. Configure Frontend Environment
+### 4. Install Backend Dependencies
 
-Create a `.env` file inside the `frontend` folder.
-
-For production backend:
-
-```env
-VITE_API_URL=https://memberpass-uzxv.onrender.com/api
-```
-
-For local backend development:
-
-```env
-VITE_API_URL=http://localhost:5000/api
-```
-
-### 5. Run the Frontend
-
-```bash
-npm run dev
-```
-
-### 6. Install Backend Dependencies
-
-Open another terminal from the project root:
+Open another terminal:
 
 ```bash
 cd backend
 npm install
 ```
 
-### 7. Configure Backend Environment
+### 5. Configure Environment Variables
 
-Create a `.env` file inside the `backend` folder:
+Configure the necessary environment variables in the backend `.env` file, including database connection, authentication and payment configuration.
 
-```env
-PORT=5000
-MONGO_URI=your_mongodb_connection_string
-JWT_SECRET=your_jwt_secret
-NODE_ENV=development
-```
+Do not commit secrets or API keys to GitHub.
 
-Add the required Razorpay credentials if payment integration is enabled.
-
-**Important:** Never upload `.env` files or secret credentials to GitHub.
-
-### 8. Run the Backend
-
-From the backend folder:
+### 6. Run the Backend
 
 ```bash
+cd backend
 npm run dev
 ```
 
-Open the local frontend URL displayed in your terminal.
+### 7. Run the Frontend
+
+```bash
+cd frontend
+npm run dev
+```
+
+Open the local URL displayed in your frontend terminal.
 
 ## 🔗 Project Links
 
-- **Live Website:** https://memberpass-flax.vercel.app/
-- **Backend API:** https://memberpass-uzxv.onrender.com/api
-- **Backend Health Check:** https://memberpass-uzxv.onrender.com/api/health
-- **GitHub Repository:** https://github.com/sweswar1614/Memberpass
-- **Project Demo Video:** [Google Drive](https://drive.google.com/file/d/1VmwohU4dBHJXu0cL5B6wm8xF0GjOByJ4/view?usp=sharing)
+- **Live Website:** https://member-pass.vercel.app/
+- **GitHub Repository:** https://github.com/sweetha1416/MemberPass
 
 ## 🔮 Future Enhancements
 
-- Enhanced membership management features.
-- AI-powered membership assistance.
-- Advanced digital membership passes.
-- Membership analytics and insights.
-- Improved dashboard capabilities.
-- Additional membership automation features.
+- Advanced membership analytics and reporting.
+- Enhanced AI-powered recommendations.
+- Additional automation for member engagement.
+- Improved dashboard visualization.
+- Expanded membership and attendance insights.
 
-## 📌 Project Status
+## 👨‍💻 Project Status
 
-The project is currently under development. Features and functionality may evolve as development progresses.
+MemberPass is an actively developed project. Features and functionality are continuously improved through testing, implementation and UI/UX enhancements.
 
 ---
 
-### MemberPass – Smarter Membership. Better Experiences.
+**MemberPass – Smarter Membership. Better Experiences.**

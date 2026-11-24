@@ -1,48 +1,29 @@
 import { useEffect, useState } from 'react';
 import { memberApi } from '../services/api';
 
-const formatSafeDate = (val) => {
-  if (!val) return 'N/A';
-  try {
-    const d = new Date(val);
-    if (isNaN(d.getTime())) return String(val).slice(0, 10);
-    return d.toLocaleDateString('en-IN', {
-      day: 'numeric',
-      month: 'short',
-      year: 'numeric'
-    });
-  } catch {
-    return 'N/A';
-  }
-};
-
 export default function QRPassModal({ isOpen, onClose, currentUser }) {
   const [passData, setPassData] = useState(null);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    if (!isOpen) return;
-    let active = true;
-
-    (async () => {
-      try {
-        const res = await memberApi.getPass();
-        if (active && res && res.success) {
-          setPassData(res);
-        }
-      } catch (err) {
-        console.error('Error fetching pass modal data:', err);
-      } finally {
-        if (active) {
-          setLoading(false);
-        }
-      }
-    })();
-
-    return () => {
-      active = false;
-    };
+    if (isOpen) {
+      loadPass();
+    }
   }, [isOpen]);
+
+  const loadPass = async () => {
+    try {
+      setLoading(true);
+      const res = await memberApi.getPass();
+      if (res && res.success) {
+        setPassData(res);
+      }
+    } catch (err) {
+      console.error('Error fetching pass modal data:', err);
+    } finally {
+      setLoading(false);
+    }
+  };
 
   if (!isOpen) return null;
 
@@ -50,15 +31,14 @@ export default function QRPassModal({ isOpen, onClose, currentUser }) {
     if (!passData?.pass?.qrCode) return;
     const a = document.createElement('a');
     a.href = passData.pass.qrCode;
-    const nameStr = String(currentUser?.name || passData?.pass?.memberName || 'card').replace(/\s+/g, '_');
-    a.download = `MemberPass-${nameStr}.png`;
+    a.download = `MemberPass-${(currentUser?.name || 'card').replace(/\s+/g, '_')}.png`;
     document.body.appendChild(a);
     a.click();
     document.body.removeChild(a);
   };
 
   const pass = passData?.pass;
-  const isActive = Boolean(passData?.hasActiveMembership);
+  const isActive = passData?.hasActiveMembership;
 
   return (
     <div className="modal-backdrop fade-in" onClick={onClose}>
@@ -94,15 +74,15 @@ export default function QRPassModal({ isOpen, onClose, currentUser }) {
             <div className="modal-pass-meta">
               <div className="meta-line">
                 <span className="meta-label">MEMBER</span>
-                <strong className="meta-val">{currentUser?.name || pass.memberName || 'Member'}</strong>
+                <strong className="meta-val">{currentUser?.name || pass.memberName}</strong>
               </div>
               <div className="meta-line">
                 <span className="meta-label">TIER</span>
-                <strong className="meta-val">{pass.plan || 'Active'} Plan</strong>
+                <strong className="meta-val">{pass.plan} Plan</strong>
               </div>
               <div className="meta-line">
                 <span className="meta-label">VALID UNTIL</span>
-                <strong className="meta-val">{formatSafeDate(pass.endDate)}</strong>
+                <strong className="meta-val">{pass.endDate?.slice(0, 10)}</strong>
               </div>
             </div>
 
@@ -127,3 +107,4 @@ export default function QRPassModal({ isOpen, onClose, currentUser }) {
     </div>
   );
 }
+

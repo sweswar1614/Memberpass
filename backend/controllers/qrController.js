@@ -1,15 +1,143 @@
 
 const QRCode = require("qrcode");
-const crypto = require("crypto");
 const Membership = require("../models/Membership");
 const Attendance = require("../models/Attendance");
 const User = require("../models/User");
 require("../models/Plan");
 
+// India timezone day range (00:00 to next day 00:00)
+const getIndiaDayRange = (date = new Date()) => {
+  const IST_OFFSET = 330 * 60 * 1000;
+  const istDate = new Date(date.getTime() + IST_OFFSET);
+
+  const start = Date.UTC(
+    istDate.getUTCFullYear(),
+    istDate.getUTCMonth(),
+    istDate.getUTCDate()
+  ) - IST_OFFSET;
+
+  return {
+    start: new Date(start),
+    end: new Date(start + 24 * 60 * 60 * 1000)
+  };
+};
+
+// Extract pass code whether provided as raw code or JSON payload string
+const extractPassCode = (raw) => {
+  if (!raw || typeof raw !== "string") return "";
+  const trimmed = raw.trim();
+  if (trimmed.startsWith("{") && trimmed.endsWith("}")) {
+    try {
+      const parsed = JSON.parse(trimmed);
+      return (parsed.pass_code || parsed.passCode || parsed.code || trimmed).trim();
+    } catch {
+      return trimmed;
+    }
+  }
+  return trimmed;
+};
+
+// Find member and latest membership
+const findMemberMembership = async (passCode) => {
+  const cleanPassCode = extractPassCode(passCode);
+
+  const member = await User.findOne({
+    passCode: cleanPassCode
+  }).select("_id name passCode");
+
+  if (!member) {
+    return {
+      error: "Pass not recognised",
+      status: 404,
+      member: null,
+      membership: null
+    };
+  }
+
+  const membership = await Membership.findOne({
+    user: member._id
+  })
+    .populate("plan", "name classLimit")
+    .sort({ createdAt: -1 });
+
+  if (!membership) {
+    return {
+      error: "No membership record found",
+      status: 404,
+      member,
+      membership: null
+    };
+  }
+
+  return { member, membership };
+};
+
+// Validate membership status and class limit
+const validateMembership = (membership, checkClassLimit = true) => {
+  if (membership.status === "paused") {
+    return {
+      error: "Plan paused",
+      status: 403
+    };
+  }
+
+  if (membership.status !== "active") {
+    return {
+      error: "Plan ended",
+      status: 403
+    };
+  }
+
+  if (new Date(membership.endDate) < new Date()) {
+    return {
+      error: "Plan ended",
+      status: 403
+    };
+  }
+
+  const classLimit = membership.plan?.classLimit;
+
+  if (
+    checkClassLimit &&
+    classLimit !== null &&
+    classLimit !== undefined &&
+    membership.classesUsed >= classLimit
+  ) {
+    return {
+      error: `${classLimit}-class limit reached`,
+      status: 403
+    };
+  }
+
+  return null;
+};
+
+// Shared membership validation
+const findValidMembership = async (passCode) => {
+  const result = await findMemberMembership(passCode);
+
+  if (result.error) {
+    return result;
+  }
+
+  const validationError = validateMembership(result.membership);
+
+  if (validationError) {
+    return {
+      ...result,
+      ...validationError
+    };
+  }
+
+  return result;
+};
+
 // Generate member QR pass
 const getMyQRPass = async (req, res) => {
   try {
-    const latestMembership = await Membership.findOne({ user: req.user._id })
+    const latestMembership = await Membership.findOne({
+      user: req.user._id
+    })
       .populate("plan", "name durationDays priceInPaise")
       .sort({ createdAt: -1 });
 
@@ -68,15 +196,18 @@ const getMyQRPass = async (req, res) => {
       end_date: latestMembership.endDate.toISOString().split("T")[0]
     };
 
-    const qrCode = await QRCode.toDataURL(JSON.stringify(passPayload), {
-      errorCorrectionLevel: "M",
-      margin: 2,
-      width: 320,
-      color: {
-        dark: "#451126",
-        light: "#FFFFFF"
+    const qrCode = await QRCode.toDataURL(
+      JSON.stringify(passPayload),
+      {
+        errorCorrectionLevel: "M",
+        margin: 2,
+        width: 320,
+        color: {
+          dark: "#451126",
+          light: "#FFFFFF"
+        }
       }
-    });
+    );
 
     return res.status(200).json({
       success: true,
@@ -97,60 +228,12 @@ const getMyQRPass = async (req, res) => {
     });
   } catch (error) {
     console.error("QR pass error:", error.message);
+
     return res.status(500).json({
       success: false,
       message: "Unable to generate QR pass"
     });
   }
-};
-
-// Shared membership validation
-const findValidMembership = async (passCode) => {
-  const member = await User.findOne({
-    passCode: passCode.trim()
-  }).select("_id name passCode");
-
-  if (!member) {
-    return { error: "Invalid membership pass code", status: 404 };
-  }
-
-  const membership = await Membership.findOne({
-    user: member._id
-  })
-    .populate("plan", "name classLimit")
-    .sort({ createdAt: -1 });
-
-  if (!membership) {
-    return { error: "No membership record found", status: 404 };
-  }
-
-  if (membership.status !== "active") {
-    return {
-      error: membership.status === "paused"
-        ? "Membership is paused"
-        : "Membership has ended",
-      status: 403
-    };
-  }
-
-  if (new Date(membership.endDate) < new Date()) {
-    return { error: "Membership has expired", status: 403 };
-  }
-
-  const classLimit = membership.plan?.classLimit;
-
-  if (
-    classLimit !== null &&
-    classLimit !== undefined &&
-    membership.classesUsed >= classLimit
-  ) {
-    return {
-      error: `Class limit of ${classLimit} reached`,
-      status: 403
-    };
-  }
-
-  return { member, membership };
 };
 
 // Validate QR pass - does NOT increment attendance
@@ -162,26 +245,94 @@ const validateQRPass = async (req, res) => {
       return res.status(400).json({
         success: false,
         entryStatus: "ENTRY_DENIED",
-        reason: "Invalid QR pass data"
+        reason: "Invalid QR pass data",
+        member: null
       });
     }
 
-    const result = await findValidMembership(passCode);
+    const result = await findMemberMembership(passCode);
 
     if (result.error) {
       return res.status(result.status).json({
         success: false,
         entryStatus: "ENTRY_DENIED",
-        reason: result.error
+        reason: result.error,
+        member: result.member
+          ? {
+              name: result.member.name,
+              plan: result.membership?.plan?.name || "Member",
+              endDate: result.membership?.endDate || null,
+              classesUsed: result.membership?.classesUsed ?? 0,
+              classLimit: result.membership?.plan?.classLimit ?? null
+            }
+          : null
       });
     }
 
     const { member, membership } = result;
 
+    const statusError = validateMembership(membership, false);
+    if (statusError) {
+      return res.status(statusError.status).json({
+        success: false,
+        entryStatus: "ENTRY_DENIED",
+        reason: statusError.error,
+        member: {
+          name: member.name,
+          plan: membership.plan?.name || "Member",
+          endDate: membership.endDate,
+          classesUsed: membership.classesUsed,
+          classLimit: membership.plan?.classLimit ?? null
+        }
+      });
+    }
+
+    const { start, end } = getIndiaDayRange();
+
+    const todayAttendance = await Attendance.findOne({
+      member: member._id,
+      membership: membership._id,
+      checkedInAt: { $gte: start, $lt: end }
+    }).sort({ checkedInAt: -1 });
+
+    if (todayAttendance) {
+      return res.status(200).json({
+        success: true,
+        entryStatus: "ENTRY_ALLOWED",
+        alreadyCheckedIn: true,
+        reason: "Already checked in today",
+        member: {
+          name: member.name,
+          plan: membership.plan?.name || "Member",
+          endDate: membership.endDate,
+          classesUsed: membership.classesUsed,
+          classLimit: membership.plan?.classLimit ?? null
+        }
+      });
+    }
+
+    const validationError = validateMembership(membership);
+
+    if (validationError) {
+      return res.status(validationError.status).json({
+        success: false,
+        entryStatus: "ENTRY_DENIED",
+        reason: validationError.error,
+        member: {
+          name: member.name,
+          plan: membership.plan?.name || "Member",
+          endDate: membership.endDate,
+          classesUsed: membership.classesUsed,
+          classLimit: membership.plan?.classLimit ?? null
+        }
+      });
+    }
+
     return res.status(200).json({
       success: true,
       entryStatus: "ENTRY_ALLOWED",
       reason: "Valid active membership",
+      alreadyCheckedIn: false,
       member: {
         name: member.name,
         plan: membership.plan?.name || "Member",
@@ -192,10 +343,12 @@ const validateQRPass = async (req, res) => {
     });
   } catch (error) {
     console.error("QR validation error:", error.message);
+
     return res.status(500).json({
       success: false,
       entryStatus: "ENTRY_DENIED",
-      reason: "Unable to validate membership"
+      reason: "Unable to validate membership",
+      member: null
     });
   }
 };
@@ -228,38 +381,125 @@ const checkInQRPass = async (req, res) => {
       });
     }
 
-    // Same request retry must never count twice
-    const existingAttendance = await Attendance.findOne({ checkInId })
+    // Prevent duplicate processing of the same request ID
+    const existingRequest = await Attendance.findOne({ checkInId })
       .populate("member", "name")
-      .populate("membership");
+      .populate({
+        path: "membership",
+        populate: {
+          path: "plan",
+          select: "name classLimit"
+        }
+      });
 
-    if (existingAttendance) {
+    if (existingRequest) {
       return res.status(200).json({
         success: true,
         entryStatus: "ENTRY_ALLOWED",
         alreadyCheckedIn: true,
         message: "This check-in was already recorded",
+        member: {
+          name: existingRequest.member?.name || "Member",
+          plan: existingRequest.membership?.plan?.name || "Member"
+        },
         attendance: {
-          id: existingAttendance._id,
-          checkedInAt: existingAttendance.checkedInAt
+          id: existingRequest._id,
+          checkedInAt: existingRequest.checkedInAt
+        },
+        classesUsed: existingRequest.membership?.classesUsed ?? 0,
+        classLimit: existingRequest.membership?.plan?.classLimit ?? null
+      });
+    }
+
+    const lookup = await findMemberMembership(passCode);
+
+    if (lookup.error) {
+      return res.status(lookup.status).json({
+        success: false,
+        entryStatus: "ENTRY_DENIED",
+        reason: lookup.error,
+        member: lookup.member
+          ? {
+              name: lookup.member.name,
+              plan: "Member"
+            }
+          : null
+      });
+    }
+
+    const { member, membership } = lookup;
+
+    const statusError = validateMembership(membership, false);
+    if (statusError) {
+      return res.status(statusError.status).json({
+        success: false,
+        entryStatus: "ENTRY_DENIED",
+        reason: statusError.error,
+        member: {
+          name: member.name,
+          plan: membership.plan?.name || "Member",
+          endDate: membership.endDate,
+          classesUsed: membership.classesUsed,
+          classLimit: membership.plan?.classLimit ?? null
         }
       });
     }
 
-    const result = await findValidMembership(passCode);
+    // Same member + same India calendar day = green, no extra class
+    const { start, end } = getIndiaDayRange();
 
-    if (result.error) {
-      return res.status(result.status).json({
-        success: false,
-        entryStatus: "ENTRY_DENIED",
-        reason: result.error
+    const todayAttendance = await Attendance.findOne({
+      member: member._id,
+      membership: membership._id,
+      checkedInAt: {
+        $gte: start,
+        $lt: end
+      }
+    }).sort({ checkedInAt: -1 });
+
+    if (todayAttendance) {
+      return res.status(200).json({
+        success: true,
+        entryStatus: "ENTRY_ALLOWED",
+        alreadyCheckedIn: true,
+        message: "Member already checked in today. No extra class counted.",
+        member: {
+          name: member.name,
+          plan: membership.plan?.name || "Member",
+          endDate: membership.endDate,
+          classesUsed: membership.classesUsed,
+          classLimit: membership.plan?.classLimit ?? null
+        },
+        attendance: {
+          id: todayAttendance._id,
+          checkedInAt: todayAttendance.checkedInAt
+        },
+        classesUsed: membership.classesUsed,
+        classLimit: membership.plan?.classLimit ?? null
       });
     }
 
-    const { member, membership } = result;
+    // Validate status, expiry and class limit for a new daily check-in
+    const validationError = validateMembership(membership);
+
+    if (validationError) {
+      return res.status(validationError.status).json({
+        success: false,
+        entryStatus: "ENTRY_DENIED",
+        reason: validationError.error,
+        member: {
+          name: member.name,
+          plan: membership.plan?.name || "Member",
+          endDate: membership.endDate,
+          classesUsed: membership.classesUsed,
+          classLimit: membership.plan?.classLimit ?? null
+        }
+      });
+    }
+
     const classLimit = membership.plan?.classLimit;
 
-    // Atomic increment with current membership conditions
+    // Atomic increment protects the class limit
     const filter = {
       _id: membership._id,
       status: "active",
@@ -284,14 +524,17 @@ const checkInQRPass = async (req, res) => {
       return res.status(409).json({
         success: false,
         entryStatus: "ENTRY_DENIED",
-        reason: "Membership changed or class limit reached. Please scan again."
+        reason: "Membership changed or class limit reached. Please scan again.",
+        member: {
+          name: member.name,
+          plan: membership.plan?.name || "Member"
+        }
       });
     }
 
     incrementedMembershipId = updatedMembership._id;
     incrementedTo = updatedMembership.classesUsed;
 
-    // Save attendance record
     const attendance = await Attendance.create({
       member: member._id,
       membership: membership._id,
@@ -307,7 +550,10 @@ const checkInQRPass = async (req, res) => {
       message: "Class check-in successful",
       member: {
         name: member.name,
-        plan: membership.plan?.name || "Member"
+        plan: membership.plan?.name || "Member",
+        endDate: updatedMembership.endDate,
+        classesUsed: updatedMembership.classesUsed,
+        classLimit: classLimit ?? null
       },
       attendance: {
         id: attendance._id,
@@ -333,19 +579,38 @@ const checkInQRPass = async (req, res) => {
     if (error.code === 11000) {
       const duplicate = await Attendance.findOne({
         checkInId: req.body.checkInId
-      });
+      })
+        .populate("member", "name")
+        .populate({
+          path: "membership",
+          populate: {
+            path: "plan",
+            select: "name classLimit"
+          }
+        });
 
       if (duplicate) {
         return res.status(200).json({
           success: true,
           entryStatus: "ENTRY_ALLOWED",
           alreadyCheckedIn: true,
-          message: "This check-in was already recorded"
+          message: "This check-in was already recorded",
+          member: {
+            name: duplicate.member?.name || "Member",
+            plan: duplicate.membership?.plan?.name || "Member"
+          },
+          attendance: {
+            id: duplicate._id,
+            checkedInAt: duplicate.checkedInAt
+          },
+          classesUsed: duplicate.membership?.classesUsed ?? 0,
+          classLimit: duplicate.membership?.plan?.classLimit ?? null
         });
       }
     }
 
     console.error("QR check-in error:", error.message);
+
     return res.status(500).json({
       success: false,
       entryStatus: "ENTRY_DENIED",

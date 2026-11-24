@@ -1,61 +1,15 @@
+
 import { useState, useEffect } from 'react';
-import { memberApi } from '../services/api';
-
-const safeUpper = (val, fallback = '') => {
-  if (val === null || val === undefined) return fallback;
-  return String(val).toUpperCase();
-};
-
-const safeSlice = (val, start, end) => {
-  if (val === null || val === undefined) return '';
-  const str = String(val);
-  return typeof end === 'number' ? str.slice(start, end) : str.slice(start);
-};
-
-const formatSafeDate = (val, options = { day: 'numeric', month: 'short', year: 'numeric' }) => {
-  if (!val) return 'N/A';
-  try {
-    const d = new Date(val);
-    if (isNaN(d.getTime())) return 'N/A';
-    return d.toLocaleDateString('en-IN', options);
-  } catch {
-    return 'N/A';
-  }
-};
-
-const formatSafeTime = (val, options = { hour: '2-digit', minute: '2-digit' }) => {
-  if (!val) return '--:--';
-  try {
-    const d = new Date(val);
-    if (isNaN(d.getTime())) return '--:--';
-    return d.toLocaleTimeString('en-IN', options);
-  } catch {
-    return '--:--';
-  }
-};
+import { memberApi, paymentApi } from '../services/api';
 
 export default function MemberDashboard({
   currentUser,
-  onLogout: _onLogout,
+  onLogout,
   onNavigateToPlans,
-  onOpenQRModal
+  onOpenQRModal,
+  onNavigateAI
 }) {
-  const [profile, setProfile] = useState(() => {
-    if (currentUser) {
-      return {
-        id: currentUser.id || currentUser._id || '',
-        name: currentUser.name || 'Member',
-        email: currentUser.email || '',
-        role: currentUser.role || 'member',
-        passCode: currentUser.passCode || '',
-        membershipStatus: 'none',
-        membership: null,
-        recentPayments: []
-      };
-    }
-    return null;
-  });
-
+  const [profile, setProfile] = useState(null);
   const [passData, setPassData] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState('');
@@ -63,6 +17,17 @@ export default function MemberDashboard({
   const [attendanceHistory, setAttendanceHistory] = useState([]);
   const [attendanceLoading, setAttendanceLoading] = useState(true);
   const [attendanceError, setAttendanceError] = useState('');
+
+  // M3 Task 9: Membership pause states
+  const [pauseDays, setPauseDays] = useState('7');
+  const [pauseLoading, setPauseLoading] = useState(false);
+  const [pauseMessage, setPauseMessage] = useState('');
+  const [pauseError, setPauseError] = useState('');
+
+  useEffect(() => {
+    loadDashboardData();
+    loadAttendanceHistory();
+  }, []);
 
   const loadDashboardData = async () => {
     try {
@@ -74,10 +39,10 @@ export default function MemberDashboard({
         memberApi.getPass()
       ]);
 
-      if (profRes && profRes.success && profRes.member) {
+      if (profRes && profRes.success) {
         setProfile(profRes.member);
       } else {
-        setError(profRes?.message || 'Failed to load membership details. Showing local session credentials.');
+        setError(profRes?.message || 'Failed to load member profile');
       }
 
       if (passRes && passRes.success) {
@@ -85,7 +50,7 @@ export default function MemberDashboard({
       }
     } catch (err) {
       console.error('Error loading dashboard data:', err);
-      setError('Communication error loading membership telemetry. Showing cached session data.');
+      setError('Communication error loading membership telemetry');
     } finally {
       setLoading(false);
     }
@@ -98,10 +63,10 @@ export default function MemberDashboard({
 
       const result = await memberApi.getAttendanceHistory();
 
-      if (result && result.success) {
-        setAttendanceHistory(Array.isArray(result.history) ? result.history : []);
+      if (result.success) {
+        setAttendanceHistory(result.history || []);
       } else {
-        setAttendanceError(result?.message || 'Unable to load attendance history');
+        setAttendanceError(result.message || 'Unable to load attendance history');
       }
     } catch (err) {
       console.error('Attendance history error:', err);
@@ -111,70 +76,54 @@ export default function MemberDashboard({
     }
   };
 
-  useEffect(() => {
-    let active = true;
+  // M3 Task 9: Submit membership pause request
+  const handlePauseMembership = async (event) => {
+    event.preventDefault();
 
-    (async () => {
-      try {
-        const [profRes, passRes] = await Promise.all([
-          memberApi.getProfile(),
-          memberApi.getPass()
-        ]);
+    const days = Number(pauseDays);
 
-        if (active) {
-          if (profRes && profRes.success && profRes.member) {
-            setProfile(profRes.member);
-          } else {
-            setError(profRes?.message || 'Failed to load membership details');
-          }
+    if (!Number.isInteger(days) || days < 1 || days > 15) {
+      setPauseError('Please select a pause duration between 1 and 15 days.');
+      return;
+    }
 
-          if (passRes && passRes.success) {
-            setPassData(passRes);
-          }
-          setLoading(false);
-        }
-      } catch (err) {
-        if (active) {
-          console.error('Error loading dashboard data:', err);
-          setError('Communication error loading membership telemetry');
-          setLoading(false);
-        }
+    const confirmed = window.confirm(
+      `Are you sure you want to pause your membership for ${days} day(s)? Your membership expiry date will be extended by ${days} day(s).`
+    );
+
+    if (!confirmed) return;
+
+    try {
+      setPauseLoading(true);
+      setPauseError('');
+      setPauseMessage('');
+
+      const result = await memberApi.pauseMembership(days);
+
+      if (!result || !result.success) {
+        setPauseError(result?.message || 'Unable to pause membership.');
+        return;
       }
 
-      try {
-        const result = await memberApi.getAttendanceHistory();
-        if (active) {
-          if (result && result.success) {
-            setAttendanceHistory(Array.isArray(result.history) ? result.history : []);
-          } else {
-            setAttendanceError(result?.message || 'Unable to load attendance history');
-          }
-          setAttendanceLoading(false);
-        }
-      } catch (err) {
-        if (active) {
-          console.error('Attendance history error:', err);
-          setAttendanceError('Unable to connect to server');
-          setAttendanceLoading(false);
-        }
-      }
-    })();
+      setPauseMessage(
+        result.message || `Your membership has been paused for ${days} day(s).`
+      );
 
-    return () => {
-      active = false;
-    };
-  }, []);
+      // Refresh profile and pass to show the updated membership status.
+      await loadDashboardData();
+    } catch (err) {
+      console.error('Membership pause request error:', err);
+      setPauseError('Unable to connect to the server. Please try again.');
+    } finally {
+      setPauseLoading(false);
+    }
+  };
 
   const handleCopyPassCode = () => {
-    const code = profile?.passCode || currentUser?.passCode;
-    if (code) {
-      try {
-        navigator.clipboard.writeText(code);
-        setCopyToast(true);
-        setTimeout(() => setCopyToast(false), 2500);
-      } catch (err) {
-        console.warn('Clipboard write failed:', err);
-      }
+    if (profile?.passCode) {
+      navigator.clipboard.writeText(profile.passCode);
+      setCopyToast(true);
+      setTimeout(() => setCopyToast(false), 2500);
     }
   };
 
@@ -184,52 +133,47 @@ export default function MemberDashboard({
 
     const link = document.createElement('a');
     link.href = qrUrl;
-    link.download = `MemberPass-${safeSlice(profile?.name || currentUser?.name || 'card', 0, 30).replace(/\s+/g, '_')}.png`;
+    link.download = `MemberPass-${(profile?.name || 'card').replace(/\s+/g, '_')}.png`;
     document.body.appendChild(link);
     link.click();
     document.body.removeChild(link);
   };
 
-  // If loading and we have no profile and no currentUser fallback, render visible loading state
-  if (loading && !profile && !currentUser) {
+  if (loading) {
     return (
-      <div className="member-dashboard-wrap">
-        <div
-          className="dashboard-loading-state"
-          style={{
-            minHeight: '380px',
-            display: 'flex',
-            flexDirection: 'column',
-            alignItems: 'center',
-            justifyContent: 'center',
-            background: '#242424',
-            borderRadius: '20px',
-            border: '1px solid rgba(198, 166, 107, 0.25)',
-            padding: '60px 24px',
-            marginTop: '30px'
-          }}
-        >
-          <div className="crest-spinner"></div>
-          <p style={{ marginTop: '20px', color: '#B6A58C', fontSize: '1rem', letterSpacing: '0.04em' }}>
-            Retrieving sovereign membership credentials...
-          </p>
-        </div>
+      <div className="dashboard-loading-state">
+        <div className="crest-spinner"></div>
+        <p>Retrieving sovereign membership credentials...</p>
       </div>
     );
   }
 
-  const displayName = profile?.name || currentUser?.name || 'Member';
-  const displayEmail = profile?.email || currentUser?.email || '';
-  const rawId = profile?.id || profile?._id || currentUser?.id || currentUser?._id;
-  const displayId = rawId ? safeSlice(rawId, -8) : 'ACTIVE';
-  const displayPassCode = profile?.passCode || currentUser?.passCode || '';
-  const avatarInitials = safeUpper(safeSlice(displayName, 0, 2), 'MP');
-
-  const membership = profile?.membership || null;
+  const membership = profile?.membership;
   const status = profile?.membershipStatus || 'none';
   const isActive = status === 'active';
   const isPaused = status === 'paused';
   const isEnded = status === 'ended';
+
+  // Check whether the member has already used the pause option this calendar year.
+  const currentYear = new Date().getFullYear();
+  const pauseHistory = membership?.pauseHistory || [];
+
+  const hasPausedThisYear = pauseHistory.some((entry) => {
+    if (!entry.requestedAt) return false;
+    return new Date(entry.requestedAt).getFullYear() === currentYear;
+  });
+
+  const canPauseMembership = isActive && !hasPausedThisYear;
+
+  const formatDate = (date) => {
+    if (!date) return 'N/A';
+
+    return new Date(date).toLocaleDateString('en-IN', {
+      day: 'numeric',
+      month: 'short',
+      year: 'numeric'
+    });
+  };
 
   return (
     <div className="member-dashboard-wrap">
@@ -244,28 +188,38 @@ export default function MemberDashboard({
       <div className="dashboard-banner">
         <div className="banner-left">
           <div className="member-avatar-lg">
-            <span>{avatarInitials}</span>
+            <span>{(profile?.name || 'M').slice(0, 2).toUpperCase()}</span>
           </div>
           <div className="banner-text">
             <div className="banner-eyebrow">
               <span className="crest-sparkle">✦</span>
               <span>AUTHENTICATED YOGA PRACTITIONER</span>
             </div>
-            <h1 className="banner-heading">Welcome back, {displayName}</h1>
+            <h1 className="banner-heading">Welcome back, {profile?.name}</h1>
             <p className="banner-email">
-              {displayEmail} • Member ID: {displayId}
+              {profile?.email} • Member ID: {profile?.id?.slice(-8)}
             </p>
           </div>
         </div>
 
         <div className="banner-actions">
+          {onNavigateAI && (
+            <button
+              className="btn-outline btn-sm"
+              onClick={onNavigateAI}
+              title="Open AI Assistant"
+              style={{ display: 'inline-flex', alignItems: 'center', gap: '6px' }}
+            >
+              <span style={{ color: 'var(--gold-accent)' }}>✦</span>
+              <span>AI Assistant</span>
+            </button>
+          )}
           <button
             className="btn-outline btn-sm"
             onClick={loadDashboardData}
             title="Refresh telemetry"
-            disabled={loading}
           >
-            <span>{loading ? 'Refreshing...' : '↻ Refresh Data'}</span>
+            <span>↻ Refresh Data</span>
           </button>
           <button className="btn-primary btn-sm" onClick={onNavigateToPlans}>
             <span>Upgrade / Renew Plan</span>
@@ -273,17 +227,6 @@ export default function MemberDashboard({
           </button>
         </div>
       </div>
-
-      {/* Error Alert */}
-      {error && (
-        <div className="dashboard-alert alert-danger fade-in">
-          <span className="alert-symbol">⚠</span>
-          <div>
-            <strong>Notice</strong>
-            <p>{error}</p>
-          </div>
-        </div>
-      )}
 
       {/* Main Metric Cards Grid */}
       <div className="dashboard-metrics-grid">
@@ -293,7 +236,7 @@ export default function MemberDashboard({
           <div className="metric-status-row">
             <span className={`status-indicator-badge badge-${status}`}>
               <span className="status-dot"></span>
-              {safeUpper(status, 'NONE')}
+              {status.toUpperCase()}
             </span>
           </div>
           <p className="metric-note">
@@ -310,10 +253,12 @@ export default function MemberDashboard({
         {/* Metric 2: Current Tier */}
         <div className="metric-box">
           <span className="metric-kicker">PRIVILEGE TIER</span>
-          <h3 className="metric-value">{membership?.plan?.name || 'Standard Tier'}</h3>
+          <h3 className="metric-value">
+            {membership?.plan?.name || 'Standard Tier'}
+          </h3>
           <p className="metric-note">
-            {membership?.endDate
-              ? `Valid through ${formatSafeDate(membership.endDate)}`
+            {membership
+              ? `Valid through ${formatDate(membership.endDate)}`
               : 'Select a plan to activate privileges'}
           </p>
         </div>
@@ -323,9 +268,10 @@ export default function MemberDashboard({
           <span className="metric-kicker">CLASS UTILIZATION</span>
           <div className="metric-classes-row">
             <span className="metric-value">
-              {membership?.classesUsed ?? 0}
+              {membership?.classesUsed || 0}
               <span className="metric-sub">
-                {membership?.plan?.classLimit !== null && membership?.plan?.classLimit !== undefined
+                {membership?.plan?.classLimit !== null &&
+                membership?.plan?.classLimit !== undefined
                   ? ` / ${membership.plan.classLimit} Classes`
                   : ' / Unlimited'}
               </span>
@@ -341,10 +287,14 @@ export default function MemberDashboard({
         {/* Metric 4: Cryptographic Pass Code */}
         <div className="metric-box">
           <span className="metric-kicker">PASS CODE (CRYPTOGRAPHIC)</span>
-          <div className="pass-code-display" onClick={handleCopyPassCode} title="Click to copy pass code">
+          <div
+            className="pass-code-display"
+            onClick={handleCopyPassCode}
+            title="Click to copy pass code"
+          >
             <code>
-              {displayPassCode
-                ? `${safeSlice(displayPassCode, 0, 12)}••••${safeSlice(displayPassCode, -6)}`
+              {profile?.passCode
+                ? `${profile.passCode.slice(0, 12)}••••${profile.passCode.slice(-6)}`
                 : 'GENERATING...'}
             </code>
             <span className="copy-icon">⎘</span>
@@ -356,13 +306,22 @@ export default function MemberDashboard({
       {/* Membership State Alerts */}
       {isPaused && (
         <div className="dashboard-alert alert-warning fade-in">
-          <span className="alert-symbol">⏸</span>
+          <span className="alert-symbol">◷</span>
           <div>
             <strong>Membership On Hold</strong>
             <p>
-              Your membership pass is paused. Facility gate verification is temporarily inactive.
-              Please connect with the front desk to resume full privileges.
+              Your membership pass is paused. Facility gate verification is
+              temporarily inactive.
+              {membership?.pauseEndDate
+                ? ` Your membership is scheduled to resume on ${formatDate(membership.pauseEndDate)}.`
+                : ' Your membership will resume automatically when the pause period ends.'}
             </p>
+            {membership?.pauseEndDate && (
+              <p>
+                <strong>Scheduled resume date:</strong>{' '}
+                {formatDate(membership.pauseEndDate)}
+              </p>
+            )}
           </div>
         </div>
       )}
@@ -373,12 +332,132 @@ export default function MemberDashboard({
           <div>
             <strong>Membership Expired</strong>
             <p>
-              Your membership validity has concluded. Please select a renewed plan to reactivate your digital pass and enjoy uninterrupted access.
+              Your membership validity has concluded. Please select a renewed
+              plan to reactivate your digital pass and enjoy uninterrupted
+              access.
             </p>
           </div>
           <button className="btn-primary btn-sm" onClick={onNavigateToPlans}>
             Renew Now
           </button>
+        </div>
+      )}
+
+      {/* M3 Task 9: Membership Pause Section */}
+      {membership && (
+        <div className="payments-history-column membership-pause-section">
+          <div className="section-sub-header">
+            <h3>Membership Pause</h3>
+            <p>
+              Take a short break from your membership and automatically extend
+              your validity by the paused duration.
+            </p>
+          </div>
+
+          <div className="payment-history-card" style={{ padding: '24px' }}>
+            {pauseMessage && (
+              <div className="staff-message" role="status">
+                {pauseMessage}
+              </div>
+            )}
+
+            {pauseError && (
+              <div className="dashboard-alert alert-danger" role="alert">
+                {pauseError}
+              </div>
+            )}
+
+            {isPaused && (
+              <div>
+                <strong>Your membership is currently paused.</strong>
+                <p>
+                  Your access will automatically resume on{' '}
+                  <strong>{formatDate(membership.pauseEndDate)}</strong>.
+                </p>
+                <p>
+                  Your membership expiry date has been extended to{' '}
+                  <strong>{formatDate(membership.endDate)}</strong>.
+                </p>
+              </div>
+            )}
+
+            {isActive && hasPausedThisYear && (
+              <div>
+                <strong>Pause option already used this year.</strong>
+                <p>
+                  Membership pause can be requested once per calendar year.
+                  You can use this option again next calendar year.
+                </p>
+              </div>
+            )}
+
+            {canPauseMembership && (
+              <form onSubmit={handlePauseMembership}>
+                <p>
+                  You can pause your active membership once per calendar year.
+                  Choose a duration between 1 and 15 days.
+                </p>
+
+                <div style={{ marginTop: '16px', marginBottom: '16px' }}>
+                  <label
+                    htmlFor="membership-pause-days"
+                    style={{
+                      display: 'block',
+                      marginBottom: '8px',
+                      fontWeight: '600'
+                    }}
+                  >
+                    Select pause duration
+                  </label>
+
+                  <select
+                    id="membership-pause-days"
+                    value={pauseDays}
+                    onChange={(event) => setPauseDays(event.target.value)}
+                    disabled={pauseLoading}
+                    style={{
+                      width: '100%',
+                      maxWidth: '240px',
+                      padding: '12px',
+                      borderRadius: '8px',
+                      border: '1px solid #ccc',
+                      background: 'transparent',
+                      color: 'inherit'
+                    }}
+                  >
+                    {Array.from({ length: 15 }, (_, index) => index + 1).map(
+                      (day) => (
+                        <option key={day} value={day}>
+                          {day} {day === 1 ? 'day' : 'days'}
+                        </option>
+                      )
+                    )}
+                  </select>
+                </div>
+
+                <p className="metric-note">
+                  Your membership expiry date will be extended by the same
+                  number of days. Studio access will remain disabled during
+                  the pause period.
+                </p>
+
+                <button
+                  type="submit"
+                  className="btn-primary btn-sm"
+                  disabled={pauseLoading}
+                >
+                  {pauseLoading ? 'Submitting Request...' : 'Pause Membership'}
+                </button>
+              </form>
+            )}
+
+            {!isActive && !isPaused && (
+              <p>
+                Membership pause is available only when your membership is
+                active.
+              </p>
+            )}
+          </div>
         </div>
       )}
 
@@ -388,11 +467,16 @@ export default function MemberDashboard({
         <div className="pass-preview-column">
           <div className="section-sub-header">
             <h3>Digital Membership Pass</h3>
-            <p>Present at the studio check-in terminal for instant optical validation.</p>
+            <p>
+              Present at the studio check-in terminal for instant optical
+              validation.
+            </p>
           </div>
 
           <div className="card-stage dashboard-card-stage">
-            <div className={`digital-pass-card ${isPaused ? 'card-paused' : ''} ${isEnded ? 'card-ended' : ''}`}>
+            <div
+              className={`digital-pass-card ${isPaused ? 'card-paused' : ''} ${isEnded ? 'card-ended' : ''}`}
+            >
               <div className="card-watermark" aria-hidden="true"></div>
 
               {/* Pass Top */}
@@ -401,13 +485,17 @@ export default function MemberDashboard({
                   <span className="crest-symbol">M</span>
                   <div className="crest-details">
                     <span className="crest-title">MEMBERPASS</span>
-                    <span className="crest-sub">YOGA &amp; WELLNESS SANCTUARY</span>
+                    <span className="crest-sub">
+                      YOGA &amp; WELLNESS SANCTUARY
+                    </span>
                   </div>
                 </div>
 
                 <div className="pass-status-pill">
-                  <span className={`status-pulse ${isActive ? 'pulse-active' : 'pulse-inactive'}`}></span>
-                  <span>{safeUpper(status, 'NONE')}</span>
+                  <span
+                    className={`status-pulse ${isActive ? 'pulse-active' : 'pulse-inactive'}`}
+                  ></span>
+                  <span>{status.toUpperCase()}</span>
                 </div>
               </div>
 
@@ -416,7 +504,7 @@ export default function MemberDashboard({
                 <span className="ribbon-sparkle">✦</span>
                 <span className="ribbon-text">
                   {membership?.plan?.name
-                    ? `${safeUpper(membership.plan.name)} YOGA PASS`
+                    ? `${membership.plan.name.toUpperCase()} YOGA PASS`
                     : 'YOGA PRACTITIONER'}
                 </span>
               </div>
@@ -424,13 +512,15 @@ export default function MemberDashboard({
               {/* Member Profile */}
               <div className="pass-member-profile">
                 <div className="pass-avatar">
-                  <span>{avatarInitials}</span>
+                  <span>
+                    {(profile?.name || 'M').slice(0, 2).toUpperCase()}
+                  </span>
                 </div>
                 <div className="member-meta">
-                  <h3 className="member-name">{displayName}</h3>
+                  <h3 className="member-name">{profile?.name}</h3>
                   <p className="member-role">Verified Yoga Member</p>
                   <code className="pass-code">
-                    CODE: {displayPassCode ? `${safeSlice(displayPassCode, 0, 16)}...` : 'PENDING'}
+                    CODE: {profile?.passCode?.slice(0, 16)}...
                   </code>
                 </div>
               </div>
@@ -458,7 +548,9 @@ export default function MemberDashboard({
                   </div>
                 ) : (
                   <div className="qr-disabled-placeholder">
-                    <span className="qr-disabled-icon">{isPaused ? '⏸' : '✕'}</span>
+                    <span className="qr-disabled-icon">
+                      {isPaused ? '◷' : '✕'}
+                    </span>
                     <p>
                       {isPaused
                         ? 'Pass Paused • Studio Check-In Disabled'
@@ -475,14 +567,19 @@ export default function MemberDashboard({
                 <div className="bottom-col">
                   <span className="label">EXPIRY DATE</span>
                   <span className="value">
-                    {membership?.endDate ? formatSafeDate(membership.endDate) : 'N/A'}
+                    {membership?.endDate
+                      ? formatDate(membership.endDate)
+                      : 'N/A'}
                   </span>
                 </div>
 
                 <div className="bottom-col text-right">
                   <span className="label">CLASSES USED</span>
                   <span className="value">
-                    {membership?.classesUsed ?? 0} {membership?.plan?.classLimit ? `/ ${membership.plan.classLimit}` : 'Used'}
+                    {membership?.classesUsed ?? 0}{' '}
+                    {membership?.plan?.classLimit
+                      ? `/ ${membership.plan.classLimit}`
+                      : 'Used'}
                   </span>
                 </div>
               </div>
@@ -510,11 +607,14 @@ export default function MemberDashboard({
           <div className="payments-history-column">
             <div className="section-sub-header">
               <h3>Privilege Transactions</h3>
-              <p>Verified ledger of subscription and membership payments.</p>
+              <p>
+                Verified ledger of subscription and membership payments.
+              </p>
             </div>
 
             <div className="payment-history-card">
-              {Array.isArray(profile?.recentPayments) && profile.recentPayments.length > 0 ? (
+              {profile?.recentPayments &&
+              profile.recentPayments.length > 0 ? (
                 <div className="payments-table-wrap">
                   <table className="payments-table">
                     <thead>
@@ -527,33 +627,34 @@ export default function MemberDashboard({
                       </tr>
                     </thead>
                     <tbody>
-                      {profile.recentPayments.map((p, idx) => {
-                        const orderRef = p?.orderId
-                          ? safeSlice(p.orderId, -10)
-                          : (p?.id ? safeSlice(p.id, -8) : `TX-${idx + 1}`);
-                        const statusStr = safeUpper(p?.status, 'COMPLETED');
-                        const amountNum = Number(p?.amount) || 0;
-
-                        return (
-                          <tr key={p?.id || p?.orderId || idx}>
-                            <td>
-                              <strong>{p?.planName || 'Yoga Membership'}</strong>
-                            </td>
-                            <td>
-                              <code className="order-ref">{orderRef}</code>
-                            </td>
-                            <td>
-                              {formatSafeDate(p?.date, { day: 'numeric', month: 'short' })}
-                            </td>
-                            <td className="amount-col">₹{amountNum.toLocaleString('en-IN')}</td>
-                            <td>
-                              <span className={`payment-status-badge ${safeUpper(p?.status || 'captured').toLowerCase()}`}>
-                                {statusStr}
-                              </span>
-                            </td>
-                          </tr>
-                        );
-                      })}
+                      {profile.recentPayments.map((p) => (
+                        <tr key={p.id || p.orderId}>
+                          <td>
+                            <strong>{p.planName}</strong>
+                          </td>
+                          <td>
+                            <code className="order-ref">
+                              {p.orderId?.slice(-10) || p.id?.slice(-8)}
+                            </code>
+                          </td>
+                          <td>
+                            {new Date(p.date).toLocaleDateString('en-IN', {
+                              day: 'numeric',
+                              month: 'short'
+                            })}
+                          </td>
+                          <td className="amount-col">
+                            ₹{Number(p.amount).toLocaleString('en-IN')}
+                          </td>
+                          <td>
+                            <span
+                              className={`payment-status-badge ${p.status}`}
+                            >
+                              {p.status.toUpperCase()}
+                            </span>
+                          </td>
+                        </tr>
+                      ))}
                     </tbody>
                   </table>
                 </div>
@@ -561,7 +662,10 @@ export default function MemberDashboard({
                 <div className="no-payments-placeholder">
                   <span className="placeholder-icon">✦</span>
                   <p>No prior payment records located on this account.</p>
-                  <button className="btn-primary btn-sm" onClick={onNavigateToPlans}>
+                  <button
+                    className="btn-primary btn-sm"
+                    onClick={onNavigateToPlans}
+                  >
                     Select a Plan
                   </button>
                 </div>
@@ -582,13 +686,15 @@ export default function MemberDashboard({
                 disabled={attendanceLoading}
                 title="Refresh attendance records"
               >
-                {attendanceLoading ? 'Refreshing...' : '↻ Refresh Attendance'}
+                {attendanceLoading
+                  ? 'Refreshing...'
+                  : '↻ Refresh Attendance'}
               </button>
             </div>
 
             <div className="payment-history-card">
               {attendanceError && (
-                <div className="staff-message" role="status">{attendanceError}</div>
+                <div className="staff-message">{attendanceError}</div>
               )}
 
               {attendanceLoading && attendanceHistory.length === 0 ? (
@@ -612,15 +718,28 @@ export default function MemberDashboard({
                       </tr>
                     </thead>
                     <tbody>
-                      {attendanceHistory.map((record, idx) => (
-                        <tr key={record?.id || record?._id || idx}>
-                          <td><strong>{record?.planName || 'Yoga Session'}</strong></td>
-                          <td>{record?.staffName || 'Studio Staff'}</td>
+                      {attendanceHistory.map((record) => (
+                        <tr key={record.id}>
                           <td>
-                            {formatSafeDate(record?.checkedInAt)}
+                            <strong>{record.planName}</strong>
+                          </td>
+                          <td>{record.staffName}</td>
+                          <td>
+                            {new Date(
+                              record.checkedInAt
+                            ).toLocaleDateString('en-IN', {
+                              day: 'numeric',
+                              month: 'short',
+                              year: 'numeric'
+                            })}
                           </td>
                           <td>
-                            {formatSafeTime(record?.checkedInAt)}
+                            {new Date(
+                              record.checkedInAt
+                            ).toLocaleTimeString('en-IN', {
+                              hour: '2-digit',
+                              minute: '2-digit'
+                            })}
                           </td>
                         </tr>
                       ))}

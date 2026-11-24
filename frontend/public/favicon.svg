@@ -1,24 +1,23 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" fill="none">
     <defs>
-        <linearGradient id="charcoalGrad" x1="0%" y1="0%" x2="100%" y2="100%">
-            <stop offset="0%" stop-color="#1A1A1A" />
-            <stop offset="60%" stop-color="#242424" />
-            <stop offset="100%" stop-color="#303030" />
+        <linearGradient id="royaleGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" stop-color="#451126" />
+            <stop offset="60%" stop-color="#6D1835" />
+            <stop offset="100%" stop-color="#A83D5B" />
         </linearGradient>
         <linearGradient id="goldGrad" x1="0%" y1="0%" x2="100%" y2="100%">
-            <stop offset="0%" stop-color="#D6BB87" />
-            <stop offset="50%" stop-color="#C6A66B" />
-            <stop offset="100%" stop-color="#B59458" />
+            <stop offset="0%" stop-color="#e6cb9d" />
+            <stop offset="100%" stop-color="#cfa86e" />
         </linearGradient>
     </defs>
-    <!-- Background squircle in Charcoal Black -->
-    <rect width="64" height="64" rx="16" fill="#242424" stroke="url(#goldGrad)" stroke-width="2" />
-    <!-- Pass Badge Card in Deep Charcoal -->
-    <rect x="13" y="15" width="38" height="28" rx="6" fill="#303030" stroke="url(#goldGrad)" stroke-width="1.5" />
-    <!-- Lanyard slot in Champagne Gold -->
+    <!-- Background squircle -->
+    <rect width="64" height="64" rx="16" fill="#451126" stroke="url(#goldGrad)" stroke-width="2" />
+    <!-- Pass Badge Card -->
+    <rect x="13" y="15" width="38" height="28" rx="6" fill="#6D1835" stroke="url(#goldGrad)" stroke-width="1.5" />
+    <!-- Lanyard slot -->
     <rect x="27" y="11" width="10" height="3" rx="1.5" fill="url(#goldGrad)" />
-    <!-- Monogram M in Warm Ivory -->
-    <text x="32" y="34" font-family="'Playfair Display', 'Cormorant Garamond', Georgia, serif" font-size="18" font-weight="700" fill="#F7F2E9" text-anchor="middle">M</text>
-    <!-- Mini Diamond Sparkle in Champagne Gold -->
+    <!-- Monogram M -->
+    <text x="32" y="34" font-family="'Playfair Display', Georgia, serif" font-size="18" font-weight="700" fill="#FFF9F5" text-anchor="middle">M</text>
+    <!-- Mini Diamond Sparkle -->
     <path d="M48 38L49.5 42.5L54 44L49.5 45.5L48 50L46.5 45.5L42 44L46.5 42.5L48 38Z" fill="url(#goldGrad)" />
 </svg>

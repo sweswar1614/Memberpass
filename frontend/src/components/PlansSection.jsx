@@ -83,12 +83,16 @@ const YOGA_PLAN_EXTRAS = {
 
 export default function PlansSection({ currentUser, onRequireAuth, onPaymentSuccess }) {
   const [plans, setPlans] = useState(DEFAULT_PLANS);
-  const [_loading, setLoading] = useState(false);
+  const [loading, setLoading] = useState(false);
   const [selectedPlan, setSelectedPlan] = useState(null);
   const [processingPayment, setProcessingPayment] = useState(false);
   const [razorpayNotice, setRazorpayNotice] = useState(null);
 
-  const _fetchPlans = async () => {
+  useEffect(() => {
+    fetchPlans();
+  }, []);
+
+  const fetchPlans = async () => {
     try {
       setLoading(true);
       const res = await planApi.getPlans();
@@ -106,28 +110,6 @@ export default function PlansSection({ currentUser, onRequireAuth, onPaymentSucc
       setLoading(false);
     }
   };
-
-  useEffect(() => {
-    let active = true;
-    (async () => {
-      try {
-        const res = await planApi.getPlans();
-        if (active && res && res.success && res.plans && res.plans.length > 0) {
-          const enhancedPlans = res.plans.map((p) => ({
-            ...p,
-            description: YOGA_PLAN_EXTRAS[p.name]?.description || p.description,
-            features: YOGA_PLAN_EXTRAS[p.name]?.features || p.features
-          }));
-          setPlans(enhancedPlans);
-        }
-      } catch (err) {
-        console.warn('Using default plans fallback:', err);
-      }
-    })();
-    return () => {
-      active = false;
-    };
-  }, []);
 
   const loadRazorpayScript = () => {
     return new Promise((resolve) => {
@@ -235,7 +217,7 @@ export default function PlansSection({ currentUser, onRequireAuth, onPaymentSucc
           contact: currentUser.phone || ''
         },
         theme: {
-          color: '#C6A66B'
+          color: '#6D1835'
         },
         modal: {
           ondismiss: () => {
@@ -299,6 +281,7 @@ export default function PlansSection({ currentUser, onRequireAuth, onPaymentSucc
       <div className="plans-triptych-grid">
         {plans.map((plan) => {
           const isStandard = plan.name === 'Standard';
+          const isPremium = plan.name === 'Premium';
 
           return (
             <div

@@ -1,3 +1,4 @@
+
 const mongoose = require("mongoose");
 
 const membershipSchema = new mongoose.Schema(
@@ -34,7 +35,58 @@ const membershipSchema = new mongoose.Schema(
       type: mongoose.Schema.Types.ObjectId,
       ref: "Payment",
       default: null
-    }
+    },
+
+    // Membership Expiry Reminder Tracking
+    expiryReminder: {
+      status: {
+        type: String,
+        enum: ["pending", "processing", "sent", "failed"],
+        default: "pending"
+      },
+      sentAt: {
+        type: Date,
+        default: null
+      },
+      lockId: {
+        type: String,
+        default: null
+      },
+      lockAt: {
+        type: Date,
+        default: null
+      }
+    },
+
+    // Membership Pause Details
+    pauseStartDate: {
+      type: Date,
+      default: null
+    },
+    pauseEndDate: {
+      type: Date,
+      default: null
+    },
+    pauseHistory: [
+      {
+        startDate: {
+          type: Date,
+          required: true
+        },
+        endDate: {
+          type: Date,
+          required: true
+        },
+        days: {
+          type: Number,
+          required: true
+        },
+        requestedAt: {
+          type: Date,
+          default: Date.now
+        }
+      }
+    ]
   },
   { timestamps: true }
 );

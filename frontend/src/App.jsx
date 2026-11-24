@@ -5,34 +5,15 @@ import PlansSection from './components/PlansSection'
 import MemberDashboard from './components/MemberDashboard'
 import QRPassModal from './components/QRPassModal'
 import StaffDashboard from './components/StaffDashboard'
-import ErrorBoundary from './components/ErrorBoundary'
-import { getStoredUser, authApi, API_BASE } from './services/api'
+import AIAssistantPage from './components/AIAssistantPage'
+import { getStoredUser, clearAuth, authApi, aiApi } from './services/api'
 
 export default function App() {
   const [currentUser, setCurrentUser] = useState(getStoredUser())
   const [authModalOpen, setAuthModalOpen] = useState(false)
   const [authModalMode, setAuthModalMode] = useState('login')
   const [qrModalOpen, setQrModalOpen] = useState(false)
-  const [currentView, setCurrentView] = useState(() => {
-    try {
-      const stored = sessionStorage.getItem('memberpass_view')
-      if (stored === 'dashboard' && getStoredUser()) {
-        return 'dashboard'
-      }
-    } catch {
-      // storage fallback
-    }
-    return 'landing'
-  })
-
-  const navigateToView = (view) => {
-    setCurrentView(view)
-    try {
-      sessionStorage.setItem('memberpass_view', view)
-    } catch {
-      // storage fallback
-    }
-  }
+  const [currentView, setCurrentView] = useState('landing') // 'landing' | 'dashboard'
 
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
   const [scrolled, setScrolled] = useState(false)
@@ -42,26 +23,28 @@ export default function App() {
   const [aiQuery, setAiQuery] = useState('')
   const [aiLoading, setAiLoading] = useState(false)
   const [aiResponse, setAiResponse] = useState(
-    '“38 esteemed members are scheduled for renewal this week. Automated reminders have been dispatched with an anticipated 98.4% retention rate.”'
+    'â€œ38 esteemed members are scheduled for renewal this week. Automated reminders have been dispatched with an anticipated 98.4% retention rate.â€'
   )
 
   const handleLogout = async () => {
     await authApi.logout()
     setCurrentUser(null)
-    navigateToView('landing')
+    setCurrentView('landing')
     setSelectedPlanToast('You have securely signed out of MemberPass.')
   }
 
   const handleAuthSuccess = (user) => {
     setCurrentUser(user)
-    navigateToView('dashboard')
+    setCurrentView('dashboard')
     setSelectedPlanToast(`Welcome back, ${user.name}! Access credentials authenticated.`)
   }
 
-  const handlePaymentSuccess = (data) => {
-    navigateToView('dashboard')
-    setSelectedPlanToast(`Payment successful! Your ${data.plan} membership is now active.`)
-  }
+ const handlePaymentSuccess = (data) => {
+  setCurrentView('dashboard')
+  setSelectedPlanToast(
+    `Payment received for ${data.plan}! Your membership activation is pending confirmation.`
+  )
+}
 
   // Handle header blur on scroll
   useEffect(() => {
@@ -86,15 +69,9 @@ export default function App() {
     setAiLoading(true)
 
     try {
-      const response = await fetch(`${API_BASE}/ai/chat`, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ question: question.trim() })
-      })
+      const data = await aiApi.chat(question)
 
-      const data = await response.json()
-
-      if (!response.ok || !data.success) {
+      if (!data.success) {
         throw new Error(data.message || 'AI request failed')
       }
 
@@ -123,7 +100,7 @@ export default function App() {
     e.preventDefault()
     handleAiAsk(aiQuery)
   }
-  const _handlePlanSelect = (planName) => {
+  const handlePlanSelect = (planName) => {
     setSelectedPlanToast(`You have selected the ${planName}. Our yoga centre wellness coordinator will connect with you shortly.`)
   }
 
@@ -142,12 +119,12 @@ export default function App() {
       {/* Toast Notification */}
       {selectedPlanToast && (
         <div className="toast-notification" role="status" aria-live="polite">
-          <div className="toast-icon">✦</div>
+          <div className="toast-icon">âœ¦</div>
           <div className="toast-body">
             <strong>Yoga Membership Initiated</strong>
             <p>{selectedPlanToast}</p>
           </div>
-          <button className="toast-close" onClick={() => setSelectedPlanToast(null)} aria-label="Close notification">×</button>
+          <button className="toast-close" onClick={() => setSelectedPlanToast(null)} aria-label="Close notification">Ã—</button>
         </div>
       )}
 
@@ -162,12 +139,12 @@ export default function App() {
             aria-label="MemberPass Home"
             onClick={(e) => {
               e.preventDefault()
-              navigateToView('landing')
+              setCurrentView('landing')
             }}
           >
             <span className="crest-mark">
               <span className="crest-monogram">M</span>
-              <span className="crest-sparkle">✦</span>
+              <span className="crest-sparkle">âœ¦</span>
             </span>
             <div className="brand-text">
               <span className="brand-name">Member<span className="highlight-rose">Pass</span></span>
@@ -179,7 +156,7 @@ export default function App() {
               href="#home"
               onClick={(e) => {
                 e.preventDefault()
-                navigateToView('landing')
+                setCurrentView('landing')
                 setMobileMenuOpen(false)
                 window.scrollTo({ top: 0, behavior: 'smooth' })
               }}
@@ -189,7 +166,7 @@ export default function App() {
             <a
               href="#features"
               onClick={() => {
-                if (currentView !== 'landing') navigateToView('landing')
+                if (currentView !== 'landing') setCurrentView('landing')
                 setMobileMenuOpen(false)
               }}
             >
@@ -198,7 +175,7 @@ export default function App() {
             <a
               href="#plans"
               onClick={() => {
-                if (currentView !== 'landing') navigateToView('landing')
+                if (currentView !== 'landing') setCurrentView('landing')
                 setMobileMenuOpen(false)
               }}
             >
@@ -207,19 +184,33 @@ export default function App() {
             <a
               href="#about"
               onClick={() => {
-                if (currentView !== 'landing') navigateToView('landing')
+                if (currentView !== 'landing') setCurrentView('landing')
                 setMobileMenuOpen(false)
               }}
             >
               About
             </a>
 
+            {/* Dedicated AI Assistant Page Navigation Item */}
+            <button
+              className={`nav-link-btn nav-link-ai ${currentView === 'ai' ? 'active' : ''}`}
+              onClick={() => {
+                setCurrentView('ai')
+                setMobileMenuOpen(false)
+                window.scrollTo({ top: 0, behavior: 'smooth' })
+              }}
+              title="Open Dedicated AI Assistant Page"
+            >
+              <span className="nav-ai-sparkle">✦</span>
+              <span>AI Assistant</span>
+            </button>
+
             {currentUser ? (
               <>
                 <button
                   className="nav-link-btn"
                   onClick={() => {
-                    navigateToView('dashboard')
+                    setCurrentView('dashboard')
                     setMobileMenuOpen(false)
                   }}
                 >
@@ -254,7 +245,7 @@ export default function App() {
                   }}
                 >
                   <span>Claim Your Pass</span>
-                  <span className="btn-arrow">→</span>
+                  <span className="btn-arrow">â†’</span>
                 </button>
               )}
             </div>
@@ -265,7 +256,7 @@ export default function App() {
               <div className="nav-auth-group">
                 <button
                   className="nav-user-pill"
-                  onClick={() => navigateToView('dashboard')}
+                  onClick={() => setCurrentView('dashboard')}
                   title={['staff', 'admin'].includes(currentUser.role) ? 'Open Staff Portal' : 'Open Member Dashboard'}
                 >
                   <div className="nav-avatar-mini">
@@ -299,7 +290,7 @@ export default function App() {
                   }}
                 >
                   <span>Claim Your Pass</span>
-                  <span className="btn-arrow">→</span>
+                  <span className="btn-arrow">â†’</span>
                 </button>
               </div>
             )}
@@ -318,34 +309,60 @@ export default function App() {
         </div>
       </header>
 
-      <ErrorBoundary
-        onReset={() => navigateToView('dashboard')}
-        onGoHome={() => navigateToView('landing')}
-        onLogout={handleLogout}
-      >
-        {currentView === 'dashboard' && currentUser ? (
-          <main>
-            {['staff', 'admin'].includes(currentUser.role) ? (
-              <StaffDashboard
-                currentUser={currentUser}
-                onLogout={handleLogout}
-              />
-            ) : (
-              <MemberDashboard
-                currentUser={currentUser}
-                onLogout={handleLogout}
-                onNavigateToPlans={() => {
-                  navigateToView('landing')
-                  setTimeout(() => {
-                    const el = document.getElementById('plans')
-                    el?.scrollIntoView({ behavior: 'smooth' })
-                  }, 120)
-                }}
-                onOpenQRModal={() => setQrModalOpen(true)}
-              />
-            )}
-          </main>
-        ) : (
+      {currentView === 'ai' ? (
+        <main>
+          <AIAssistantPage
+            currentUser={currentUser}
+            onNavigateHome={() => {
+              setCurrentView('landing')
+              window.scrollTo({ top: 0, behavior: 'smooth' })
+            }}
+            onNavigateDashboard={() => {
+              if (currentUser) {
+                setCurrentView('dashboard')
+              } else {
+                setAuthModalMode('login')
+                setAuthModalOpen(true)
+              }
+              window.scrollTo({ top: 0, behavior: 'smooth' })
+            }}
+            onOpenAuthModal={(mode = 'login') => {
+              setAuthModalMode(mode)
+              setAuthModalOpen(true)
+            }}
+          />
+        </main>
+      ) : currentView === 'dashboard' && currentUser ? (
+        <main>
+          {['staff', 'admin'].includes(currentUser.role) ? (
+            <StaffDashboard
+              currentUser={currentUser}
+              onLogout={handleLogout}
+              onNavigateAI={() => {
+                setCurrentView('ai')
+                window.scrollTo({ top: 0, behavior: 'smooth' })
+              }}
+            />
+          ) : (
+            <MemberDashboard
+              currentUser={currentUser}
+              onLogout={handleLogout}
+              onNavigateToPlans={() => {
+                setCurrentView('landing')
+                setTimeout(() => {
+                  const el = document.getElementById('plans')
+                  el?.scrollIntoView({ behavior: 'smooth' })
+                }, 120)
+              }}
+              onOpenQRModal={() => setQrModalOpen(true)}
+              onNavigateAI={() => {
+                setCurrentView('ai')
+                window.scrollTo({ top: 0, behavior: 'smooth' })
+              }}
+            />
+          )}
+        </main>
+      ) : (
         <main>
           {/* =========================================================================
             2. HERO SECTION
@@ -354,7 +371,7 @@ export default function App() {
             <div className="hero-grid">
               <div className="hero-text-content">
                 <div className="luxury-eyebrow">
-                  <span className="crest-sparkle">✦</span>
+                  <span className="crest-sparkle">âœ¦</span>
                   <span>SMART YOGA &amp; WELLNESS PLATFORM</span>
                 </div>
 
@@ -375,27 +392,27 @@ export default function App() {
                 <div className="hero-ctas">
                   <a href="#plans" className="btn-primary btn-lg">
                     <span>Get Started</span>
-                    <span className="btn-arrow">→</span>
+                    <span className="btn-arrow">â†’</span>
                   </a>
                   <a href="#plans" className="btn-outline btn-lg">
                     <span>Explore Plans</span>
-                    <span className="btn-chevron">▾</span>
+                    <span className="btn-chevron">â–¾</span>
                   </a>
                 </div>
 
                 <div className="hero-trust-bar">
                   <div className="trust-pill">
-                    <span className="pill-check">✓</span>
+                    <span className="pill-check">âœ“</span>
                     <span>99.8% Verification Accuracy</span>
                   </div>
                   <div className="trust-divider"></div>
                   <div className="trust-pill">
-                    <span className="pill-check">✓</span>
+                    <span className="pill-check">âœ“</span>
                     <span>Instant QR Pass Check-In</span>
                   </div>
                   <div className="trust-divider"></div>
                   <div className="trust-pill">
-                    <span className="pill-check">✓</span>
+                    <span className="pill-check">âœ“</span>
                     <span>Smart Class &amp; Attendance Tracking</span>
                   </div>
                 </div>
@@ -405,7 +422,7 @@ export default function App() {
               <div className="hero-card-col">
                 <div className="card-stage">
                   <div className="digital-pass-card">
-                    {/* Subtle Guilloché Watermark */}
+                    {/* Subtle GuillochÃ© Watermark */}
                     <div className="card-watermark" aria-hidden="true"></div>
 
                     {/* Card Top Row */}
@@ -419,13 +436,13 @@ export default function App() {
                       </div>
                       <div className="pass-status-pill">
                         <span className="pulsing-emerald"></span>
-                        <span>ACTIVE • VERIFIED</span>
+                        <span>ACTIVE â€¢ VERIFIED</span>
                       </div>
                     </div>
 
                     {/* Pass Category Chip */}
                     <div className="pass-tier-ribbon">
-                      <span className="ribbon-sparkle">✦</span>
+                      <span className="ribbon-sparkle">âœ¦</span>
                       <span className="ribbon-text">STANDARD YOGA PASS</span>
                     </div>
 
@@ -444,7 +461,7 @@ export default function App() {
                     {/* Divider with Central Rose Diamond */}
                     <div className="card-ornament-divider">
                       <div className="divider-line"></div>
-                      <span className="divider-diamond">✦</span>
+                      <span className="divider-diamond">âœ¦</span>
                       <div className="divider-line"></div>
                     </div>
 
@@ -468,19 +485,19 @@ export default function App() {
                       <div className="pass-qr-container">
                         <div className="qr-frame">
                           <svg viewBox="0 0 80 80" className="qr-svg" role="img" aria-label="Digital pass verification QR code">
-                            <rect width="80" height="80" rx="6" fill="#F7F2E9" />
-                            <g fill="#242424">
+                            <rect width="80" height="80" rx="6" fill="#FFF9F5" />
+                            <g fill="#451126">
                               {/* Position Detection Squares */}
                               <path d="M7 7h22v22H7zm4 4v14h14V11zM51 7h22v22H51zm4 4v14h14V11zM7 51h22v22H7zm4 4v14h14V55z" />
-                              {/* Inner Center Points in Champagne Gold */}
-                              <rect x="14" y="14" width="8" height="8" rx="1" fill="#C6A66B" />
-                              <rect x="58" y="14" width="8" height="8" rx="1" fill="#C6A66B" />
-                              <rect x="14" y="58" width="8" height="8" rx="1" fill="#C6A66B" />
+                              {/* Inner Center Points */}
+                              <rect x="14" y="14" width="8" height="8" rx="1" fill="#6D1835" />
+                              <rect x="58" y="14" width="8" height="8" rx="1" fill="#6D1835" />
+                              <rect x="14" y="58" width="8" height="8" rx="1" fill="#6D1835" />
                               {/* Data Pattern */}
                               <path d="M36 7h8v5h-8zm0 10h8v8h-8zm0 16h6v6h-6zm8 4h8v6h-8zm-14 8h6v6h-6zm14 0h6v6h-6zm12-14h8v6h-8zm0 10h8v8h-8zm-22 14h8v6h-8zm12 0h8v6h-8zm-12 10h8v6h-8zm16-4h6v10h-6zm8-6h6v12h-6z" />
                             </g>
                           </svg>
-                          <div className="qr-micro-crest">✦</div>
+                          <div className="qr-micro-crest">âœ¦</div>
                         </div>
                         <span className="qr-caption">SCAN PASS</span>
                       </div>
@@ -494,7 +511,7 @@ export default function App() {
 
                   {/* Floating Micro-Widgets */}
                   <div className="floating-badge badge-top-right">
-                    <div className="badge-icon icon-gold">✦</div>
+                    <div className="badge-icon icon-gold">âœ¦</div>
                     <div className="badge-text">
                       <strong>AI Yoga Assistant</strong>
                       <p>Attendance &amp; session tracked</p>
@@ -502,10 +519,10 @@ export default function App() {
                   </div>
 
                   <div className="floating-badge badge-bottom-left">
-                    <div className="badge-icon icon-emerald">✓</div>
+                    <div className="badge-icon icon-emerald">âœ“</div>
                     <div className="badge-text">
                       <strong>Digital Pass Verified</strong>
-                      <p>Morning Vinyasa • Access Granted</p>
+                      <p>Morning Vinyasa â€¢ Access Granted</p>
                     </div>
                   </div>
                 </div>
@@ -525,7 +542,7 @@ export default function App() {
               </div>
               <div className="stat-divider-vertical"></div>
               <div className="stat-card">
-                <span className="stat-number">3.5×</span>
+                <span className="stat-number">3.5Ã—</span>
                 <span className="stat-label">Faster Member Check-ins</span>
                 <p className="stat-detail">Instant digital pass check-ins eliminating front-desk queues</p>
               </div>
@@ -614,9 +631,9 @@ export default function App() {
                   validity windows, and automated renewal workflows.
                 </p>
                 <ul className="feature-checklist">
-                  <li><span className="check-bullet">✦</span> Flexible Yoga Membership Plans</li>
-                  <li><span className="check-bullet">✦</span> Automated Validity &amp; Expiry Triggers</li>
-                  <li><span className="check-bullet">✦</span> One-Click Plan Upgrades &amp; Renewals</li>
+                  <li><span className="check-bullet">âœ¦</span> Flexible Yoga Membership Plans</li>
+                  <li><span className="check-bullet">âœ¦</span> Automated Validity &amp; Expiry Triggers</li>
+                  <li><span className="check-bullet">âœ¦</span> One-Click Plan Upgrades &amp; Renewals</li>
                 </ul>
               </article>
 
@@ -632,10 +649,23 @@ export default function App() {
                   attendance telemetry, renewal forecasting, and class capacity metrics.
                 </p>
                 <ul className="feature-checklist">
-                  <li><span className="check-bullet">✦</span> Predictive Renewal &amp; Retention Alerts</li>
-                  <li><span className="check-bullet">✦</span> Conversational Query Resolution</li>
-                  <li><span className="check-bullet">✦</span> Real-Time Class Attendance Insights</li>
+                  <li><span className="check-bullet">âœ¦</span> Predictive Renewal &amp; Retention Alerts</li>
+                  <li><span className="check-bullet">âœ¦</span> Conversational Query Resolution</li>
+                  <li><span className="check-bullet">âœ¦</span> Real-Time Class Attendance Insights</li>
                 </ul>
+                <button
+                  type="button"
+                  className="btn-outline btn-sm"
+                  onClick={() => {
+                    setCurrentView('ai')
+                    window.scrollTo({ top: 0, behavior: 'smooth' })
+                  }}
+                  style={{ marginTop: '18px', width: '100%', justifyContent: 'center' }}
+                >
+                  <span style={{ color: 'var(--rose)' }}>✦</span>
+                  <span>Launch AI Assistant Page</span>
+                  <span className="btn-arrow">→</span>
+                </button>
               </article>
 
               {/* Feature 3 */}
@@ -650,9 +680,9 @@ export default function App() {
                   wellness preferences, and class visit history with instant filtering.
                 </p>
                 <ul className="feature-checklist">
-                  <li><span className="check-bullet">✦</span> Centralized Practitioner Profiles</li>
-                  <li><span className="check-bullet">✦</span> Instant Tag &amp; Class History Search</li>
-                  <li><span className="check-bullet">✦</span> High-Standard Member Data Privacy</li>
+                  <li><span className="check-bullet">âœ¦</span> Centralized Practitioner Profiles</li>
+                  <li><span className="check-bullet">âœ¦</span> Instant Tag &amp; Class History Search</li>
+                  <li><span className="check-bullet">âœ¦</span> High-Standard Member Data Privacy</li>
                 </ul>
               </article>
 
@@ -668,9 +698,9 @@ export default function App() {
                   and upcoming renewal horizons via an intuitive, live dashboard.
                 </p>
                 <ul className="feature-checklist">
-                  <li><span className="check-bullet">✦</span> Sub-Second QR Optical Pass Scanning</li>
-                  <li><span className="check-bullet">✦</span> Automatic Session Balance Deductions</li>
-                  <li><span className="check-bullet">✦</span> Live Studio Class Attendance Feeds</li>
+                  <li><span className="check-bullet">âœ¦</span> Sub-Second QR Optical Pass Scanning</li>
+                  <li><span className="check-bullet">âœ¦</span> Automatic Session Balance Deductions</li>
+                  <li><span className="check-bullet">âœ¦</span> Live Studio Class Attendance Feeds</li>
                 </ul>
               </article>
             </div>
@@ -679,7 +709,7 @@ export default function App() {
             <div className="interactive-console-wrap">
               <div className="console-header">
                 <div className="console-title">
-                  <span className="console-icon">✦</span>
+                  <span className="console-icon">âœ¦</span>
                   <span>Interactive Yoga Studio Console</span>
                 </div>
                 <div className="console-tabs" role="tablist">
@@ -721,7 +751,7 @@ export default function App() {
                           class usage and remaining sessions on their digital pass.
                         </p>
                         <div className="console-code-badge">
-                          <code>RULE: Plan == &#39;Standard&#39; → 25 Yoga Sessions Included (30-Day Validity)</code>
+                          <code>RULE: Plan == &#39;Standard&#39; â†’ 25 Yoga Sessions Included (30-Day Validity)</code>
                         </div>
                       </div>
 
@@ -778,11 +808,26 @@ export default function App() {
                             &quot;Digital QR pass status&quot;
                           </button>
                         </div>
+                        <div style={{ marginTop: '20px' }}>
+                          <button
+                            type="button"
+                            className="btn-outline btn-sm"
+                            onClick={() => {
+                              setCurrentView('ai')
+                              window.scrollTo({ top: 0, behavior: 'smooth' })
+                            }}
+                            style={{ display: 'inline-flex', alignItems: 'center', gap: '8px' }}
+                          >
+                            <span style={{ color: 'var(--rose)' }}>✦</span>
+                            <span>Open Full AI Assistant Page</span>
+                            <span className="btn-arrow">→</span>
+                          </button>
+                        </div>
                       </div>
 
                       <div className="pane-widget chat-container">
                         <div className="chat-message-bubble">
-                          <div className="chat-avatar-crest">✦</div>
+                          <div className="chat-avatar-crest">âœ¦</div>
                           <div className="chat-message-text">
                             <span className="chat-author">MemberPass Intelligence:</span>
                             <p>{aiResponse}</p>
@@ -823,19 +868,19 @@ export default function App() {
                       <div className="pane-widget">
                         <div className="telemetry-feed">
                           <div className="feed-row">
-                            <span className="feed-status-check">✓</span>
+                            <span className="feed-status-check">âœ“</span>
                             <div className="feed-details">
                               <strong>Maya Lin (Standard Plan)</strong>
-                              <p>Verified for Morning Vinyasa Flow • 14s ago</p>
+                              <p>Verified for Morning Vinyasa Flow â€¢ 14s ago</p>
                             </div>
                             <span className="feed-badge-ok">VERIFIED</span>
                           </div>
 
                           <div className="feed-row">
-                            <span className="feed-status-check">✓</span>
+                            <span className="feed-status-check">âœ“</span>
                             <div className="feed-details">
                               <strong>Arun Kumar (Basic Plan)</strong>
-                              <p>Verified for Gentle Hatha Yoga • 2m ago</p>
+                              <p>Verified for Gentle Hatha Yoga â€¢ 2m ago</p>
                             </div>
                             <span className="feed-badge-ok">VERIFIED</span>
                           </div>
@@ -844,7 +889,7 @@ export default function App() {
                             <span className="feed-status-warn">!</span>
                             <div className="feed-details">
                               <strong>Priya Devi (Standard Plan)</strong>
-                              <p>2 classes remaining; pass expires in 3 days • Renewal notice queued</p>
+                              <p>2 classes remaining; pass expires in 3 days â€¢ Renewal notice queued</p>
                             </div>
                             <span className="feed-badge-warn">EXPIRING</span>
                           </div>
@@ -884,7 +929,7 @@ export default function App() {
 
             <div className="testimonials-grid">
               <div className="testimonial-card">
-                <div className="quote-mark">“</div>
+                <div className="quote-mark">â€œ</div>
                 <p className="testimonial-quote">
                   MemberPass brought seamless poise to our yoga studio check-ins.
                   Our students love having an elegant, contactless digital QR pass on their phones,
@@ -900,7 +945,7 @@ export default function App() {
               </div>
 
               <div className="testimonial-card">
-                <div className="quote-mark">“</div>
+                <div className="quote-mark">â€œ</div>
                 <p className="testimonial-quote">
                   The class utilization tracking and automated renewal reminders helped us increase student
                   retention by 35%. Our practitioners always know exactly how many sessions remain on their pass.
@@ -915,7 +960,7 @@ export default function App() {
               </div>
 
               <div className="testimonial-card">
-                <div className="quote-mark">“</div>
+                <div className="quote-mark">â€œ</div>
                 <p className="testimonial-quote">
                   The aesthetic refinement of MemberPass aligns impeccably with our wellness values.
                   Our students appreciate the calm, instant digital experience, and our teachers love the accurate attendance logs.
@@ -963,7 +1008,7 @@ export default function App() {
                 </div>
                 <h3 className="step-title">Choose Your Membership</h3>
                 <p className="step-desc">
-                  Select the membership tier that suits your practice—Basic (10 classes), Standard (25 classes),
+                  Select the membership tier that suits your practiceâ€”Basic (10 classes), Standard (25 classes),
                   or Premium (unlimited sessions).
                 </p>
               </div>
@@ -1028,7 +1073,7 @@ export default function App() {
                     <div className="meta-icon"><i className="fa-solid fa-clock"></i></div>
                     <div>
                       <span className="meta-caption">STUDIO HOURS</span>
-                      <span className="meta-static">Monday – Sunday: 06:00 – 21:00 IST</span>
+                      <span className="meta-static">Monday â€“ Sunday: 06:00 â€“ 21:00 IST</span>
                     </div>
                   </div>
                 </div>
@@ -1041,7 +1086,7 @@ export default function App() {
 
                   {contactSubmitted ? (
                     <div className="form-success-banner">
-                      <span className="success-icon">✦</span>
+                      <span className="success-icon">âœ¦</span>
                       <div>
                         <strong>Your Inquiry Has Been Received</strong>
                         <p>Our wellness coordinator will reach out to you within one business day.</p>
@@ -1068,9 +1113,9 @@ export default function App() {
                       <div className="form-group">
                         <label htmlFor="interest">Tier of Interest</label>
                         <select id="interest" defaultValue="Standard Yoga Plan">
-                          <option value="Basic Yoga Plan">Basic Yoga Pass (₹1,500 / 30 Days)</option>
-                          <option value="Standard Yoga Plan">Standard Yoga Pass (₹3,000 / 30 Days)</option>
-                          <option value="Premium Yoga Plan">Premium Yoga Pass (₹7,500 / 90 Days)</option>
+                          <option value="Basic Yoga Plan">Basic Yoga Pass (â‚¹1,500 / 30 Days)</option>
+                          <option value="Standard Yoga Plan">Standard Yoga Pass (â‚¹3,000 / 30 Days)</option>
+                          <option value="Premium Yoga Plan">Premium Yoga Pass (â‚¹7,500 / 90 Days)</option>
                           <option value="Corporate / Private Wellness">Corporate / Private Wellness Group</option>
                         </select>
                       </div>
@@ -1082,7 +1127,7 @@ export default function App() {
 
                       <button type="submit" className="btn-primary btn-block">
                         <span>Submit Inquiry</span>
-                        <span className="btn-arrow">→</span>
+                        <span className="btn-arrow">â†’</span>
                       </button>
                     </form>
                   )}
@@ -1092,7 +1137,6 @@ export default function App() {
           </section>
         </main>
       )}
-      </ErrorBoundary>
 
       {/* =========================================================================
           9. REFINED FOOTER
@@ -1104,7 +1148,7 @@ export default function App() {
               <a href="#home" className="brand-logo footer-logo">
                 <span className="crest-mark">
                   <span className="crest-monogram">M</span>
-                  <span className="crest-sparkle">✦</span>
+                  <span className="crest-sparkle">âœ¦</span>
                 </span>
                 <div className="brand-text">
                   <span className="brand-name">Member<span className="highlight-rose">Pass</span></span>
@@ -1129,6 +1173,19 @@ export default function App() {
                 <li><a href="#features">Curated Capabilities</a></li>
                 <li><a href="#plans">Membership Plans</a></li>
                 <li><a href="#workflow">How It Works</a></li>
+                <li>
+                  <a
+                    href="#ai-assistant"
+                    onClick={(e) => {
+                      e.preventDefault()
+                      setCurrentView('ai')
+                      window.scrollTo({ top: 0, behavior: 'smooth' })
+                    }}
+                    style={{ color: 'var(--gold-accent)', fontWeight: '600' }}
+                  >
+                    ✦ AI Yoga Assistant
+                  </a>
+                </li>
               </ul>
             </div>
 
@@ -1148,22 +1205,22 @@ export default function App() {
                 Certified sub-second optical QR check-in. Real-time class capacity management and encrypted member data protection.
               </p>
               <div className="footer-pill-badge">
-                <span>STUDIO GRADE ENCRYPTION • ISO 27001</span>
+                <span>STUDIO GRADE ENCRYPTION â€¢ ISO 27001</span>
               </div>
             </div>
           </div>
 
           <div className="footer-bottom-row">
             <p className="copyright-text">
-              © 2026 <strong>MemberPass</strong>. All rights reserved. Yoga &amp; Wellness Membership Platform.
+              Â© 2026 <strong>MemberPass</strong>. All rights reserved. Yoga &amp; Wellness Membership Platform.
             </p>
             <div className="footer-legal-links">
               <a href="#home">Confidentiality Policy</a>
-              <span className="dot-sep">•</span>
+              <span className="dot-sep">â€¢</span>
               <a href="#home">Terms of Membership</a>
-              <span className="dot-sep">•</span>
+              <span className="dot-sep">â€¢</span>
               <button onClick={scrollToTop} className="back-top-link">
-                Back to Top ↑
+                Back to Top â†‘
               </button>
             </div>
           </div>
@@ -1187,5 +1244,6 @@ export default function App() {
     </div>
   )
 }
+
 
 
