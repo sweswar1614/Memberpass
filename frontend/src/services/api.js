@@ -1,5 +1,5 @@
 
-const API_BASE = import.meta.env.VITE_API_URL || 'https://memberpass.onrender.com/api';
+const API_BASE = import.meta.env.VITE_API_URL || 'https://memberpass-uzxv.onrender.com/api';
 
 export const setAuthToken = (token) => {
   if (token) {
@@ -63,10 +63,14 @@ export const authApi = {
         headers: authHeaders(),
         body: JSON.stringify(userData)
       });
+
       return await res.json();
     } catch (err) {
       console.error('authApi.register error:', err);
-      return { success: false, message: 'Unable to connect to registration server' };
+      return {
+        success: false,
+        message: 'Unable to connect to registration server'
+      };
     }
   },
 
@@ -79,17 +83,24 @@ export const authApi = {
       const credentials =
         typeof emailOrCredentials === 'object' && emailOrCredentials !== null
           ? emailOrCredentials
-          : { email: emailOrCredentials, password: maybePassword };
+          : {
+            email: emailOrCredentials,
+            password: maybePassword
+          };
 
       const res = await fetch(`${API_BASE}/auth/login`, {
         method: 'POST',
         headers: authHeaders(),
         body: JSON.stringify(credentials)
       });
+
       return await res.json();
     } catch (err) {
       console.error('authApi.login error:', err);
-      return { success: false, message: 'Unable to connect to authentication server' };
+      return {
+        success: false,
+        message: 'Unable to connect to authentication server'
+      };
     }
   },
 
@@ -102,6 +113,7 @@ export const authApi = {
     } catch (e) {
       console.warn('Logout API call failed, continuing local clear', e);
     }
+
     clearAuth();
     return { success: true };
   }
@@ -114,7 +126,11 @@ export const planApi = {
       return await res.json();
     } catch (err) {
       console.error('planApi.getPlans error:', err);
-      return { success: false, message: 'Unable to fetch plans', plans: [] };
+      return {
+        success: false,
+        message: 'Unable to fetch plans',
+        plans: []
+      };
     }
   },
 
@@ -124,7 +140,10 @@ export const planApi = {
       return await res.json();
     } catch (err) {
       console.error('planApi.getPlanById error:', err);
-      return { success: false, message: 'Unable to fetch plan' };
+      return {
+        success: false,
+        message: 'Unable to fetch plan'
+      };
     }
   }
 };
@@ -135,10 +154,14 @@ export const memberApi = {
       const res = await fetch(`${API_BASE}/member/profile`, {
         headers: authHeaders()
       });
+
       return await res.json();
     } catch (err) {
       console.error('memberApi.getProfile error:', err);
-      return { success: false, message: 'Unable to load member profile' };
+      return {
+        success: false,
+        message: 'Unable to load member profile'
+      };
     }
   },
 
@@ -147,10 +170,14 @@ export const memberApi = {
       const res = await fetch(`${API_BASE}/member/pass`, {
         headers: authHeaders()
       });
+
       return await res.json();
     } catch (err) {
       console.error('memberApi.getPass error:', err);
-      return { success: false, message: 'Unable to retrieve digital pass' };
+      return {
+        success: false,
+        message: 'Unable to retrieve digital pass'
+      };
     }
   },
 
@@ -160,10 +187,15 @@ export const memberApi = {
         method: 'GET',
         headers: authHeaders()
       });
+
       return await res.json();
     } catch (err) {
       console.error('memberApi.getAttendanceHistory error:', err);
-      return { success: false, message: 'Unable to load attendance history', history: [] };
+      return {
+        success: false,
+        message: 'Unable to load attendance history',
+        history: []
+      };
     }
   },
 
@@ -195,10 +227,14 @@ export const paymentApi = {
         headers: authHeaders(),
         body: JSON.stringify({ planId, planName })
       });
+
       return await res.json();
     } catch (err) {
       console.error('paymentApi.createOrder error:', err);
-      return { success: false, message: 'Unable to create payment order' };
+      return {
+        success: false,
+        message: 'Unable to create payment order'
+      };
     }
   },
 
@@ -209,10 +245,14 @@ export const paymentApi = {
         headers: authHeaders(),
         body: JSON.stringify(paymentData)
       });
+
       return await res.json();
     } catch (err) {
       console.error('paymentApi.verifyPayment error:', err);
-      return { success: false, message: 'Unable to verify payment' };
+      return {
+        success: false,
+        message: 'Unable to verify payment'
+      };
     }
   },
 
@@ -221,10 +261,15 @@ export const paymentApi = {
       const res = await fetch(`${API_BASE}/payments/my-payments`, {
         headers: authHeaders()
       });
+
       return await res.json();
     } catch (err) {
       console.error('paymentApi.getMyPayments error:', err);
-      return { success: false, message: 'Unable to fetch payment history', payments: [] };
+      return {
+        success: false,
+        message: 'Unable to fetch payment history',
+        payments: []
+      };
     }
   }
 };
@@ -237,10 +282,14 @@ export const qrApi = {
         headers: authHeaders(),
         body: JSON.stringify({ passCode })
       });
+
       return await res.json();
     } catch (err) {
       console.error('qrApi.validate error:', err);
-      return { success: false, message: 'Pass validation failed' };
+      return {
+        success: false,
+        message: 'Pass validation failed'
+      };
     }
   },
 
@@ -251,10 +300,14 @@ export const qrApi = {
         headers: authHeaders(),
         body: JSON.stringify({ passCode, checkInId })
       });
+
       return await res.json();
     } catch (err) {
       console.error('qrApi.checkIn error:', err);
-      return { success: false, message: 'Check-in failed' };
+      return {
+        success: false,
+        message: 'Check-in failed'
+      };
     }
   },
 
@@ -264,10 +317,15 @@ export const qrApi = {
         method: 'GET',
         headers: authHeaders()
       });
+
       return await res.json();
     } catch (err) {
       console.error('qrApi.getAttendanceHistory error:', err);
-      return { success: false, message: 'Unable to load attendance history', history: [] };
+      return {
+        success: false,
+        message: 'Unable to load attendance history',
+        history: []
+      };
     }
   },
 
@@ -277,10 +335,15 @@ export const qrApi = {
         method: 'GET',
         headers: authHeaders()
       });
+
       return await res.json();
     } catch (err) {
       console.error('qrApi.getMyAttendanceHistory error:', err);
-      return { success: false, message: 'Unable to load personal attendance history', history: [] };
+      return {
+        success: false,
+        message: 'Unable to load personal attendance history',
+        history: []
+      };
     }
   }
 };
@@ -345,7 +408,6 @@ export const reminderApi = {
     }
   }
 };
-
 
 // M3 Task 11: AI Absentee Drafts
 export const absenteeApi = {
