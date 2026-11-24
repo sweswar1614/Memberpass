@@ -5,12 +5,6 @@ export default function QRPassModal({ isOpen, onClose, currentUser }) {
   const [passData, setPassData] = useState(null);
   const [loading, setLoading] = useState(true);
 
-  useEffect(() => {
-    if (isOpen) {
-      loadPass();
-    }
-  }, [isOpen]);
-
   const loadPass = async () => {
     try {
       setLoading(true);
@@ -24,6 +18,12 @@ export default function QRPassModal({ isOpen, onClose, currentUser }) {
       setLoading(false);
     }
   };
+
+  useEffect(() => {
+    if (isOpen) {
+      loadPass();
+    }
+  }, [isOpen]);
 
   if (!isOpen) return null;
 

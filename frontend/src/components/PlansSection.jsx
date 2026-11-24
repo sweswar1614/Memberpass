@@ -83,14 +83,10 @@ const YOGA_PLAN_EXTRAS = {
 
 export default function PlansSection({ currentUser, onRequireAuth, onPaymentSuccess }) {
   const [plans, setPlans] = useState(DEFAULT_PLANS);
-  const [loading, setLoading] = useState(false);
+  const [_loading, setLoading] = useState(false);
   const [selectedPlan, setSelectedPlan] = useState(null);
   const [processingPayment, setProcessingPayment] = useState(false);
   const [razorpayNotice, setRazorpayNotice] = useState(null);
-
-  useEffect(() => {
-    fetchPlans();
-  }, []);
 
   const fetchPlans = async () => {
     try {
@@ -110,6 +106,10 @@ export default function PlansSection({ currentUser, onRequireAuth, onPaymentSucc
       setLoading(false);
     }
   };
+
+  useEffect(() => {
+    fetchPlans();
+  }, []);
 
   const loadRazorpayScript = () => {
     return new Promise((resolve) => {
@@ -217,7 +217,7 @@ export default function PlansSection({ currentUser, onRequireAuth, onPaymentSucc
           contact: currentUser.phone || ''
         },
         theme: {
-          color: '#6D1835'
+          color: '#282A26'
         },
         modal: {
           ondismiss: () => {
@@ -281,7 +281,6 @@ export default function PlansSection({ currentUser, onRequireAuth, onPaymentSucc
       <div className="plans-triptych-grid">
         {plans.map((plan) => {
           const isStandard = plan.name === 'Standard';
-          const isPremium = plan.name === 'Premium';
 
           return (
             <div

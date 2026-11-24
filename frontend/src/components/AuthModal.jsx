@@ -160,7 +160,7 @@ export default function AuthModal({ isOpen, onClose, onSuccess, initialMode = 'l
                 name="name"
                 type="text"
                 required
-                placeholder="e.g. Lady Vivienne Montgomery"
+                placeholder="e.g. Maya Lin"
                 value={formData.name}
                 onChange={handleChange}
               />
