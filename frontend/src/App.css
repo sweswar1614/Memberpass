@@ -551,12 +551,247 @@
 }
 
 /* ==========================================================================
-   DIGITAL MEMBERSHIP CARD MOCKUP
+   DIGITAL MEMBERSHIP CARD MOCKUP — ZEN LUXE PRESENTATION
    ========================================================================= */
 .hero-card-col {
   display: flex;
   justify-content: center;
+  align-items: center;
   position: relative;
+}
+
+.zen-hero-card-stage {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  position: relative;
+}
+
+.zen-hero-pass-card {
+  width: 100%;
+  max-width: 380px;
+  background: linear-gradient(145deg, #282A26 0%, #1E211E 100%);
+  border: 1px solid rgba(214, 200, 174, 0.45);
+  border-radius: 20px;
+  padding: 26px 24px;
+  box-shadow: 0 16px 40px rgba(40, 42, 38, 0.12), 0 2px 6px rgba(0, 0, 0, 0.08);
+  color: #F4EFE6;
+  transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.35s ease, border-color 0.35s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.zen-hero-pass-card:hover {
+  transform: translateY(-4px);
+  border-color: rgba(214, 200, 174, 0.7);
+  box-shadow: 0 24px 54px rgba(40, 42, 38, 0.18), 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.zen-pass-header-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.zen-pass-brand {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.zen-pass-crest {
+  width: 32px;
+  height: 32px;
+  border-radius: 8px;
+  background: #1E211E;
+  border: 1px solid #B89B70;
+  color: #B89B70;
+  font-family: var(--font-crest);
+  font-size: 1rem;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.zen-pass-brand-text {
+  display: flex;
+  flex-direction: column;
+}
+
+.zen-pass-brand-name {
+  font-family: var(--font-serif);
+  font-size: 0.95rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  color: #F4EFE6;
+  line-height: 1.1;
+}
+
+.zen-pass-brand-sub {
+  font-size: 0.62rem;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  color: #B89B70;
+  text-transform: uppercase;
+  margin-top: 2px;
+}
+
+.zen-pass-status-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 4px 10px;
+  border-radius: 9999px;
+  background: rgba(137, 151, 131, 0.16);
+  border: 1px solid rgba(137, 151, 131, 0.4);
+  color: #899783;
+  font-size: 0.68rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+}
+
+.zen-status-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: #899783;
+  display: inline-block;
+}
+
+.zen-pass-identity {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin-bottom: 16px;
+}
+
+.zen-pass-avatar {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #353833 0%, #1E211E 100%);
+  border: 1.5px solid #D6C8AE;
+  color: #F4EFE6;
+  font-family: var(--font-serif);
+  font-size: 1.15rem;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.zen-pass-info {
+  display: flex;
+  flex-direction: column;
+}
+
+.zen-pass-name {
+  font-family: var(--font-serif);
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: #F4EFE6;
+  margin: 0;
+  line-height: 1.2;
+}
+
+.zen-pass-tier {
+  font-size: 0.8rem;
+  color: #B89B70;
+  margin: 2px 0 0 0;
+  font-weight: 500;
+}
+
+.zen-pass-id {
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  color: rgba(244, 239, 230, 0.6);
+  margin-top: 3px;
+  letter-spacing: 0.04em;
+}
+
+.zen-pass-divider {
+  width: 100%;
+  height: 1px;
+  background: rgba(214, 200, 174, 0.25);
+  margin: 14px 0 16px 0;
+}
+
+.zen-pass-meta-grid {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+}
+
+.zen-pass-specs {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.zen-spec-item {
+  display: flex;
+  flex-direction: column;
+}
+
+.zen-spec-label {
+  font-size: 0.62rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  color: rgba(214, 200, 174, 0.7);
+  text-transform: uppercase;
+}
+
+.zen-spec-value {
+  font-size: 0.86rem;
+  font-weight: 600;
+  color: #F4EFE6;
+}
+
+.zen-spec-active {
+  color: #899783;
+}
+
+.zen-pass-qr-frame {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+  padding: 8px;
+  background: #FAF7F2;
+  border: 1px solid #D6C8AE;
+  border-radius: 12px;
+  flex-shrink: 0;
+}
+
+.zen-pass-qr-frame .qr-svg {
+  width: 68px;
+  height: 68px;
+  display: block;
+}
+
+.zen-qr-caption {
+  font-size: 0.58rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  color: #282A26;
+  text-transform: uppercase;
+}
+
+.zen-pass-footer {
+  margin-top: 18px;
+  padding-top: 12px;
+  border-top: 1px solid rgba(214, 200, 174, 0.2);
+  text-align: center;
+  font-size: 0.65rem;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  color: #B89B70;
 }
 
 .card-stage {
@@ -2853,55 +3088,67 @@
 
 /* User pill in Navbar */
 .nav-user-pill {
-  display: flex;
+  display: inline-flex;
   align-items: center;
-  gap: 10px;
-  background: rgba(109, 24, 53, 0.06);
-  border: 1px solid var(--blush-border);
-  padding: 6px 14px 6px 6px;
-  border-radius: 30px;
+  gap: 8px;
+  background: #FAF7F2;
+  border: 1px solid #D6C8AE;
+  padding: 4px 14px 4px 5px;
+  height: 38px;
+  box-sizing: border-box;
+  border-radius: 9999px;
   cursor: pointer;
   transition: all 0.2s ease;
 }
 
 .nav-user-pill:hover {
-  background: rgba(109, 24, 53, 0.12);
+  background: #FFFFFF;
+  border-color: #899783;
 }
 
 .nav-avatar-mini {
   width: 28px;
   height: 28px;
   border-radius: 50%;
-  background: var(--burgundy);
-  color: #fff;
-  font-size: 0.75rem;
+  background: #282A26;
+  color: #F4EFE6;
+  font-size: 0.72rem;
   font-weight: 700;
   display: flex;
   align-items: center;
   justify-content: center;
+  flex-shrink: 0;
 }
 
 .nav-user-name {
   font-size: 0.85rem;
   font-weight: 600;
-  color: var(--wine);
+  color: #282A26;
+  white-space: nowrap;
 }
 
 .btn-signout {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
   background: transparent;
-  border: 1px solid var(--blush-border);
-  color: var(--text-muted);
-  border-radius: 20px;
-  padding: 6px 14px;
-  font-size: 0.8rem;
+  border: 1px solid #D6C8AE;
+  color: #5C5E58;
+  border-radius: 9999px;
+  padding: 8px 16px;
+  height: 38px;
+  box-sizing: border-box;
+  font-size: 0.82rem;
   font-weight: 600;
   cursor: pointer;
-  transition: all 0.2s;
+  transition: all 0.2s ease;
+  white-space: nowrap;
 }
 
 .btn-signout:hover {
-  border-color: var(--rose);
-  color: var(--burgundy);
+  border-color: #282A26;
+  color: #282A26;
+  background: #FFFFFF;
 }
 
 /* Razorpay Notice Box */
@@ -5776,5 +6023,10 @@
 
   .zen-metrics-grid {
     grid-template-columns: 1fr;
+  }
+
+  .zen-hero-pass-card {
+    max-width: 100%;
+    padding: 22px 18px;
   }
 }
