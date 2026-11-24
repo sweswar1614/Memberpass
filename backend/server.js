@@ -1,4 +1,3 @@
-
 const path = require("path");
 const express = require("express");
 const cors = require("cors");
@@ -6,7 +5,7 @@ const dotenv = require("dotenv");
 
 // Load environment variables
 dotenv.config({
-  path: path.join(__dirname, ".env")
+  path: path.join(__dirname, ".env"),
 });
 
 if (!process.env.MONGO_URI) {
@@ -16,22 +15,20 @@ if (!process.env.MONGO_URI) {
 const connectDB = require("./config/db");
 const startMembershipPauseJob = require("./jobs/membershipPauseJob");
 const {
-  startMembershipExpiryJob
+  startMembershipExpiryJob,
 } = require("./jobs/membershipExpiryJob");
+
 const app = express();
 
 // Allowed frontend origins
 const allowedOrigins = [
-  "https://member-pass.vercel.app",
-  "https://member-pass-psi.vercel.app",
-  "https://member-pass-7n36y4wbu-swethakumar837-1628s-projects.vercel.app",
-  "https://member-pass-6k25f0z49-swethakumar837-1628s-projects.vercel.app",
+  "https://memberpass-flax.vercel.app",
   "http://localhost:5173",
   "http://localhost:5174",
   "http://localhost:5175",
   "http://127.0.0.1:5173",
   "http://127.0.0.1:5174",
-  "http://127.0.0.1:5175"
+  "http://127.0.0.1:5175",
 ];
 
 // CORS configuration
@@ -54,15 +51,15 @@ const corsOptions = {
     "PUT",
     "PATCH",
     "DELETE",
-    "OPTIONS"
+    "OPTIONS",
   ],
 
   allowedHeaders: [
     "Content-Type",
-    "Authorization"
+    "Authorization",
   ],
 
-  credentials: true
+  credentials: true,
 };
 
 // Middleware
@@ -95,7 +92,7 @@ app.use("/api/reminders", require("./routes/reminderRoutes"));
 app.get("/", (req, res) => {
   res.status(200).json({
     success: true,
-    message: "Welcome to MemberPass API"
+    message: "Welcome to MemberPass API",
   });
 });
 
@@ -103,7 +100,7 @@ app.get("/", (req, res) => {
 app.get("/api/health", (req, res) => {
   res.status(200).json({
     success: true,
-    message: "MemberPass server is running"
+    message: "MemberPass server is running",
   });
 });
 
@@ -111,7 +108,7 @@ app.get("/api/health", (req, res) => {
 app.use((req, res) => {
   res.status(404).json({
     success: false,
-    message: "API route not found"
+    message: "API route not found",
   });
 });
 
@@ -122,13 +119,13 @@ app.use((err, req, res, next) => {
   if (err.message.startsWith("CORS blocked")) {
     return res.status(403).json({
       success: false,
-      message: "CORS policy blocked this request"
+      message: "CORS policy blocked this request",
     });
   }
 
   res.status(err.status || 500).json({
     success: false,
-    message: err.message || "Internal Server Error"
+    message: err.message || "Internal Server Error",
   });
 });
 
@@ -139,11 +136,13 @@ const startServer = async () => {
 
     startMembershipPauseJob();
     startMembershipExpiryJob();
+
     const PORT = process.env.PORT || 5000;
 
     app.listen(PORT, () => {
       console.log(`Server running on port ${PORT}`);
       console.log("CORS enabled for:");
+
       allowedOrigins.forEach((origin) => {
         console.log(`- ${origin}`);
       });
@@ -155,5 +154,3 @@ const startServer = async () => {
 };
 
 startServer();
-
-
