@@ -1,5 +1,18 @@
 
-const API_BASE = import.meta.env.VITE_API_URL || 'https://memberpass-uzxv.onrender.com/api';
+const sanitizeApiBase = (url) => {
+  let base = (url || 'https://memberpass-uzxv.onrender.com/api').trim();
+  // Strip trailing slashes
+  base = base.replace(/\/+$/, '');
+  // Strip accidental literal placeholder /VITE_API_URL if configured incorrectly in environment
+  base = base.replace(/\/VITE_API_URL$/i, '');
+  // Ensure the base ends with /api to match backend mount paths
+  if (!base.endsWith('/api')) {
+    base = `${base}/api`;
+  }
+  return base;
+};
+
+const API_BASE = sanitizeApiBase(import.meta.env.VITE_API_URL);
 
 export const setAuthToken = (token) => {
   if (token) {

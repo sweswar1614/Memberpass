@@ -80,6 +80,7 @@ app.use(express.urlencoded({ extended: true }));
 
 // API Routes
 app.use("/api/auth", require("./routes/authRoutes"));
+app.use("/auth", require("./routes/authRoutes"));
 app.use("/api/plans", require("./routes/planRoutes"));
 app.use("/api/payments", require("./routes/paymentRoutes"));
 app.use("/api/member", require("./routes/memberRoutes"));
@@ -98,6 +99,13 @@ app.get("/", (req, res) => {
 
 // Health Check Route
 app.get("/api/health", (req, res) => {
+  res.status(200).json({
+    success: true,
+    message: "MemberPass server is running",
+  });
+});
+
+app.get("/health", (req, res) => {
   res.status(200).json({
     success: true,
     message: "MemberPass server is running",
