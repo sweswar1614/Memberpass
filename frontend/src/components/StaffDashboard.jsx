@@ -626,7 +626,7 @@ export default function StaffDashboard({ currentUser, onLogout, onNavigateAI }) 
             <div
               key={draft.membershipId}
               className="attendance-history-item"
-              style={{ marginTop: '16px', padding: '16px', border: '1px solid #ddd', borderRadius: '12px' }}
+              style={{ marginTop: '16px', padding: '16px', border: '1px solid rgba(214, 200, 174, 0.18)', borderRadius: '12px', background: '#1E211E' }}
             >
               <div className="attendance-info-col">
                 <h3>{draft.name}</h3>
@@ -660,7 +660,7 @@ export default function StaffDashboard({ currentUser, onLogout, onNavigateAI }) 
                   readOnly
                   value={draft.message}
                   rows={5}
-                  style={{ width: '100%', marginTop: '8px', padding: '12px', borderRadius: '8px', resize: 'vertical' }}
+                  style={{ width: '100%', marginTop: '8px', padding: '12px', borderRadius: '8px', resize: 'vertical', background: '#242622', color: '#F4EFE6', border: '1px solid rgba(214, 200, 174, 0.22)', caretColor: '#B89B70' }}
                 />
                 <button
                   className="staff-secondary-btn"
