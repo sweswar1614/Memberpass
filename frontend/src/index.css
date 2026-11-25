@@ -188,3 +188,26 @@ button:focus-visible, a:focus-visible {
   outline: 2px solid var(--muted-gold);
   outline-offset: 3px;
 }
+
+/* Universal Form Control & Caret Styling in Dark Zen Luxe */
+input,
+textarea,
+select,
+[contenteditable="true"] {
+  color: #F4EFE6;
+  caret-color: #B89B70;
+}
+
+input::placeholder,
+textarea::placeholder {
+  color: #A8A090;
+  opacity: 1;
+}
+
+input:focus,
+textarea:focus,
+select:focus,
+[contenteditable="true"]:focus {
+  border-color: #B89B70;
+  outline: none;
+}
