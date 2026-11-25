@@ -1,75 +1,78 @@
 /* ==========================================================================
-   MemberPass — ZEN LUXE DESIGN SYSTEM
+   MemberPass — DARK ZEN LUXE DESIGN SYSTEM
    Palette:
-     Warm Cream:    #F4EFE6 (Primary background & serene canvas)
-     Soft Beige:    #D6C8AE (Dividers, soft borders & subtle card framing)
-     Muted Gold:    #B89B70 (Refined luxury details, crest accents & tier badges)
-     Deep Charcoal: #282A26 (Primary text, headings, premium buttons & actions)
-     Soft Black:    #1E211E (Button hover states & high-contrast dark surfaces)
-     Subtle Sage:   #899783 (Subtle secondary accents & status indicators)
+     Deep Charcoal: #282A26 (Card & surface background, dark luxury foundation)
+     Soft Black:    #1E211E (Primary canvas background & deep surfaces)
+     Muted Gold:    #B89B70 (Warm refined luxury accents, primary buttons, borders)
+     Soft Beige:    #D6C8AE (Dividers, soft borders & secondary text)
+     Warm Cream:    #F4EFE6 (Headings & high-contrast elegant typography)
+     Subtle Sage:   #899783 (Status indicators & organic botanical accents)
    ========================================================================== */
 
 :root {
-  /* Official Zen Luxe Color Palette */
-  --warm-cream: #F4EFE6;
-  --soft-beige: #D6C8AE;
-  --muted-gold: #B89B70;
+  /* Official Dark Zen Luxe Color Palette */
   --deep-charcoal: #282A26;
   --soft-black: #1E211E;
+  --muted-gold: #B89B70;
+  --soft-beige: #D6C8AE;
+  --warm-cream: #F4EFE6;
   --subtle-sage: #899783;
 
-  /* Semantic Design Tokens */
-  --bg-primary: #F4EFE6;
-  --bg-surface: #FFFFFF;
-  --bg-card: #FAF7F2;
-  --bg-dark: #282A26;
-  --bg-darker: #1E211E;
+  /* Semantic Design Tokens for Dark Zen Luxe */
+  --bg-primary: #1E211E;              /* Main canvas / page background */
+  --bg-surface: #242622;              /* Card & section surfaces */
+  --bg-card: #282A26;                 /* Elevated card background */
+  --bg-elevated: #2E302B;             /* Dropdowns, hover states, elevated modals */
+  --bg-dark: #1E211E;
+  --bg-darker: #141614;
 
-  --text-primary: #282A26;
-  --text-secondary: #5C5E58;
-  --text-muted: #7A7C75;
+  --text-primary: #F4EFE6;            /* Primary headings & text (Warm Cream) */
+  --text-secondary: #D6C8AE;          /* Secondary text (Soft Beige) */
+  --text-muted: #A8A090;              /* Muted body text / descriptions */
   --text-white: #FFFFFF;
   --text-light: #F4EFE6;
+  --text-dark: #1E211E;               /* Text on gold filled buttons */
 
-  --border-subtle: #D6C8AE;
-  --border-card: rgba(214, 200, 174, 0.65);
-  --border-dark: rgba(214, 200, 174, 0.25);
+  --border-subtle: rgba(214, 200, 174, 0.18);
+  --border-gold: rgba(184, 155, 112, 0.35);
+  --border-card: rgba(214, 200, 174, 0.16);
+  --border-dark: rgba(214, 200, 174, 0.22);
 
   --accent-gold: #B89B70;
   --accent-gold-light: #D4BE98;
   --accent-sage: #899783;
-  --accent-sage-soft: rgba(137, 151, 131, 0.15);
+  --accent-sage-soft: rgba(137, 151, 131, 0.18);
 
   /* Backward Compatible Semantic Bindings */
-  --ivory: #F4EFE6;
-  --warm-ivory: #F4EFE6;
+  --ivory: #1E211E;                   /* Primary dark background */
+  --warm-ivory: #1E211E;
   --sand: #D6C8AE;
   --soft-sand: #D6C8AE;
-  --blush: #D6C8AE;
-  --blush-subtle: #FAF7F2;
-  --blush-border: rgba(214, 200, 174, 0.6);
-  --burgundy: #282A26;           /* Primary button & action color: Deep Charcoal */
-  --burgundy-light: #353833;
-  --burgundy-hover: #1E211E;     /* Button hover: Soft Black */
-  --wine: #282A26;               /* Dark elements & editorial headings: Deep Charcoal */
-  --wine-dark: #1E211E;
-  --rose: #899783;               /* Status indicators & accents: Subtle Sage */
-  --rose-light: #A3B19E;
-  --rose-soft: rgba(137, 151, 131, 0.14);
+  --blush: #282A26;
+  --blush-subtle: #242622;            /* Subdued section backgrounds */
+  --blush-border: rgba(214, 200, 174, 0.18);
+  --burgundy: #B89B70;                /* Primary action color: Muted Gold */
+  --burgundy-light: #C5AA82;
+  --burgundy-hover: #D4BE98;          /* Button hover: Soft Gold */
+  --wine: #F4EFE6;                    /* Editorial headings: Warm Cream */
+  --wine-dark: #D6C8AE;
+  --rose: #B89B70;                    /* Accent color: Muted Gold */
+  --rose-light: #D4BE98;
+  --rose-soft: rgba(184, 155, 112, 0.16);
   --gold: #B89B70;
   --gold-accent: #B89B70;
   --gold-light: #D4BE98;
-  --text-main: #282A26;
-  --forest: #282A26;
-  --deep-forest: #282A26;
+  --text-main: #F4EFE6;               /* Main text color: Warm Cream */
+  --forest: #B89B70;
+  --deep-forest: #1E211E;
 
   /* Gradients */
-  --grad-burgundy-wine: linear-gradient(135deg, #282A26 0%, #1E211E 100%);
+  --grad-burgundy-wine: linear-gradient(135deg, #2E302B 0%, #1E211E 100%);
   --grad-wine-card: linear-gradient(145deg, #282A26 0%, #1E211E 100%);
-  --grad-rose-button: linear-gradient(135deg, #282A26 0%, #1E211E 100%);
-  --grad-blush-soft: linear-gradient(180deg, #F4EFE6 0%, #FAF7F2 100%);
+  --grad-rose-button: linear-gradient(135deg, #C5AA82 0%, #B89B70 100%);
+  --grad-blush-soft: linear-gradient(180deg, #242622 0%, #1E211E 100%);
   --grad-gold-metallic: linear-gradient(135deg, #D4BE98 0%, #B89B70 50%, #9C7F55 100%);
-  --grad-sage-soft: linear-gradient(135deg, rgba(137, 151, 131, 0.15) 0%, rgba(214, 200, 174, 0.15) 100%);
+  --grad-sage-soft: linear-gradient(135deg, rgba(137, 151, 131, 0.18) 0%, rgba(184, 155, 112, 0.18) 100%);
 
   /* Typography */
   --font-serif: 'Playfair Display', Georgia, serif;
@@ -77,12 +80,12 @@
   --font-crest: 'Cinzel', serif;
   --font-mono: 'JetBrains Mono', monospace;
 
-  /* Shadows & Radius */
-  --shadow-sm: 0 2px 8px rgba(40, 42, 38, 0.04);
-  --shadow-md: 0 8px 24px rgba(40, 42, 38, 0.07);
-  --shadow-lg: 0 16px 36px rgba(40, 42, 38, 0.09);
-  --shadow-card: 0 20px 48px rgba(40, 42, 38, 0.14);
-  --shadow-button: 0 6px 18px rgba(52, 68, 58, 0.24);
+  /* Shadows & Radius for Dark Theme */
+  --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.25);
+  --shadow-md: 0 8px 24px rgba(0, 0, 0, 0.35);
+  --shadow-lg: 0 16px 36px rgba(0, 0, 0, 0.45);
+  --shadow-card: 0 20px 48px rgba(0, 0, 0, 0.5);
+  --shadow-button: 0 4px 18px rgba(184, 155, 112, 0.25);
 
   --radius-xs: 4px;
   --radius-sm: 8px;
@@ -109,8 +112,8 @@ html {
   scroll-behavior: smooth;
   scroll-padding-top: 86px;
   font-size: 16px;
-  background-color: var(--ivory);
-  color: var(--text-main);
+  background-color: var(--bg-primary);
+  color: var(--text-primary);
 }
 
 body {
@@ -124,27 +127,27 @@ body {
   font-family: var(--font-sans);
   font-size: 1rem;
   line-height: 1.65;
-  background-color: var(--ivory);
-  color: var(--text-main);
+  background-color: var(--bg-primary);
+  color: var(--text-primary);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-rendering: optimizeLegibility;
 }
 
-/* Custom Scrollbar in Forest & Sand */
+/* Custom Scrollbar in Dark Zen Luxe */
 ::-webkit-scrollbar {
   width: 9px;
 }
 ::-webkit-scrollbar-track {
-  background: var(--ivory);
+  background: var(--bg-primary);
 }
 ::-webkit-scrollbar-thumb {
-  background: var(--sand);
+  background: rgba(184, 155, 112, 0.4);
   border-radius: var(--radius-full);
-  border: 2px solid var(--ivory);
+  border: 2px solid var(--bg-primary);
 }
 ::-webkit-scrollbar-thumb:hover {
-  background: var(--sage);
+  background: var(--muted-gold);
 }
 
 #root {
@@ -157,7 +160,7 @@ body {
 /* Typography Defaults */
 h1, h2, h3, h4, h5, h6 {
   font-family: var(--font-serif);
-  color: var(--wine);
+  color: var(--warm-cream);
   font-weight: 600;
   letter-spacing: -0.015em;
   line-height: 1.25;
@@ -182,6 +185,6 @@ button {
 }
 
 button:focus-visible, a:focus-visible {
-  outline: 2px solid var(--sage);
+  outline: 2px solid var(--muted-gold);
   outline-offset: 3px;
 }

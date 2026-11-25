@@ -28,7 +28,7 @@ export default function App() {
     { id: 'qr', label: 'My Pass / QR', icon: 'fa-solid fa-qrcode' },
     { id: 'payments', label: 'Payments', icon: 'fa-regular fa-credit-card' },
     { id: 'attendance', label: 'Attendance', icon: 'fa-regular fa-calendar-check' },
-    { id: 'ai', label: 'AI Assistant', icon: 'fa-solid fa-sparkles' },
+    { id: 'ai', label: 'AI Assistant', icon: 'fa-solid fa-wand-magic-sparkles' },
     { id: 'profile', label: 'Profile', icon: 'fa-regular fa-circle-user' },
   ]
 
@@ -183,8 +183,9 @@ export default function App() {
                     setMobileMenuOpen(false)
                     window.scrollTo({ top: 0, behavior: 'smooth' })
                   }}
+                  title="Open Dedicated AI Assistant Page"
                 >
-                  <i className="fa-solid fa-sparkles nav-icon-prefix"></i>
+                  <span className="nav-ai-sparkle">✦</span>
                   <span>AI Assistant</span>
                 </button>
               </>
