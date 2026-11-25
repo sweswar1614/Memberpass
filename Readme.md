@@ -2,11 +2,11 @@
 
 **A smarter way to manage memberships.**
 
-## 🌐 Live Demo
+## 🌐 Live Demo & Project Resources
 
-- **Live Website:** https://member-pass.vercel.app/
-- **Project Drive:** https://drive.google.com/file/d/11nW79ZUdcOa7IDWZXaMWA7gHmg-vu8A4/view?usp=sharing
-- **AI Assistant Demo:** https://drive.google.com/file/d/1fE0dK_WYZGUPuKz4V554H17JqjZujUlv/view?usp=sharing
+- **Live Website:** https://memberpass-flax.vercel.app/
+- **Project Drive:** https://drive.google.com/file/d/1VmwohU4dBHJXu0cL5B6wm8xF0GjOByJ4/view?usp=sharing
+- **AI Assistant Demo:** https://drive.google.com/file/d/1BzkJY-pbQw2qtrqA1gGiHl49zSY4MbWJ/view?usp=sharing
 
 ---
 
@@ -51,7 +51,7 @@ MemberPass aims to provide a smoother experience for both members and administra
 - **Authentication:** JWT-based authentication
 - **Payment Integration:** Razorpay
 - **AI Integration:** AI service integration
-- **Deployment:** Vercel
+- **Deployment:** Vercel & Render
 - **Version Control:** Git & GitHub
 
 ## 🚀 Getting Started
@@ -59,13 +59,13 @@ MemberPass aims to provide a smoother experience for both members and administra
 ### 1. Clone the Repository
 
 ```bash
-git clone https://github.com/sweetha1416/MemberPass.git
+git clone https://github.com/sweswar1614/Memberpass.git
 ```
 
 ### 2. Navigate to the Project
 
 ```bash
-cd MemberPass
+cd Memberpass
 ```
 
 ### 3. Install Frontend Dependencies
@@ -86,9 +86,15 @@ npm install
 
 ### 5. Configure Environment Variables
 
-Configure the necessary environment variables in the backend `.env` file, including database connection, authentication and payment configuration.
+Configure the required environment variables in the backend `.env` file, including:
 
-Do not commit secrets or API keys to GitHub.
+- MongoDB connection string
+- JWT authentication secret
+- Razorpay API credentials
+- AI service API configuration
+- Other required backend configuration
+
+Do not commit secrets, API keys or environment credentials to GitHub.
 
 ### 6. Run the Backend
 
@@ -108,8 +114,10 @@ Open the local URL displayed in your frontend terminal.
 
 ## 🔗 Project Links
 
-- **Live Website:** https://member-pass.vercel.app/
-- **GitHub Repository:** https://github.com/sweetha1416/MemberPass
+- **Live Website:** https://memberpass-flax.vercel.app/
+- **Project Drive:** https://drive.google.com/file/d/1VmwohU4dBHJXu0cL5B6wm8x0FGjOByJ4/view?usp=sharing
+- **AI Assistant Demo:** https://drive.google.com/file/d/1BzkJY-pbQw2qtrqA1gGiHl49zSY4MbWJ/view?usp=sharing
+- **GitHub Repository:** https://github.com/sweswar1614/Memberpass
 
 ## 🔮 Future Enhancements
 
