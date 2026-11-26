@@ -578,16 +578,16 @@ export default function StaffDashboard({ currentUser, onLogout, onNavigateAI }) 
           </p>
 
           <div style={{ display: 'flex', gap: '12px', flexWrap: 'wrap', alignItems: 'center', marginBottom: '16px' }}>
-            <label htmlFor="absentee-days">Inactive period:</label>
+            <label htmlFor="absentee-days" className="absentee-select-label">Inactive period:</label>
             <select
               id="absentee-days"
+              className="staff-select-input"
               value={absenteeDays}
               onChange={(event) => {
                 const days = Number(event.target.value);
                 setAbsenteeDays(days);
                 loadAbsenteeDrafts(days);
               }}
-              style={{ padding: '10px', borderRadius: '8px' }}
             >
               <option value={14}>14 days</option>
               <option value={30}>30 days</option>

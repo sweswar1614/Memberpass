@@ -198,6 +198,15 @@ select,
   caret-color: #B89B70;
 }
 
+select {
+  background-color: #1E211E;
+}
+
+select option {
+  background-color: #1E211E;
+  color: #F4EFE6;
+}
+
 input::placeholder,
 textarea::placeholder {
   color: #A8A090;

@@ -4341,6 +4341,46 @@
   flex-shrink: 0;
 }
 
+/* Staff Dashboard AI Absentee Drafts Controls */
+.absentee-drafts-card label[for="absentee-days"],
+.absentee-select-label {
+  color: #D6C8AE;
+  font-weight: 600;
+  font-size: 0.9rem;
+}
+
+#absentee-days,
+.staff-select-input {
+  box-sizing: border-box;
+  padding: 10px 16px;
+  background-color: #1E211E;
+  color: #F4EFE6;
+  border: 1px solid rgba(214, 200, 174, 0.25);
+  border-radius: 10px;
+  font-family: inherit;
+  font-size: 0.95rem;
+  outline: none;
+  cursor: pointer;
+  transition: border-color var(--transition-fast, 0.2s ease), box-shadow var(--transition-fast, 0.2s ease);
+}
+
+#absentee-days:hover,
+.staff-select-input:hover {
+  border-color: rgba(184, 155, 112, 0.6);
+}
+
+#absentee-days:focus,
+.staff-select-input:focus {
+  border-color: #B89B70;
+  box-shadow: 0 0 0 3px rgba(184, 155, 112, 0.18);
+}
+
+#absentee-days option,
+.staff-select-input option {
+  background-color: #1E211E;
+  color: #F4EFE6;
+}
+
 @media (max-width: 1024px) {
   .staff-content {
     grid-template-columns: 1fr;
