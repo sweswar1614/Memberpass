@@ -657,8 +657,15 @@ export default function StaffDashboard({ currentUser, onLogout, onNavigateAI }) 
               <div style={{ width: '100%', marginTop: '12px' }}>
                 <label>Message draft (staff review):</label>
                 <textarea
-                  readOnly
                   value={draft.message}
+                  onChange={(e) => {
+                    const newMsg = e.target.value;
+                    setAbsenteeDrafts((prev) =>
+                      prev.map((d) =>
+                        d.membershipId === draft.membershipId ? { ...d, message: newMsg } : d
+                      )
+                    );
+                  }}
                   rows={5}
                   style={{ width: '100%', marginTop: '8px', padding: '12px', borderRadius: '8px', resize: 'vertical', background: '#242622', color: '#F4EFE6', border: '1px solid rgba(214, 200, 174, 0.22)', caretColor: '#B89B70' }}
                 />

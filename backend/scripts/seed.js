@@ -128,6 +128,9 @@ const seedDatabase = async () => {
       // Calculate dates
       const duration = plan.durationDays;
       let startDate, endDate;
+      let pauseStartDate = null;
+      let pauseEndDate = null;
+      let pauseHistory = [];
 
       if (item.status === "ended") {
         startDate = new Date(now.getTime() - (duration + 15) * 86400000);
@@ -135,6 +138,16 @@ const seedDatabase = async () => {
       } else if (item.status === "paused") {
         startDate = new Date(now.getTime() - 10 * 86400000);
         endDate = new Date(now.getTime() + (duration - 10) * 86400000);
+        pauseStartDate = new Date(now.getTime() - 2 * 86400000);
+        pauseEndDate = new Date(now.getTime() + 5 * 86400000);
+        pauseHistory = [
+          {
+            startDate: pauseStartDate,
+            endDate: pauseEndDate,
+            days: 7,
+            requestedAt: pauseStartDate
+          }
+        ];
       } else {
         // active
         startDate = new Date(now.getTime() - 5 * 86400000);
@@ -167,7 +180,10 @@ const seedDatabase = async () => {
           startDate,
           endDate,
           classesUsed: item.classesUsed,
-          payment: payment._id
+          payment: payment._id,
+          pauseStartDate,
+          pauseEndDate,
+          pauseHistory
         });
       } else {
         membership.plan = plan._id;
@@ -176,6 +192,9 @@ const seedDatabase = async () => {
         membership.endDate = endDate;
         membership.classesUsed = item.classesUsed;
         membership.payment = payment._id;
+        membership.pauseStartDate = pauseStartDate;
+        membership.pauseEndDate = pauseEndDate;
+        membership.pauseHistory = pauseHistory;
         await membership.save();
       }
 

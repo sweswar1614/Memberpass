@@ -57,14 +57,15 @@ const getAbsenteeDrafts = async (req, res) => {
         : null;
 
       const memberName = membership.user.name || "Member";
+      const firstName = memberName.trim().split(/\s+/)[0];
       const planName = membership.plan?.name || "Membership";
 
       let message;
 
       if (!lastVisit) {
-        message = `Hi ${memberName}, we noticed you haven't visited our centre yet after joining your ${planName} membership. We'd love to help you get started with your fitness journey. Let us know if you need any assistance scheduling your first session. We look forward to seeing you!`;
+        message = `Hi ${firstName}, we noticed you haven't visited our sanctuary yet after starting your ${planName} membership. We'd love to help you get started with your yoga and wellness journey. Let us know if you need any assistance scheduling your first session. We look forward to seeing you on the mat!`;
       } else {
-        message = `Hi ${memberName}, we hope you're doing well! It's been ${inactiveDays} days since your last visit to our centre. Your ${planName} membership is still active, and we'd love to see you back. A little consistency can make a big difference. Let us know if you'd like help planning your next session.`;
+        message = `Hi ${firstName}, we missed seeing you at the studio! It has been ${inactiveDays} days since your last visit. Your ${planName} membership is active, and we'd love to welcome you back on the mat whenever you are ready. Let us know if you'd like help scheduling your next session.`;
       }
 
       absenteeDrafts.push({

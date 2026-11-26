@@ -115,7 +115,7 @@ Open the local URL displayed in your frontend terminal.
 ## 🔗 Project Links
 
 - **Live Website:** https://memberpass-flax.vercel.app/
-- **Project Drive:** https://drive.google.com/file/d/1VmwohU4dBHJXu0cL5B6wm8x0FGjOByJ4/view?usp=sharing
+- **Project Drive:** https://drive.google.com/file/d/1VmwohU4dBHJXu0cL5B6wm8xF0GjOByJ4/view?usp=sharing
 - **AI Assistant Demo:** https://drive.google.com/file/d/1BzkJY-pbQw2qtrqA1gGiHl49zSY4MbWJ/view?usp=sharing
 - **GitHub Repository:** https://github.com/sweswar1614/Memberpass
 
