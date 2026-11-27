@@ -3128,26 +3128,30 @@
 .demo-buttons {
   display: flex;
   flex-wrap: wrap;
-  gap: 6px;
+  gap: 8px;
   justify-content: center;
-  margin-bottom: 6px;
+  margin-bottom: 8px;
 }
 
 .demo-pill {
-  border: 1px solid var(--rose);
-  background: rgba(168, 61, 91, 0.06);
-  color: var(--burgundy);
+  border: 1px solid rgba(184, 155, 112, 0.35);
+  background: rgba(184, 155, 112, 0.08);
+  color: #F4EFE6;
   border-radius: 14px;
-  padding: 4px 10px;
+  padding: 5px 11px;
   font-size: 0.72rem;
-  font-weight: 600;
+  font-weight: 500;
   cursor: pointer;
   transition: all 0.2s ease;
+  white-space: nowrap;
 }
 
-.demo-pill:hover {
-  background: var(--burgundy);
-  color: #fff;
+.demo-pill:hover,
+.demo-pill:focus-visible {
+  background: #B89B70;
+  color: #1E211E;
+  border-color: #B89B70;
+  outline: none;
 }
 
 .demo-hint {
