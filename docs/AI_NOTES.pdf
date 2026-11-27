@@ -1,0 +1,281 @@
+%PDF-1.4
+%‚„œ”
+1 0 obj
+<< /Type /Catalog /Pages 2 0 R >>
+endobj
+2 0 obj
+<< /Type /Pages /Kids [7 0 R 9 0 R] /Count 2 >>
+endobj
+3 0 obj
+<< /Type /Font /Subtype /Type1 /BaseFont /Helvetica /Encoding /WinAnsiEncoding >>
+endobj
+4 0 obj
+<< /Type /Font /Subtype /Type1 /BaseFont /Helvetica-Bold /Encoding /WinAnsiEncoding >>
+endobj
+5 0 obj
+<< /Type /Font /Subtype /Type1 /BaseFont /Helvetica-Oblique /Encoding /WinAnsiEncoding >>
+endobj
+6 0 obj
+<< /Type /Font /Subtype /Type1 /BaseFont /Courier /Encoding /WinAnsiEncoding >>
+endobj
+7 0 obj
+<< /Type /Page /Parent 2 0 R /MediaBox [0 0 595.28 841.89] /Resources << /Font << /F1 3 0 R /F2 4 0 R /F3 5 0 R /F4 6 0 R >> >> /Contents 8 0 R >>
+endobj
+8 0 obj
+<< /Length 7905 >>
+stream
+0.157 0.165 0.149 rg
+45.00 711.89 505.28 75.00 re f
+0.722 0.608 0.439 rg
+45.00 786.89 505.28 4.00 re f
+0.957 0.937 0.902 rg
+BT /F2 13.5 Tf 57.00 767.89 Td (MemberPass - AI Usage & Quality Verification Notes) Tj ET
+0.839 0.784 0.682 rg
+BT /F1 8.5 Tf 57.00 753.89 Td (Technical Record of AI Utilization, Real Defect Analysis, and Defensive Resolutions) Tj ET
+0.722 0.608 0.439 RG
+0.5 w
+57.00 745.89 m 538.28 745.89 l S
+0.722 0.608 0.439 rg
+BT /F2 7.5 Tf 57.00 733.89 Td (DEVELOPER: ) Tj ET
+0.957 0.937 0.902 rg
+BT /F1 7.5 Tf 107.50 733.89 Td (Eswaraprasadh A) Tj ET
+0.722 0.608 0.439 rg
+BT /F2 7.5 Tf 307.64 733.89 Td (PROGRAM: ) Tj ET
+0.957 0.937 0.902 rg
+BT /F1 7.5 Tf 349.14 733.89 Td (Vizdale Full-Stack) Tj ET
+0.722 0.608 0.439 rg
+BT /F2 7.5 Tf 57.00 721.89 Td (PROJECT: ) Tj ET
+0.957 0.937 0.902 rg
+BT /F1 7.5 Tf 98.50 721.89 Td (MemberPass) Tj ET
+0.722 0.608 0.439 rg
+BT /F2 7.5 Tf 307.64 721.89 Td (DATE: ) Tj ET
+0.957 0.937 0.902 rg
+BT /F1 7.5 Tf 335.64 721.89 Td (Nov 27, 2026) Tj ET
+0.722 0.608 0.439 rg
+45.00 687.89 505.28 22.00 re f
+0.118 0.129 0.118 rg
+BT /F2 11 Tf 53.00 694.89 Td (1. EXECUTIVE OVERVIEW) Tj ET
+0.157 0.165 0.149 rg
+BT /F1 9 Tf 45.00 667.89 Td (MemberPass is an enterprise-grade digital membership management platform built with the MERN stack) Tj ET
+BT /F1 9 Tf 45.00 655.39 Td (\(MongoDB, Express.js, React/Vite, Node.js\) and styled using a refined Dark Zen Luxe aesthetic. Throughout) Tj ET
+BT /F1 9 Tf 45.00 642.89 Td (the development of Milestones 1, 2, and 3, AI tools were leveraged as an engineering copilot to accelerate) Tj ET
+BT /F1 9 Tf 45.00 630.39 Td (component scaffolding, formulate edge-case test assertions, and assist in theme palette standardization.) Tj ET
+BT /F1 9 Tf 45.00 617.89 Td (This document provides a transparent, verifiable record of how AI was applied, details a real confirmed) Tj ET
+BT /F1 9 Tf 45.00 605.39 Td (defect introduced by AI in production routing, and explains the independent verification and defensive) Tj ET
+BT /F1 9 Tf 45.00 592.89 Td (architectural fixes applied to ensure production readiness.) Tj ET
+0.722 0.608 0.439 rg
+45.00 565.39 505.28 22.00 re f
+0.118 0.129 0.118 rg
+BT /F2 11 Tf 53.00 572.39 Td (2. HOW AI WAS USED DURING DEVELOPMENT) Tj ET
+0.157 0.165 0.149 rg
+BT /F1 9 Tf 45.00 545.39 Td (AI assistance was utilized across four primary development areas under developer supervision:) Tj ET
+0.722 0.608 0.439 rg
+BT /F2 10 Tf 49.00 529.89 Td ( ) Tj ET
+0.157 0.165 0.149 rg
+BT /F2 8.5 Tf 59.00 529.89 Td (MERN Architecture Scaffolding: ) Tj ET
+0.216 0.227 0.212 rg
+BT /F1 8.5 Tf 195.60 529.89 Td (Assisted in drafting initial Mongoose schemas \(User, Membership, Attendance,) Tj ET
+BT /F1 8.5 Tf 59.00 517.89 Td (PaymentOrder\) and establishing standard RESTful Express controller and routing boilerplate.) Tj ET
+0.722 0.608 0.439 rg
+BT /F2 10 Tf 49.00 503.89 Td ( ) Tj ET
+0.157 0.165 0.149 rg
+BT /F2 8.5 Tf 59.00 503.89 Td (Comprehensive Test Suite Formulation: ) Tj ET
+0.216 0.227 0.212 rg
+BT /F1 8.5 Tf 226.54 503.89 Td (Accelerated the authoring of 103 integration tests in) Tj ET
+BT /F1 8.5 Tf 59.00 491.89 Td (backend/scripts/test-comprehensive-suite.js, covering HMAC-SHA256 Razorpay payment verification, cryptographic) Tj ET
+BT /F1 8.5 Tf 59.00 479.89 Td (QR pass tokens, one-per-day check-in, tier class usage quotas, and membership pause logic.) Tj ET
+0.722 0.608 0.439 rg
+BT /F2 10 Tf 49.00 465.89 Td ( ) Tj ET
+0.157 0.165 0.149 rg
+BT /F2 8.5 Tf 59.00 465.89 Td (Dark Zen Luxe Theme Adaptation: ) Tj ET
+0.216 0.227 0.212 rg
+BT /F1 8.5 Tf 200.02 465.89 Td (Assisted in transitioning default CSS styles to the luxury wellness palette) Tj ET
+BT /F1 8.5 Tf 59.00 453.89 Td (tokens \(#282A26 charcoal, #1E211E soft black, #B89B70 muted gold, #F4EFE6 warm cream, #D6C8AE soft beige\).) Tj ET
+0.722 0.608 0.439 rg
+BT /F2 10 Tf 49.00 439.89 Td ( ) Tj ET
+0.157 0.165 0.149 rg
+BT /F2 8.5 Tf 59.00 439.89 Td (Defensive Utilities & Edge Cases: ) Tj ET
+0.216 0.227 0.212 rg
+BT /F1 8.5 Tf 208.86 439.89 Td (Assisted with regex pattern construction, date-fns duration math for) Tj ET
+BT /F1 8.5 Tf 59.00 427.89 Td (membership pause extensions, and defensive error-handling wrappers across asynchronous Express endpoints.) Tj ET
+0.722 0.608 0.439 rg
+45.00 401.89 505.28 22.00 re f
+0.118 0.129 0.118 rg
+BT /F2 11 Tf 53.00 408.89 Td (3. SPECIFIC CONFIRMED AI MISTAKE \(PRODUCTION ROUTING BUG\)) Tj ET
+0.157 0.165 0.149 rg
+BT /F1 9 Tf 45.00 381.89 Td (During deployment preparation and environment variable configuration for the cloud environment, an AI model) Tj ET
+BT /F1 9 Tf 45.00 369.39 Td (introduced a severe configuration error in the frontend environment files.) Tj ET
+0.996 0.949 0.949 rg
+0.937 0.267 0.267 RG
+0.75 w
+45.00 279.89 505.28 82.00 re B
+0.157 0.165 0.149 rg
+BT /F2 8.5 Tf 55.00 351.89 Td (CONFIRMED DEFECT: Erroneous Production API Base URL & Name Extraction Bug) Tj ET
+0.235 0.243 0.227 rg
+BT /F1 7.8 Tf 55.00 339.89 Td (Defect 1 \(Production 404\): In frontend/.env and frontend/.env.production, the AI generated:) Tj ET
+BT /F1 7.8 Tf 55.00 328.39 Td (  VITE_API_URL=https://memberpass-uzxv.onrender.com/VITE_API_URL) Tj ET
+BT /F1 7.8 Tf 55.00 316.89 Td (  \(Erroneously appending the literal variable name rather than the endpoint prefix /api\).) Tj ET
+BT /F1 7.8 Tf 55.00 305.39 Td (Defect 2 \(Tone Mismatch\): In backend/controllers/absenteeController.js, the AI generated:) Tj ET
+BT /F1 7.8 Tf 55.00 293.89 Td (  "Dear " + member.user.name \(e.g. "Dear Eswaraprasadh A,"\) instead of the friendly first name.) Tj ET
+0.157 0.165 0.149 rg
+BT /F1 9 Tf 45.00 267.89 Td (Production Impact: When users loaded the deployed Vercel frontend \(https://memberpass-flax.vercel.app/\) and) Tj ET
+BT /F1 9 Tf 45.00 255.39 Td (attempted to sign in or register, the browser issued authentication requests to:) Tj ET
+0.118 0.129 0.118 rg
+45.00 204.89 505.28 43.00 re f
+0.722 0.608 0.439 rg
+45.00 204.89 3.00 43.00 re f
+0.839 0.784 0.682 rg
+BT /F4 7.5 Tf 55.00 236.89 Td (POST https://memberpass-uzxv.onrender.com/VITE_API_URL/auth/login) Tj ET
+BT /F4 7.5 Tf 55.00 225.89 Td (HTTP/1.1 404 Not Found) Tj ET
+BT /F4 7.5 Tf 55.00 214.89 Td (Response payload: {"error": "API route not found"}) Tj ET
+0.157 0.165 0.149 rg
+BT /F1 9 Tf 45.00 192.89 Td (Because the Express backend only mounted routes at /api/auth, requests targeting /VITE_API_URL bypassed the) Tj ET
+BT /F1 9 Tf 45.00 180.39 Td (router and fell through to the catch-all wildcard handler. The user received an alarming "API route not) Tj ET
+BT /F1 9 Tf 45.00 167.89 Td (found" banner on an otherwise functional login UI.) Tj ET
+0.722 0.608 0.439 rg
+45.00 140.39 505.28 22.00 re f
+0.118 0.129 0.118 rg
+BT /F2 11 Tf 53.00 147.39 Td (4. INDEPENDENT DETECTION & VERIFICATION METHOD) Tj ET
+0.157 0.165 0.149 rg
+BT /F1 9 Tf 45.00 120.39 Td (Rather than treating the issue as an infrastructure outage, I performed an independent technical) Tj ET
+BT /F1 9 Tf 45.00 107.89 Td (investigation:) Tj ET
+0.722 0.608 0.439 rg
+BT /F2 10 Tf 49.00 92.39 Td ( ) Tj ET
+0.157 0.165 0.149 rg
+BT /F2 8.5 Tf 59.00 92.39 Td (Chrome DevTools Network Inspection: ) Tj ET
+0.216 0.227 0.212 rg
+BT /F1 8.5 Tf 217.70 92.39 Td (Navigated to the live production site in Google Chrome, opened DevTools) Tj ET
+BT /F1 8.5 Tf 59.00 80.39 Td (\(F12\) -> Network tab, and submitted the Sign In modal. The Network trace revealed HTTP 404 on POST) Tj ET
+BT /F1 8.5 Tf 59.00 68.39 Td (/VITE_API_URL/auth/login, immediately isolating the root cause to a malformed base URL segment.) Tj ET
+0.722 0.608 0.439 RG 0.75 w
+45 806.89 m 550.28 806.89 l S
+0.4 0.4 0.4 rg
+BT /F1 7.5 Tf 45 811.89 Td (MemberPass - AI Notes & Verification) Tj ET
+BT /F1 7.5 Tf 430.28 811.89 Td (MemberPass Internship Pack) Tj ET
+0.722 0.608 0.439 RG 0.5 w
+45 38 m 550.28 38 l S
+0.45 0.45 0.45 rg
+BT /F1 7.5 Tf 45 26 Td (Confidential & Evaluated - MemberPass | Eswaraprasadh A) Tj ET
+BT /F2 8 Tf 490.28 26 Td (Page 1 of 2) Tj ET
+endstream
+endobj
+9 0 obj
+<< /Type /Page /Parent 2 0 R /MediaBox [0 0 595.28 841.89] /Resources << /Font << /F1 3 0 R /F2 4 0 R /F3 5 0 R /F4 6 0 R >> >> /Contents 10 0 R >>
+endobj
+10 0 obj
+<< /Length 5458 >>
+stream
+0.722 0.608 0.439 rg
+BT /F2 10 Tf 49.00 781.89 Td ( ) Tj ET
+0.157 0.165 0.149 rg
+BT /F2 8.5 Tf 59.00 781.89 Td (Frontend Service Audit: ) Tj ET
+0.216 0.227 0.212 rg
+BT /F1 8.5 Tf 164.66 781.89 Td (Audited frontend/src/services/api.js line 3: const API_BASE =) Tj ET
+BT /F1 8.5 Tf 59.00 769.89 Td (import.meta.env.VITE_API_URL. Confirmed that Vite was baking the erroneous environment variable string into the) Tj ET
+BT /F1 8.5 Tf 59.00 757.89 Td (production bundle.) Tj ET
+0.722 0.608 0.439 rg
+BT /F2 10 Tf 49.00 743.89 Td ( ) Tj ET
+0.157 0.165 0.149 rg
+BT /F2 8.5 Tf 59.00 743.89 Td (Backend Express Route Audit: ) Tj ET
+0.216 0.227 0.212 rg
+BT /F1 8.5 Tf 186.76 743.89 Td (Audited backend/server.js and confirmed routes were mounted exclusively as) Tj ET
+BT /F1 8.5 Tf 59.00 731.89 Td (app.use\("/api/auth", authRoutes\). The /VITE_API_URL prefix bypassed the router completely.) Tj ET
+0.722 0.608 0.439 rg
+BT /F2 10 Tf 49.00 717.89 Td ( ) Tj ET
+0.157 0.165 0.149 rg
+BT /F2 8.5 Tf 59.00 717.89 Td (Automated Test Assertion: ) Tj ET
+0.216 0.227 0.212 rg
+BT /F1 8.5 Tf 173.50 717.89 Td (In backend/scripts/test-comprehensive-suite.js \(Task 10\), automated test assertions) Tj ET
+BT /F1 8.5 Tf 59.00 705.89 Td (checked that absentee draft greetings used the member's friendly first name \("Dear Eswaraprasadh"\). The test) Tj ET
+BT /F1 8.5 Tf 59.00 693.89 Td (failed against the unparsed AI template, catching the tone defect before release.) Tj ET
+0.722 0.608 0.439 rg
+45.00 667.89 505.28 22.00 re f
+0.118 0.129 0.118 rg
+BT /F2 11 Tf 53.00 674.89 Td (5. IMPLEMENTED CORRECTIONS & DEFENSIVE ENGINEERING) Tj ET
+0.157 0.165 0.149 rg
+BT /F1 9 Tf 45.00 647.89 Td (To permanently resolve the defect and safeguard the system against configuration errors, a 4-tier solution) Tj ET
+BT /F1 9 Tf 45.00 635.39 Td (was implemented:) Tj ET
+0.722 0.608 0.439 rg
+BT /F2 10 Tf 49.00 619.89 Td ( ) Tj ET
+0.157 0.165 0.149 rg
+BT /F2 8.5 Tf 59.00 619.89 Td (1. Client-Side API Base Sanitizer: ) Tj ET
+0.216 0.227 0.212 rg
+BT /F1 8.5 Tf 213.28 619.89 Td (Implemented sanitizeApiBase\(\) in frontend/src/services/api.js to defensively) Tj ET
+BT /F1 8.5 Tf 59.00 607.89 Td (cleanse malformed trailing variable names and guarantee the canonical /api prefix:) Tj ET
+0.118 0.129 0.118 rg
+45.00 514.89 505.28 87.00 re f
+0.722 0.608 0.439 rg
+45.00 514.89 3.00 87.00 re f
+0.839 0.784 0.682 rg
+BT /F4 7.5 Tf 55.00 590.89 Td (const sanitizeApiBase = \(rawUrl\) => {) Tj ET
+BT /F4 7.5 Tf 55.00 579.89 Td (  let url = \(rawUrl || ""\).trim\(\);) Tj ET
+BT /F4 7.5 Tf 55.00 568.89 Td (  url = url.replace\(/\\/VITE_API_URL\\/?$/i, ""\);) Tj ET
+BT /F4 7.5 Tf 55.00 557.89 Td (  url = url.replace\(/\\/+$/, ""\);) Tj ET
+BT /F4 7.5 Tf 55.00 546.89 Td (  if \(!url.endsWith\("/api"\)\) url += "/api";) Tj ET
+BT /F4 7.5 Tf 55.00 535.89 Td (  return url;) Tj ET
+BT /F4 7.5 Tf 55.00 524.89 Td (};) Tj ET
+0.722 0.608 0.439 rg
+BT /F2 10 Tf 49.00 502.89 Td ( ) Tj ET
+0.157 0.165 0.149 rg
+BT /F2 8.5 Tf 59.00 502.89 Td (2. Environment File Correction: ) Tj ET
+0.216 0.227 0.212 rg
+BT /F1 8.5 Tf 200.02 502.89 Td (Updated frontend/.env and frontend/.env.production with the canonical URL:) Tj ET
+BT /F1 8.5 Tf 59.00 490.89 Td (https://memberpass-uzxv.onrender.com/api) Tj ET
+0.722 0.608 0.439 rg
+BT /F2 10 Tf 49.00 476.89 Td ( ) Tj ET
+0.157 0.165 0.149 rg
+BT /F2 8.5 Tf 59.00 476.89 Td (3. Backend Route Fallback Mount: ) Tj ET
+0.216 0.227 0.212 rg
+BT /F1 8.5 Tf 204.44 476.89 Td (In backend/server.js, mounted app.use\("/auth", authRoutes\) alongside) Tj ET
+BT /F1 8.5 Tf 59.00 464.89 Td (app.use\("/api/auth", authRoutes\), ensuring that requests without the /api prefix continue to authenticate) Tj ET
+BT /F1 8.5 Tf 59.00 452.89 Td (seamlessly.) Tj ET
+0.722 0.608 0.439 rg
+BT /F2 10 Tf 49.00 438.89 Td ( ) Tj ET
+0.157 0.165 0.149 rg
+BT /F2 8.5 Tf 59.00 438.89 Td (4. Friendly First-Name Greeting Parser: ) Tj ET
+0.216 0.227 0.212 rg
+BT /F1 8.5 Tf 235.38 438.89 Td (In backend/controllers/absenteeController.js, updated template) Tj ET
+BT /F1 8.5 Tf 59.00 426.89 Td (generation: const firstName = member.user?.name ? member.user.name.trim\(\).split\(/\\s+/\)[0] : "Valued Member";) Tj ET
+0.722 0.608 0.439 rg
+45.00 400.89 505.28 22.00 re f
+0.118 0.129 0.118 rg
+BT /F2 11 Tf 53.00 407.89 Td (6. KEY ENGINEERING PRINCIPLES) Tj ET
+0.157 0.165 0.149 rg
+BT /F1 9 Tf 45.00 380.89 Td (1. Always Validate AI Artifacts: AI tools lack runtime execution feedback and cannot inspect network) Tj ET
+BT /F1 9 Tf 45.00 368.39 Td (packets or verify live deployed cloud endpoints.) Tj ET
+0.157 0.165 0.149 rg
+BT /F1 9 Tf 45.00 352.89 Td (2. Comprehensive Test Suites: A robust 103-test suite with automated assertions acts as an essential safety) Tj ET
+BT /F1 9 Tf 45.00 340.39 Td (harness to catch subtle logic, naming, and data formatting bugs.) Tj ET
+0.157 0.165 0.149 rg
+BT /F1 9 Tf 45.00 324.89 Td (3. Defensive Architecture: Writing defensive sanitizers and route fallbacks ensures high availability and) Tj ET
+BT /F1 9 Tf 45.00 312.39 Td (fault tolerance against environmental misconfigurations.) Tj ET
+0.722 0.608 0.439 RG 0.75 w
+45 806.89 m 550.28 806.89 l S
+0.4 0.4 0.4 rg
+BT /F1 7.5 Tf 45 811.89 Td (MemberPass - AI Notes & Verification) Tj ET
+BT /F1 7.5 Tf 430.28 811.89 Td (MemberPass Internship Pack) Tj ET
+0.722 0.608 0.439 RG 0.5 w
+45 38 m 550.28 38 l S
+0.45 0.45 0.45 rg
+BT /F1 7.5 Tf 45 26 Td (Confidential & Evaluated - MemberPass | Eswaraprasadh A) Tj ET
+BT /F2 8 Tf 490.28 26 Td (Page 2 of 2) Tj ET
+endstream
+endobj
+xref
+0 11
+0000000000 65535 f 
+0000000015 00000 n 
+0000000064 00000 n 
+0000000127 00000 n 
+0000000224 00000 n 
+0000000326 00000 n 
+0000000431 00000 n 
+0000000526 00000 n 
+0000000688 00000 n 
+0000008645 00000 n 
+0000008808 00000 n 
+trailer
+<< /Size 11 /Root 1 0 R >>
+startxref
+14319
+%%EOF
