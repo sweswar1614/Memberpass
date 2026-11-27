@@ -13,7 +13,7 @@
 ### 📄 Submission Documentation Pack
 - **AI Verification & Defect Analysis:** [docs/AI_NOTES.pdf](file:///d:/Intership/Eswar/docs/AI_NOTES.pdf)
 - **Project Progress Report (Vizdale Template):** [docs/PROGRESS.pdf](file:///d:/Intership/Eswar/docs/PROGRESS.pdf)
-- **Production Lighthouse Speed Score (94/100):** [docs/SPEED.png](file:///d:/Intership/Eswar/docs/SPEED.png)
+- **Production Lighthouse Speed Score (91/100):** [docs/SPEED.png](file:///d:/Intership/Eswar/docs/SPEED.png)
 
 ---
 
@@ -90,7 +90,9 @@ The MemberPass codebase has undergone rigorous verification using an automated e
 
 - **Frontend Lint Status:** 0 errors (`npm run lint` clean).
 - **Production Build Status:** Passed (`npm run build` optimized bundle).
-- **Lighthouse Performance Score:** 94 / 100 (Exceeds >= 85 target; FCP: 0.8s, LCP: 1.2s, TBT: 0ms, CLS: 0.001).
+- **Lighthouse Performance Score:** **91 / 100** (Exceeds >= 85 target).
+- **Full Lighthouse Scores:** Performance: **91**, Accessibility: **95**, Best Practices: **100**, SEO: **100**.
+- **Core Web Vitals:** FCP: **1.0 s**, LCP: **1.0 s**, TBT: **0 ms**, CLS: **0.141**, Speed Index: **1.0 s** (Authentic live audit captured from Chrome DevTools on Vercel; verified in [`docs/SPEED.png`](file:///d:/Intership/Eswar/docs/SPEED.png)).
 
 ---
 

@@ -163,7 +163,7 @@ endobj
 << /Type /Page /Parent 2 0 R /MediaBox [0 0 595.28 841.89] /Resources << /Font << /F1 3 0 R /F2 4 0 R /F3 5 0 R /F4 6 0 R >> >> /Contents 10 0 R >>
 endobj
 10 0 obj
-<< /Length 5458 >>
+<< /Length 5790 >>
 stream
 0.722 0.608 0.439 rg
 BT /F2 10 Tf 49.00 781.89 Td ( ) Tj ET
@@ -239,16 +239,18 @@ BT /F1 8.5 Tf 59.00 426.89 Td (generation: const firstName = member.user?.name ?
 0.722 0.608 0.439 rg
 45.00 400.89 505.28 22.00 re f
 0.118 0.129 0.118 rg
-BT /F2 11 Tf 53.00 407.89 Td (6. KEY ENGINEERING PRINCIPLES) Tj ET
+BT /F2 11 Tf 53.00 407.89 Td (6. KEY ENGINEERING PRINCIPLES & PERFORMANCE AUDIT) Tj ET
 0.157 0.165 0.149 rg
 BT /F1 9 Tf 45.00 380.89 Td (1. Always Validate AI Artifacts: AI tools lack runtime execution feedback and cannot inspect network) Tj ET
-BT /F1 9 Tf 45.00 368.39 Td (packets or verify live deployed cloud endpoints.) Tj ET
+BT /F1 9 Tf 45.00 368.39 Td (packets or verify live deployed cloud endpoints without human testing.) Tj ET
 0.157 0.165 0.149 rg
 BT /F1 9 Tf 45.00 352.89 Td (2. Comprehensive Test Suites: A robust 103-test suite with automated assertions acts as an essential safety) Tj ET
 BT /F1 9 Tf 45.00 340.39 Td (harness to catch subtle logic, naming, and data formatting bugs.) Tj ET
 0.157 0.165 0.149 rg
-BT /F1 9 Tf 45.00 324.89 Td (3. Defensive Architecture: Writing defensive sanitizers and route fallbacks ensures high availability and) Tj ET
-BT /F1 9 Tf 45.00 312.39 Td (fault tolerance against environmental misconfigurations.) Tj ET
+BT /F1 9 Tf 45.00 324.89 Td (3. Authentic Production Verification: Performance claims must be captured directly from authentic live) Tj ET
+BT /F1 9 Tf 45.00 312.39 Td (production audits \(Google Chrome Lighthouse\) rather than synthetic estimates. Live evaluation of) Tj ET
+BT /F1 9 Tf 45.00 299.89 Td (https://memberpass-flax.vercel.app/ verified an authentic score of 91 Performance \(target >= 85\), 95) Tj ET
+BT /F1 9 Tf 45.00 287.39 Td (Accessibility, 100 Best Practices, and 100 SEO, captured in docs/SPEED.png.) Tj ET
 0.722 0.608 0.439 RG 0.75 w
 45 806.89 m 550.28 806.89 l S
 0.4 0.4 0.4 rg
@@ -277,5 +279,5 @@ xref
 trailer
 << /Size 11 /Root 1 0 R >>
 startxref
-14319
+14651
 %%EOF
